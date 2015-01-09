@@ -22,7 +22,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
         if (Event.current.type.Equals(EventType.Repaint))
         {
             Color colPreviousGUIColor = GUI.color;
-            float opacity = (Mathf.Sin(Time.time) + 1) / 2;
+            float opacity = GameObject.Find("Player").GetComponent<MentalStability>().insanity;
             GUI.color = new Color(colPreviousGUIColor.r, colPreviousGUIColor.g, colPreviousGUIColor.b, opacity);
 
             int cols = Mathf.CeilToInt(Screen.width / noiseDisplay.width) + 1;
