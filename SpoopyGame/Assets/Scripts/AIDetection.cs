@@ -15,6 +15,8 @@ public class AIDetection : MonoBehaviour
     public float exploreDistance = 20;
     private Vector2 exploreNode;
     // Use this for initialization
+
+    private Vector3 testVec;
     void Start()
     {
         SphereCollider myCollider = transform.GetComponent<SphereCollider>();
@@ -49,8 +51,13 @@ public class AIDetection : MonoBehaviour
                     if (hitOne.collider.gameObject == playerObject)
                     {
                         transform.LookAt(new Vector3(player.x, transform.position.y, player.z));
+                        recentlyDetected = true;
                     }
+                    else
+                        recentlyDetected = false;
                 }
+                else
+                    recentlyDetected = false;
             }
             else
             {
@@ -60,15 +67,16 @@ public class AIDetection : MonoBehaviour
 
         if (!recentlyDetected)
         {
-            if (Mathf.Abs(exploreNode.x-transform.position.x) < 1.0f && Mathf.Abs(exploreNode.y-transform.position.z) < 1.0f)
+            if ((exploreNode.x-transform.position.x < 1.0f && exploreNode.x-transform.position.x > -1.0f) && (exploreNode.y-transform.position.z < 1.0f && exploreNode.y-transform.position.z>-1.0f))
             {
                 exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
                 exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
 
                 transform.LookAt(new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
             }
-            Vector3 pd = (new Vector3(exploreNode.x, transform.position.y, exploreNode.y))-(transform.position);
+            Vector3 pd = (new Vector3(exploreNode.x, transform.position.y, exploreNode.y)) - (transform.position);
             pd = pd.normalized * speed;
+            testVec = pd;
             transform.Translate(pd.x, 0.0f, pd.z);
         }
         else if (recentlyDetected)
@@ -89,5 +97,11 @@ public class AIDetection : MonoBehaviour
         }
         else
             withinRange = false;
+    }
+
+    void OnGUI()
+    {
+        if(Input.GetKey(KeyCode.H))
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200, 250), "X: "+exploreNode.x+" Y: "+exploreNode.y+ " Move X: " + testVec.x + " Move Z: " + testVec.z);
     }
 }
