@@ -25,9 +25,11 @@ public class AIDetection : MonoBehaviour
         exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
         exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
 
-        float angle = Vector3.Angle(new Vector3(exploreNode.x, transform.position.y, exploreNode.y), transform.forward);
-
-        transform.RotateAround(transform.position, transform.up, angle);
+        while ((Physics.Raycast(transform.position + new Vector3(0,1,0), new Vector3(exploreNode.x, transform.position.y, exploreNode.y))))
+        {
+            exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
+            exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class AIDetection : MonoBehaviour
                 {
                     if (hitOne.collider.gameObject == playerObject)
                     {
-                        transform.LookAt(new Vector3(player.x, transform.position.y, player.z));
+                       transform.LookAt(new Vector3(player.x, transform.position.y, player.z));
                         recentlyDetected = true;
                     }
                     else
@@ -67,25 +69,29 @@ public class AIDetection : MonoBehaviour
 
         if (!recentlyDetected)
         {
-            if ((exploreNode.x-transform.position.x < 1.0f && exploreNode.x-transform.position.x > -1.0f) && (exploreNode.y-transform.position.z < 1.0f && exploreNode.y-transform.position.z>-1.0f))
+            if (((exploreNode.x-transform.position.x < 1.0f && exploreNode.x-transform.position.x > -1.0f) && (exploreNode.y-transform.position.z < 1.0f && exploreNode.y-transform.position.z>-1.0f)))
             {
                 exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
                 exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
 
-                transform.LookAt(new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
+                while ((Physics.Raycast(transform.position + transform.up, new Vector3(exploreNode.x, transform.position.y, exploreNode.y))))
+                {
+                    exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
+                    exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
+                }
             }
-            Vector3 pd = (new Vector3(exploreNode.x, transform.position.y, exploreNode.y)) - (transform.position);
-            pd = pd.normalized * speed;
-            testVec = pd;
-            transform.Translate(pd.x, 0.0f, pd.z);
+            Debug.DrawLine(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
+            transform.LookAt(new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+            transform.Translate(transform.forward.normalized*speed, Space.World);
         }
         else if (recentlyDetected)
         {
             exploreCoordX=playerObject.rigidbody.position.x;
             exploreCoordZ=playerObject.rigidbody.position.z;
-            Vector3 pd = (transform.position) - (playerObject.rigidbody.position);
-            pd = pd.normalized * speed;
-            transform.Translate(pd.x, 0.0f, pd.z);
+
+            transform.Translate(transform.forward.normalized*speed, Space.World);
         }
     }
 
@@ -102,6 +108,6 @@ public class AIDetection : MonoBehaviour
     void OnGUI()
     {
         if(Input.GetKey(KeyCode.H))
-            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200, 250), "X: "+exploreNode.x+" Y: "+exploreNode.y+ " Move X: " + testVec.x + " Move Z: " + testVec.z);
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200, 250), "Velocity X: " + rigidbody.angularVelocity.x + " Velocity Y: " + rigidbody.angularVelocity.y + " Velocity Z: " + rigidbody.angularVelocity.z);
     }
 }
