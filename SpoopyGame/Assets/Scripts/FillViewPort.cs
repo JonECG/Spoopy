@@ -29,26 +29,28 @@ public class FillViewPort : MonoBehaviour {
             float width = Mathf.Abs(Vector3.Dot(cam.transform.right, v3TopRight) - Vector3.Dot(cam.transform.right, v3BottomLeft));
             float height = Mathf.Abs(Vector3.Dot(cam.transform.up, v3TopRight) - Vector3.Dot(cam.transform.up, v3BottomLeft));
 
+            Vector2 rendDimensions = (cam.targetTexture != null) ? new Vector2(cam.targetTexture.width, cam.targetTexture.height) : new Vector2(Screen.width, Screen.height); 
+
             RectTransform rect = GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(cam.targetTexture.width, cam.targetTexture.height);
-            rect.localScale = new Vector3(width / (cam.targetTexture.width * cam.rect.width), height / (cam.targetTexture.height * cam.rect.height), 1);
+            rect.sizeDelta = rendDimensions;// new Vector2(cam.targetTexture.width, cam.targetTexture.height);
+            rect.localScale = new Vector3(width / (rendDimensions.x * cam.rect.width), height / (rendDimensions.y * cam.rect.height), 1);
             rect.position = cam.transform.position + cam.transform.forward * distanceAway;
             rect.rotation = cam.transform.rotation;
 
-            string[] layerNames = { "AllOne", "AllTwo", "AllThree" };
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                //Debug.Log(transform.GetChild(i).name);
-                //childTransforms[i].localScale = rect.localScale;// new Vector3(1 / rect.localScale.x, 1 / rect.localScale.y, 1 / rect.localScale.z);
-                transform.GetChild(i).GetComponent<RectTransform>().sizeDelta = new Vector2(10000, 10000);// rect.sizeDelta; 
-                Vector3 dsl = transform.GetChild(i).GetComponent<RectTransform>().localPosition;
-                dsl.z = -i * 0.001f;
-                transform.GetChild(i).GetComponent<RectTransform>().localPosition = dsl;
-                // new Vector3(0, 0, i * 0.001f);
-                transform.GetChild(i).GetComponent<Canvas>().overrideSorting = true;
-                //transform.GetChild(i).GetComponent<Canvas>().sortingLayerName = layerNames[i];// = new Vector2(10000, 10000);
-                //transform.GetChild(i).GetComponent<Canvas>().sortingOrder = i;
-            }
+            //string[] layerNames = { "AllOne", "AllTwo", "AllThree" };
+            //for (int i = 0; i < transform.childCount; i++)
+            //{
+            //    //Debug.Log(transform.GetChild(i).name);
+            //    //childTransforms[i].localScale = rect.localScale;// new Vector3(1 / rect.localScale.x, 1 / rect.localScale.y, 1 / rect.localScale.z);
+            //    transform.GetChild(i).GetComponent<RectTransform>().sizeDelta = new Vector2(10000, 10000);// rect.sizeDelta; 
+            //    Vector3 dsl = transform.GetChild(i).GetComponent<RectTransform>().localPosition;
+            //    dsl.z = -i * 0.001f;
+            //    transform.GetChild(i).GetComponent<RectTransform>().localPosition = dsl;
+            //    // new Vector3(0, 0, i * 0.001f);
+            //    transform.GetChild(i).GetComponent<Canvas>().overrideSorting = true;
+            //    //transform.GetChild(i).GetComponent<Canvas>().sortingLayerName = layerNames[i];// = new Vector2(10000, 10000);
+            //    //transform.GetChild(i).GetComponent<Canvas>().sortingOrder = i;
+            //}
         }
     }
 }

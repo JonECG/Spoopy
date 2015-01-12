@@ -39,9 +39,9 @@ public class HeadsUpDisplayController : MonoBehaviour {
         //GameObject one = transform.FindChild("NoiseLayer").gameObject;
         //GameObject two = one.transform.FindChild("NoisePlane").gameObject;
         //Image imageFound = two.GetComponent<Image>();
-        additivePlane = transform.FindChild("AdditiveLayer").FindChild("AdditivePlane").GetComponent<Image>();
-        multiplyPlane = transform.FindChild("MultiplyLayer").FindChild("MultiplyPlane").GetComponent<Image>();
-        noisePlane = transform.FindChild("NoiseLayer").FindChild("NoisePlane").GetComponent<Image>();
+        additivePlane = transform.FindChild("AdditivePlane").GetComponent<Image>();
+        multiplyPlane = transform.FindChild("MultiplyPlane").GetComponent<Image>();
+        noisePlane = transform.FindChild("NoisePlane").GetComponent<Image>();
         if (master == null)
         {
             master = this;
@@ -81,7 +81,9 @@ public class HeadsUpDisplayController : MonoBehaviour {
         multiplyPlane.material.color = new Color(Mathf.Min(1 + delta.x, 1), Mathf.Min(1 + delta.y, 1), Mathf.Min(1 + delta.z, 1), 1);
         additivePlane.material.color = new Color(Mathf.Max(delta.x, 0), Mathf.Max(delta.y, 0), Mathf.Max(delta.z, 0), 1);
         noisePlane.rectTransform.localPosition = new Vector2(-xoff, -yoff);
-        noisePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta + new Vector2(xoff, yoff);
+        noisePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta + new Vector2(xoff, yoff) * 2;
+        multiplyPlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
+        additivePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
     }
 
     //void OnGUI()

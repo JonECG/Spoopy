@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         head = GameObject.Find("Head").transform;
 
-        if (1 == 2)//!Application.isEditor)
+        if (Application.isEditor)
         {
             GameObject.Destroy(GameObject.Find("OVRCameraRig"));
             anchor = GameObject.Find("Head").transform;
