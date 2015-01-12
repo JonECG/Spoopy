@@ -15,7 +15,7 @@ public class Blinker : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        BlinkLeftPercentage = Mathf.Clamp(BlinkLeftPercentage + (Input.GetKey(KeyCode.E) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);
-        BlinkRightPercentage = Mathf.Clamp(BlinkRightPercentage + (Input.GetKey(KeyCode.R) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);  
+        BlinkLeftPercentage = Mathf.Clamp(BlinkLeftPercentage + ((Input.GetAxis("Blink") > 0.0f) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);
+        BlinkRightPercentage = Mathf.Clamp(BlinkRightPercentage + ((Input.GetAxis("Blink") > 0.0f) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);  
 	}
 }
