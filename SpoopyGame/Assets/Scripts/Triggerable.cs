@@ -1,23 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Triggerable : MonoBehaviour
+public abstract class Triggerable : MonoBehaviour
 {
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-    void Triggered()
-    {
-       
-    }
+    public abstract void Triggered(string id);
 }

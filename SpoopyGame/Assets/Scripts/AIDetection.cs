@@ -17,6 +17,8 @@ public class AIDetection : MonoBehaviour
 
     void Start()
     {
+        exploreCoordX = transform.position.x;
+        exploreCoordZ = transform.position.z;
         exploreNode.x = Random.Range(exploreCoordX-exploreDistance, exploreCoordX + exploreDistance);
         exploreNode.y = Random.Range(exploreCoordZ-exploreDistance, exploreCoordZ + exploreDistance);
 

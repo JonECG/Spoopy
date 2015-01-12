@@ -17,8 +17,7 @@ public class DisappearTriggerable : Triggerable {
         {
             if (renderer.material.color.a > 0)
             {
-                renderer.material.SetColor("Main Color", new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, renderer.material.color.a - 100 * Time.deltaTime));
-
+                renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, Mathf.Clamp( renderer.material.color.a - 2 * Time.deltaTime, 0 , 1 ));
             }
             else
             {
@@ -27,8 +26,7 @@ public class DisappearTriggerable : Triggerable {
         }
     }
 
-
-    void Triggered()
+    public override void Triggered(string id)
     {
         fading = true;
     }
