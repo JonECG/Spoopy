@@ -5,6 +5,8 @@ public class ItemInteraction : MonoBehaviour {
 
     public string info = "Just an object";
     private float grabDistance = 5;
+    private bool togglePickup;
+    private bool spacebarDown;
 
 	// Use this for initialization
 	void Start ()
@@ -25,21 +27,32 @@ public class ItemInteraction : MonoBehaviour {
             {
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    transform.position = playerHead.transform.position + (playerHead.transform.forward.normalized * 2);
-                    transform.rigidbody.useGravity = false;
+                    if (togglePickup && !spacebarDown)
+                        togglePickup = false;
+                    else if ((!togglePickup && !spacebarDown))
+                        togglePickup = true;
+                    spacebarDown = true;
                 }
                 else
-                    transform.rigidbody.useGravity = true;
-
-                if (Input.GetKey(KeyCode.F))
                 {
-                    if (Input.GetKey(KeyCode.Space))
-                    { }
-                    else
-                    {
-                        transform.rigidbody.AddForce(playerHead.transform.forward.normalized * 3);
-                    }
+                    spacebarDown = false;
                 }
+
+                if (Input.GetKey(KeyCode.F) && togglePickup)
+                {
+                    transform.rigidbody.velocity=((playerHead.transform.forward * 1000)*Time.deltaTime);
+                    togglePickup = false;
+                }
+            }
+
+            if (togglePickup)
+            {
+                transform.position = playerHead.transform.position + (playerHead.transform.forward.normalized * 2);
+                transform.rigidbody.useGravity = false;
+            }
+            else
+            {
+                transform.rigidbody.useGravity = true;
             }
         }
 	}
