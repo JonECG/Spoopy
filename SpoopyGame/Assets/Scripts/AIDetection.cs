@@ -46,6 +46,8 @@ public class AIDetection : MonoBehaviour
                     if (hitOne.collider.gameObject == playerObject)
                     {
                        transform.LookAt(new Vector3(player.x, transform.position.y, player.z));
+                        if( recentlyDetected == false )
+                            GetComponent<SoundStatePlayer>().PlaySoundFrom("FoundPlayer");
                         recentlyDetected = true;
                     }
                     else
@@ -79,6 +81,7 @@ public class AIDetection : MonoBehaviour
             rigidbody.angularVelocity = Vector3.zero;
             transform.Translate((transform.forward.normalized*speed)*Time.deltaTime, Space.World);
             renderer.material.color = Color.white;
+            GetComponent<SoundStatePlayer>().SetState("Patrol");
         }
         else if (recentlyDetected)
         {
@@ -87,6 +90,7 @@ public class AIDetection : MonoBehaviour
 
             transform.Translate((transform.forward.normalized*speed)*Time.deltaTime, Space.World);
             renderer.material.color = Color.red;
+            GetComponent<SoundStatePlayer>().SetState("Chase");
         }
     }
 

@@ -18,7 +18,9 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     private Vector3 delta;
 
-    private Image additivePlane, multiplyPlane, noisePlane, fadePlane, blinkPlane;
+    private Image additivePlane, multiplyPlane, noisePlane, blinkPlane;
+
+    //private Camera target;
 
     static List<HeadsUpDisplayController> clones = new List<HeadsUpDisplayController>();
     static HeadsUpDisplayController master;
@@ -57,6 +59,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
             {
                 GameObject dupe = (GameObject)Instantiate(gameObject);
                 dupe.name = "HUD for " + targetCameras[i].name;
+                //dupe.GetComponent<HeadsUpDisplayController>().target = targetCameras[i];
                 clones.Add(dupe.GetComponent<HeadsUpDisplayController>());
                 SetLayerRecursively(dupe, i + offsetOfFlags);
                 //dupe.layer = i + offsetOfFlags;
@@ -69,24 +72,30 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     void Update()
     {
-        float opacity = player.GetComponent<MentalStability>().insanity;
+        float insane = player.GetComponent<MentalStability>().insanity;
+        float health = player.GetComponent<HealthyLiving>().health;
 
         int xoff = Random.Range(0, noiseDisplay.width);
         int yoff = Random.Range(0, noiseDisplay.height);
 
-        int blinkYOff = noiseDisplay.height;
-        blinkPlane.rectTransform.localPosition = new Vector2(0, ((1.0f-player.GetComponent<Blinker>().BlinkLeftPercentage)*blinkYOff*2));
-        noisePlane.color = new Color(1, 1, 1, opacity);
-        //fadePlane.color = new Color(0, 0, 0, opacity*opacity);
+
+        noisePlane.color = new Color(1, 1, 1, insane);
+        float invSqrInsane = 1 - (insane * insane);
+        Color fade = new Color(invSqrInsane, invSqrInsane * health, invSqrInsane * health, 1);
 
         delta = (delta + darkVision.lightDetector.averageColorAsVec - darkVision.adjustedLight) / 2;
 
-        multiplyPlane.material.color = new Color(Mathf.Min(1 + delta.x, 1), Mathf.Min(1 + delta.y, 1), Mathf.Min(1 + delta.z, 1), 1);
+        multiplyPlane.material.color = new Color(Mathf.Min(1 + delta.x, 1) * fade.r, Mathf.Min(1 + delta.y, 1) * fade.g, Mathf.Min(1 + delta.z, 1) * fade.b, 1);
         additivePlane.material.color = new Color(Mathf.Max(delta.x, 0), Mathf.Max(delta.y, 0), Mathf.Max(delta.z, 0), 1);
-        noisePlane.rectTransform.localPosition = new Vector2(-xoff, -yoff);
+        noisePlane.rectTransform.localPosition = new Vector3(-xoff, -yoff, noisePlane.rectTransform.localPosition.z);
         noisePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta + new Vector2(xoff, yoff) * 2;
         multiplyPlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
+        blinkPlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
         additivePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
+
+        float blinkYOff = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
+        float usedBlink = (transform.parent.name == "RightEyeAnchor") ? player.GetComponent<Blinker>().BlinkRightPercentage : player.GetComponent<Blinker>().BlinkLeftPercentage;
+        blinkPlane.rectTransform.localPosition = new Vector3(0, ((1.0f - usedBlink) * blinkYOff * 2), blinkPlane.rectTransform.localPosition.z);
     }
 
     //void OnGUI()

@@ -3,22 +3,35 @@ using System.Collections;
 
 public class MentalStability : MonoBehaviour {
 
-    public float insanity;
+    public delegate void CompletelyInsaneHandler();
+    public event CompletelyInsaneHandler CompletelyInsaneEvent;
+
+    public float insanity
+    {
+        get { return _insanity; }
+        set
+        {
+            changed = value > _insanity;
+            _insanity = Mathf.Clamp(value, 0, 1);
+            if (_insanity == 1 && CompletelyInsaneEvent != null)
+                CompletelyInsaneEvent();
+        }
+    }
+    private float _insanity;
+    
+    private bool changed;
     public float sanityRefreshDuration = 5;
 
 	void Start () 
 	{
-        insanity = 0;
-        //RenderTexture r = new RenderTexture(256, 256, 16);
-        //r.Create();
-        //Camera.allCameras[0].targetTexture = r;
+        _insanity = 0;
+        changed = false;
 	}
 	
 	void Update () 
 	{
-        insanity = Mathf.Max(0, insanity - Time.deltaTime / sanityRefreshDuration);
-        insanity = Mathf.Min(1, insanity);
-
-        //insanity = ( Mathf.Sin(Time.time) + 1 ) / 2;
+        if( !changed )
+            insanity = Mathf.Max(0, insanity - Time.deltaTime / sanityRefreshDuration);
+        changed = false;
 	}
 }

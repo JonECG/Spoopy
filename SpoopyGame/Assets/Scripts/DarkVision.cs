@@ -17,6 +17,7 @@ public class DarkVision : MonoBehaviour {
 	{
         maxIntensity = light.intensity;
         maxRange = light.range;
+        adjustedLight = new Vector3(1, 1, 1);
 	}
 	
 	void Update () 

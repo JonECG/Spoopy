@@ -86,12 +86,29 @@ public class SoundManagerController : MonoBehaviour {
         PlaySoundAt(loaded, soundPosition);
     }
 
+    public void PlaySoundAt(string name, Transform soundParent)
+    {
+        AudioClip loaded = Resources.Load<AudioClip>(name);
+        PlaySoundAt(loaded, soundParent);
+    }
+
     public void PlaySoundAt(AudioClip clip, Vector3 soundPosition)
     {
         GameObject source = new GameObject(clip.name + "SOUNDED");
         source.AddComponent<AudioSource>();
         source.audio.clip = clip;
         source.transform.position = soundPosition;
+        source.AddComponent<DestroyOnSoundEnd>();
+        source.audio.Play();
+    }
+
+    public void PlaySoundAt(AudioClip clip, Transform soundParent)
+    {
+        GameObject source = new GameObject(clip.name + "SOUNDED");
+        source.AddComponent<AudioSource>();
+        source.audio.clip = clip;
+        source.transform.parent = soundParent;
+        source.transform.localPosition = new Vector3(0, 0, 0);
         source.AddComponent<DestroyOnSoundEnd>();
         source.audio.Play();
     }
