@@ -11,7 +11,7 @@ public class ItemInteraction : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-	
+        spacebarDown = false;
 	}
 	
 	// Update is called once per frame
@@ -25,12 +25,19 @@ public class ItemInteraction : MonoBehaviour {
         {
             if (hitOne.collider.gameObject.tag == "Item")
             {
-                if (Input.GetKey(KeyCode.Space))
+                Debug.Log("Raycast hit");
+                if (Input.GetAxis("PickUp") > 0.0f)
                 {
+                    Debug.Log("Pick up pressed");
                     if (togglePickup && !spacebarDown)
+                    {
                         togglePickup = false;
+                    }
                     else if ((!togglePickup && !spacebarDown))
+                    {
                         togglePickup = true;
+                        Debug.Log("Pick up");
+                    }
                     spacebarDown = true;
                 }
                 else
