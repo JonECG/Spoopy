@@ -32,7 +32,7 @@ public class MovementTriggerable : Triggerable
         }
 	}
 
-    public void Triggered(string id)
+    public override void Triggered(string id)
     {
         moving = true;
     }

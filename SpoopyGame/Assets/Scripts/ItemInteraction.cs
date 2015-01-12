@@ -66,12 +66,19 @@ public class ItemInteraction : MonoBehaviour {
 
     void OnGUI()
     {
-        if (Input.GetKey(KeyCode.R))
+        GameObject playerHead = GameObject.Find("Head");
+
+        RaycastHit hitOne;
+
+        if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
         {
-            GUIStyle GUIS = new GUIStyle();
-            GUIS.alignment = TextAnchor.MiddleCenter;
-            GUIS.normal.textColor = Color.white;
-            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 0, 0), info, GUIS);
+            if (Input.GetKey(KeyCode.R))
+            {
+                GUIStyle GUIS = new GUIStyle();
+                GUIS.alignment = TextAnchor.MiddleCenter;
+                GUIS.normal.textColor = Color.white;
+                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 0, 0), info, GUIS);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ public class SoundTriggerable : Triggerable
 	
 	}
 
-    public void Triggered(string id)
+    public override void Triggered(string id)
     {
         SoundManagerController.Instance.PlaySoundAt(soundToPlay, positionToPlayAt);
     }
