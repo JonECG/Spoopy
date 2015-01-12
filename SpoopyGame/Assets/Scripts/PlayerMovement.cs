@@ -54,9 +54,10 @@ public class PlayerMovement : MonoBehaviour {
 
         float lateral = Input.GetAxis("Mouse X");
         float longinal = Input.GetAxis("Mouse Y");
+        float longinalStick = Input.GetAxis("TurningX");
 
-        transform.Rotate(new Vector3(0, 1, 0), lateral * mouseSensitivity );
-        head.Rotate(new Vector3(1, 0, 0), -longinal * mouseSensitivity);
+        transform.Rotate(new Vector3(0, 1, 0), (lateral +  + longinalStick) * mouseSensitivity );
+        head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
 	
 	}
 }
