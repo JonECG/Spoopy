@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+
     Transform anchor;
     Transform head;
     int moveSpeed = 3;
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         head = GameObject.Find("Head").transform;
 
-        if (Application.isEditor)
+        if (1 == 2)//!Application.isEditor)
         {
             GameObject.Destroy(GameObject.Find("OVRCameraRig"));
             anchor = GameObject.Find("Head").transform;
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
             anchor = GameObject.Find("CenterEyeAnchor").transform;
         }
 
+        GameObject.Find("LitCamera").transform.parent = anchor;
         GameObject.Find("Headlamp").transform.parent = anchor;
 	}
 	

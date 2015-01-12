@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AmbientManagerController : MonoBehaviour {
 
@@ -26,7 +27,7 @@ public class AmbientManagerController : MonoBehaviour {
         timesPlayed = new float[ambientSounds.Length];
         for (int i = 0; i < timesPlayed.Length; i++)
         {
-            timesPlayed[i] = Random.Range(0, ambientSounds[i].maxDelay) + ambientSounds[i].sound.length;
+            timesPlayed[i] = Random.Range(0, ambientSounds[i].maxDelay );
         }
 	}
 
@@ -38,8 +39,29 @@ public class AmbientManagerController : MonoBehaviour {
             timesPlayed[i] -= Time.deltaTime;
             if (timesPlayed[i] < 0)
             {
-                Vector3 playerPosition = GameObject.Find("Player").transform.position;
-                SoundManagerController.Instance.PlaySoundAt( ambientSounds[i].sound, playerPosition );
+                AudioListener listener = FindObjectOfType<AudioListener>();
+                Vector3 forward = listener.transform.rotation * new Vector3( 1, 0, 0 );
+                forward.y = 0;
+                forward.Normalize();
+
+                List<Vector2> angleRanges = new List<Vector2>();
+                if (ambientSounds[i].playFront)
+                    angleRanges.Add(new Vector2(-45, 45));
+                if (ambientSounds[i].playBehind)
+                    angleRanges.Add(new Vector2(135, 225));
+                if (ambientSounds[i].playSides)
+                {
+                    angleRanges.Add(new Vector2(45, 135));
+                    angleRanges.Add(new Vector2(225, 315));
+                }
+
+                Vector2 chosenRange = angleRanges[Random.Range(0, angleRanges.Count)];
+                float angle = Random.Range(chosenRange.x, chosenRange.y);
+                float dist = Random.Range(ambientSounds[i].minDistance, ambientSounds[i].maxDistance);
+                Vector3 direction = Quaternion.AngleAxis(angle, new Vector3(0, 1, 0)) * forward;
+                Vector3 soundPosition = listener.transform.position + direction * dist;
+
+                SoundManagerController.Instance.PlaySoundAt(ambientSounds[i].sound, soundPosition);
                 timesPlayed[i] = Random.Range(ambientSounds[i].minDelay, ambientSounds[i].maxDelay) + ambientSounds[i].sound.length;
             }
         }
