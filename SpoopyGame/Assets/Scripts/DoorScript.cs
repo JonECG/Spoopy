@@ -17,9 +17,9 @@ public class DoorScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.parent == TargetKey)
+        if (collision.transform.gameObject == TargetKey.transform.gameObject)
         {
-            Destroy(this);
+            Destroy(this.transform.gameObject);
         }
     }
 }
