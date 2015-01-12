@@ -21,7 +21,7 @@ public class HeadLamp : MonoBehaviour {
 	
 	void Update () 
 	{
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetAxis("HeadLampToggle") > 0.0f)
         {
             SoundManagerController.Instance.PlaySoundAt(isTurnedOn ? clickOff : (currentBatteryLife > 0) ? clickOn : clickDead, transform.position);
             if (currentBatteryLife > 0)
@@ -40,7 +40,7 @@ public class HeadLamp : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetAxis("HeadLampRecharge") > 0.0f)
         {
             currentBatteryLife = Mathf.Min(batteryLifeInSeconds, currentBatteryLife + batteryLifeInSeconds / numberOfShakesToCharge);
             SoundManagerController.Instance.PlaySoundAt( ( currentBatteryLife == batteryLifeInSeconds ) ? rechargeFull : recharge, transform.position);

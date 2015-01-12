@@ -35,19 +35,19 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 upReference = anchor.rotation * new Vector3(0, 1, 0);
         Vector3 forwardReference = anchor.rotation * new Vector3(0, 0, 1);
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetAxis("Vertical") > 0.0f)
         {
             transform.position += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * Time.deltaTime * moveSpeed;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetAxis("Vertical") < 0.0f)
         {
             transform.position -= new Vector3(forwardReference.x, 0, forwardReference.z).normalized * Time.deltaTime * moveSpeed;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetAxis("Horizontal") > 0.0f)
         {
             transform.position += new Vector3(rightReference.x, 0, rightReference.z).normalized * Time.deltaTime * moveSpeed;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetAxis("Horizontal") < 0.0f)
         {
             transform.position -= new Vector3(rightReference.x, 0, rightReference.z).normalized * Time.deltaTime * moveSpeed;
         }

@@ -19,6 +19,6 @@ public class MentalStability : MonoBehaviour {
         insanity = Mathf.Max(0, insanity - Time.deltaTime / sanityRefreshDuration);
         insanity = Mathf.Min(1, insanity);
 
-        insanity = ( Mathf.Sin(Time.time) + 1 ) / 2;
+        //insanity = ( Mathf.Sin(Time.time) + 1 ) / 2;
 	}
 }
