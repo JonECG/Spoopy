@@ -18,7 +18,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     private Vector3 delta;
 
-    private Image additivePlane, multiplyPlane, noisePlane, fadePlane;
+    private Image additivePlane, multiplyPlane, noisePlane, fadePlane, blinkPlane;
 
     static List<HeadsUpDisplayController> clones = new List<HeadsUpDisplayController>();
     static HeadsUpDisplayController master;
@@ -42,6 +42,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
         additivePlane = transform.FindChild("AdditivePlane").GetComponent<Image>();
         multiplyPlane = transform.FindChild("MultiplyPlane").GetComponent<Image>();
         noisePlane = transform.FindChild("NoisePlane").GetComponent<Image>();
+        blinkPlane = transform.FindChild("BlinkPlane").GetComponent<Image>();
         if (master == null)
         {
             master = this;
@@ -73,6 +74,8 @@ public class HeadsUpDisplayController : MonoBehaviour {
         int xoff = Random.Range(0, noiseDisplay.width);
         int yoff = Random.Range(0, noiseDisplay.height);
 
+        int blinkYOff = noiseDisplay.height;
+        blinkPlane.rectTransform.localPosition = new Vector2(0, ((1.0f-player.GetComponent<Blinker>().BlinkLeftPercentage)*blinkYOff*2));
         noisePlane.color = new Color(1, 1, 1, opacity);
         //fadePlane.color = new Color(0, 0, 0, opacity*opacity);
 
