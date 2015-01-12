@@ -4,7 +4,6 @@ using System.Collections;
 public class AIDetection : MonoBehaviour
 {
 
-    private bool withinRange = false;
     private bool recentlyDetected = false;
     private Vector3 playerDirection;
     public float viewAngle = 90;
@@ -16,19 +15,15 @@ public class AIDetection : MonoBehaviour
     private Vector2 exploreNode;
     // Use this for initialization
 
-    private Vector3 testVec;
     void Start()
     {
-        SphereCollider myCollider = transform.GetComponent<SphereCollider>();
-        myCollider.radius = viewDistance;
+        exploreNode.x = Random.Range(exploreCoordX-exploreDistance, exploreCoordX + exploreDistance);
+        exploreNode.y = Random.Range(exploreCoordZ-exploreDistance, exploreCoordZ + exploreDistance);
 
-        exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
-        exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
-
-        while ((Physics.Raycast(transform.position + new Vector3(0,1,0), new Vector3(exploreNode.x, transform.position.y, exploreNode.y))))
+        for (int i = 0; i < 5 && (Physics.Raycast(transform.position + transform.up, new Vector3(exploreNode.x, transform.position.y + transform.up.y, exploreNode.y))); i++)
         {
-            exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
-            exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
+            exploreNode.x = Random.Range(exploreCoordX - exploreDistance, exploreCoordX + exploreDistance);
+            exploreNode.y = Random.Range(exploreCoordZ - exploreDistance, exploreCoordZ + exploreDistance);
         }
     }
 
@@ -37,7 +32,7 @@ public class AIDetection : MonoBehaviour
     {
         GameObject playerObject = GameObject.Find("Player");
 
-        if (withinRange)
+        if (Vector3.Distance(playerObject.transform.position, transform.position)<viewDistance)
         {
             Vector3 player = playerObject.rigidbody.position;
             playerDirection = player - transform.position;
@@ -46,9 +41,7 @@ public class AIDetection : MonoBehaviour
             {
                 RaycastHit hitOne;
 
-                SphereCollider myCollider = transform.GetComponent<SphereCollider>();
-
-                if (Physics.Raycast(transform.position + transform.up, playerDirection.normalized, out hitOne, myCollider.radius))
+                if (Physics.Raycast(transform.position + transform.up, playerDirection, out hitOne, viewDistance))
                 {
                     if (hitOne.collider.gameObject == playerObject)
                     {
@@ -71,38 +64,30 @@ public class AIDetection : MonoBehaviour
         {
             if (((exploreNode.x-transform.position.x < 1.0f && exploreNode.x-transform.position.x > -1.0f) && (exploreNode.y-transform.position.z < 1.0f && exploreNode.y-transform.position.z>-1.0f)))
             {
-                exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
-                exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
+                exploreNode.x = Random.Range(exploreCoordX-exploreDistance, exploreCoordX + exploreDistance);
+                exploreNode.y = Random.Range(exploreCoordZ-exploreDistance, exploreCoordZ + exploreDistance);
 
-                while ((Physics.Raycast(transform.position + transform.up, new Vector3(exploreNode.x, transform.position.y, exploreNode.y))))
+                for (int i = 0; i < 5 && (Physics.Raycast(transform.position + transform.up, new Vector3(exploreNode.x, transform.position.y + transform.up.y, exploreNode.y))); i++ )
                 {
-                    exploreNode.x = Random.Range(exploreCoordX, exploreCoordX + exploreDistance);
-                    exploreNode.y = Random.Range(exploreCoordZ, exploreCoordZ + exploreDistance);
+                    exploreNode.x = Random.Range(exploreCoordX - exploreDistance, exploreCoordX + exploreDistance);
+                    exploreNode.y = Random.Range(exploreCoordZ - exploreDistance, exploreCoordZ + exploreDistance);
                 }
             }
             Debug.DrawLine(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
             transform.LookAt(new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = Vector3.zero;
-            transform.Translate(transform.forward.normalized*speed, Space.World);
+            transform.Translate((transform.forward.normalized*speed)*Time.deltaTime, Space.World);
+            renderer.material.color = Color.white;
         }
         else if (recentlyDetected)
         {
             exploreCoordX=playerObject.rigidbody.position.x;
             exploreCoordZ=playerObject.rigidbody.position.z;
 
-            transform.Translate(transform.forward.normalized*speed, Space.World);
+            transform.Translate((transform.forward.normalized*speed)*Time.deltaTime, Space.World);
+            renderer.material.color = Color.red;
         }
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.name == "Player")
-        {
-            withinRange = true;
-        }
-        else
-            withinRange = false;
     }
 
     void OnGUI()
