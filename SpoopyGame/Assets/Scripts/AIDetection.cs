@@ -8,7 +8,8 @@ public class AIDetection : MonoBehaviour
     private Vector3 playerDirection;
     public float viewAngle = 90;
     public float viewDistance = 8;
-    public float speed = 0.4f;
+    public float patrolSpeed = 2.0f;
+    public float chaseSpeed = 3.0f;
     public float exploreCoordX=0;
     public float exploreCoordZ=0;
     public float exploreDistance = 20;
@@ -19,10 +20,11 @@ public class AIDetection : MonoBehaviour
     {
         exploreCoordX = transform.position.x;
         exploreCoordZ = transform.position.z;
-        exploreNode.x = Random.Range(exploreCoordX-exploreDistance, exploreCoordX + exploreDistance);
-        exploreNode.y = Random.Range(exploreCoordZ-exploreDistance, exploreCoordZ + exploreDistance);
 
-        for (int i = 0; i < 5 && (Physics.Raycast(transform.position + transform.up, new Vector3(exploreNode.x, transform.position.y + transform.up.y, exploreNode.y))); i++)
+        exploreNode.x = Random.Range(exploreCoordX-exploreDistance, exploreCoordX+exploreDistance);
+        exploreNode.y = Random.Range(exploreCoordZ-exploreDistance, exploreCoordZ+exploreDistance);
+
+        while((Physics.Raycast(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y)-transform.position, Vector3.Distance(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y)))))
         {
             exploreNode.x = Random.Range(exploreCoordX - exploreDistance, exploreCoordX + exploreDistance);
             exploreNode.y = Random.Range(exploreCoordZ - exploreDistance, exploreCoordZ + exploreDistance);
@@ -68,10 +70,10 @@ public class AIDetection : MonoBehaviour
         {
             if (((exploreNode.x-transform.position.x < 1.0f && exploreNode.x-transform.position.x > -1.0f) && (exploreNode.y-transform.position.z < 1.0f && exploreNode.y-transform.position.z>-1.0f)))
             {
-                exploreNode.x = Random.Range(exploreCoordX-exploreDistance, exploreCoordX + exploreDistance);
-                exploreNode.y = Random.Range(exploreCoordZ-exploreDistance, exploreCoordZ + exploreDistance);
+                exploreNode.x = Random.Range(exploreCoordX - exploreDistance, exploreCoordX + exploreDistance);
+                exploreNode.y = Random.Range(exploreCoordZ - exploreDistance, exploreCoordZ + exploreDistance);
 
-                for (int i = 0; i < 5 && (Physics.Raycast(transform.position + transform.up, new Vector3(exploreNode.x, transform.position.y + transform.up.y, exploreNode.y))); i++ )
+                while((Physics.Raycast(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y)-transform.position, Vector3.Distance(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y)))))
                 {
                     exploreNode.x = Random.Range(exploreCoordX - exploreDistance, exploreCoordX + exploreDistance);
                     exploreNode.y = Random.Range(exploreCoordZ - exploreDistance, exploreCoordZ + exploreDistance);
@@ -81,7 +83,7 @@ public class AIDetection : MonoBehaviour
             transform.LookAt(new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
             rigidbody.velocity = Vector3.zero;
             rigidbody.angularVelocity = Vector3.zero;
-            transform.Translate((transform.forward.normalized*speed)*Time.deltaTime, Space.World);
+            transform.Translate((transform.forward.normalized*patrolSpeed)*Time.deltaTime, Space.World);
             renderer.material.color = Color.white;
             GetComponent<SoundStatePlayer>().SetState("Patrol");
         }
@@ -90,7 +92,7 @@ public class AIDetection : MonoBehaviour
             exploreCoordX=playerObject.rigidbody.position.x;
             exploreCoordZ=playerObject.rigidbody.position.z;
 
-            transform.Translate((transform.forward.normalized*speed)*Time.deltaTime, Space.World);
+            transform.Translate((transform.forward.normalized*chaseSpeed)*Time.deltaTime, Space.World);
             renderer.material.color = Color.red;
             GetComponent<SoundStatePlayer>().SetState("Chase");
         }
