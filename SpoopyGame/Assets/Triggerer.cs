@@ -9,16 +9,13 @@ public class Triggerer : MonoBehaviour {
 
 	void Start () 
 	{
-	
-	}
-	
-	void Update () 
-	{
+        if (renderer != null)
+            renderer.enabled = false;
 	}
 
-    void OnTriggerEnter(Collider other)
+    protected void SendTrigger()
     {
-        if ( active && other.GetComponent<PlayerController>() != null)
+        if (active)
         {
             Debug.Log("Hit");
             for (int i = 0; i < listeners.Length; i++)
