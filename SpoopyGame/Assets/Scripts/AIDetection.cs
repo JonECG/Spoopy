@@ -89,8 +89,8 @@ public class AIDetection : MonoBehaviour
         }
         else if (recentlyDetected)
         {
-            exploreCoordX=playerObject.rigidbody.position.x;
-            exploreCoordZ=playerObject.rigidbody.position.z;
+            exploreCoordX=playerObject.transform.position.x;
+            exploreCoordZ=playerObject.transform.position.z;
 
             transform.Translate((transform.forward.normalized*chaseSpeed)*Time.deltaTime, Space.World);
             renderer.material.color = Color.red;
