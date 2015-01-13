@@ -7,20 +7,19 @@ public class HeadLamp : MonoBehaviour {
     public float batteryLifeInSeconds = 60;
     public float numberOfShakesToCharge = 6;
     public float weakenTime = 5;
-    public float debounceThreshhold = 0.1f;
 
-    private float debounce = 0.1f;
     private float currentBatteryLife;
     private bool isTurnedOn;
     private float maxIntensity;
     private float maxGlow;
-    private bool debouncing = false;
     private Light glow;
 
     private float deltaAccel;
     private float tapRest;
     private float tapThreshold = 150;
     private float tapDelay = 0.1f;
+
+    Debouncer.DebouncerResults headLampToggleCorrected, headLampChargeCorrected;
 	void Start () 
 	{
         isTurnedOn = false;
@@ -48,33 +47,21 @@ public class HeadLamp : MonoBehaviour {
                 tapped = true;
             }
         }
-        if (debounce >= debounceThreshhold || !debouncing || tapped)
-        {
-            debouncing = false;
-            if (Input.GetAxis("HeadLampToggle") > 0.0f)
-            {
-                SoundManagerController.Instance.PlaySoundAt(isTurnedOn ? clickOff : (currentBatteryLife > 0) ? clickOn : clickDead, transform.position);
-                if (currentBatteryLife > 0)
-                    isTurnedOn = !isTurnedOn;
-                debouncing = true;
-                debounce = 0.0f;
-            }
 
-            if (Input.GetAxis("HeadLampRecharge") > 0.0f || tapped)
-            {
-                currentBatteryLife = Mathf.Min(batteryLifeInSeconds, currentBatteryLife + batteryLifeInSeconds / numberOfShakesToCharge);
-                SoundManagerController.Instance.PlaySoundAt((currentBatteryLife == batteryLifeInSeconds) ? rechargeFull : recharge, transform.position);
-                debouncing = true;
-                debounce = 0.0f;
-            }
-        }
-        else if (debouncing)
+        headLampToggleCorrected = Debouncer.Debounce("HeadLampToggle", headLampToggleCorrected);
+        headLampChargeCorrected = Debouncer.Debounce("HeadLampRecharge", headLampChargeCorrected);
+
+        if (headLampToggleCorrected.IsPressed())
         {
-            debounce += Time.deltaTime;
+            SoundManagerController.Instance.PlaySoundAt(isTurnedOn ? clickOff : (currentBatteryLife > 0) ? clickOn : clickDead, transform.position);
+            if (currentBatteryLife > 0)
+                isTurnedOn = !isTurnedOn;
         }
-        else if (Input.GetAxis("HeadLampToggle") < 0.1f && Input.GetAxis("HeadLampRecharge") > 0.1f)
+
+        if (headLampChargeCorrected.IsPressed() || tapped)
         {
-            debouncing = false;
+            currentBatteryLife = Mathf.Min(batteryLifeInSeconds, currentBatteryLife + batteryLifeInSeconds / numberOfShakesToCharge);
+            SoundManagerController.Instance.PlaySoundAt((currentBatteryLife == batteryLifeInSeconds) ? rechargeFull : recharge, transform.position);
         }
 
         if (isTurnedOn)

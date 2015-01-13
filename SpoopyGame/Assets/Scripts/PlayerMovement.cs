@@ -9,8 +9,15 @@ public class PlayerMovement : MonoBehaviour {
     int moveSpeed = 3;
     float mouseSensitivity = 2.0f;
 
+    public float sprintRecovery = 6;
+    public float sprintDuration = 5;
+    public float sprintMultiplier = 1.6f;
+    float sprintStamina;
+    Debouncer.DebouncerResults sprintCorrected;
+
 	// Use this for initialization
 	void Start () {
+        sprintStamina = 1;
         head = GameObject.Find("Head").transform;
 
         if (Application.isEditor)
@@ -35,24 +42,16 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 upReference = anchor.rotation * new Vector3(0, 1, 0);
         Vector3 forwardReference = anchor.rotation * new Vector3(0, 0, 1);
 
-        transform.position += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
-        transform.position += new Vector3(rightReference.x, 0, rightReference.z).normalized * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
-        //if (Input.GetAxis("Vertical") > 0.0f)
-        //{
-        //    transform.position += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * Time.deltaTime * moveSpeed;
-        //}
-        //if (Input.GetAxis("Vertical") < 0.0f)
-        //{
-        //    transform.position -= new Vector3(forwardReference.x, 0, forwardReference.z).normalized * Time.deltaTime * moveSpeed;
-        //}
-        //if (Input.GetAxis("Horizontal") > 0.0f)
-        //{
-        //    transform.position += new Vector3(rightReference.x, 0, rightReference.z).normalized * Time.deltaTime * moveSpeed;
-        //}
-        //if (Input.GetAxis("Horizontal") < 0.0f)
-        //{
-        //    transform.position -= new Vector3(rightReference.x, 0, rightReference.z).normalized * Time.deltaTime * moveSpeed;
-        //}
+        sprintCorrected = Debouncer.Debounce("Sprint", sprintCorrected);
+        if (sprintCorrected.IsDown())
+            sprintStamina -= Time.deltaTime / sprintDuration;
+        else
+            sprintStamina += Time.deltaTime / sprintRecovery;
+        sprintStamina = Mathf.Clamp(sprintStamina, 0, 1);
+
+        transform.position += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
+        transform.position += new Vector3(rightReference.x, 0, rightReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
+
 
         float lateral = Input.GetAxis("Mouse X");
         float longinal = Input.GetAxis("Mouse Y");

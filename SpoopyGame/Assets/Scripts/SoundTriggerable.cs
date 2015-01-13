@@ -4,7 +4,6 @@ using System.Collections;
 public class SoundTriggerable : Triggerable 
 {
     public AudioClip soundToPlay;
-    public Vector3 positionToPlayAt;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,6 +16,6 @@ public class SoundTriggerable : Triggerable
 
     public override void Triggered(string id)
     {
-        SoundManagerController.Instance.PlaySoundAt(soundToPlay, positionToPlayAt);
+        SoundManagerController.Instance.PlaySoundAt(soundToPlay, transform);
     }
 }

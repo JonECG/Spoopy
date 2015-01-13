@@ -5,12 +5,13 @@ public class MovementTriggerable : Triggerable
 {
     private Vector3 startPosition;
     public Vector3 endPosition;
+    private Vector3 direction;
     public float speedMultiplier;
     private bool moving = false;
 	// Use this for initialization
 	void Start () 
     {
-	
+        startPosition = this.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -18,15 +19,14 @@ public class MovementTriggerable : Triggerable
     {
         if (moving)
         {
-            startPosition = this.transform.position;
-            transform.LookAt(endPosition);
-
-            this.transform.Translate(transform.forward.normalized * speedMultiplier * Time.deltaTime);
+            this.transform.position += direction * speedMultiplier * Time.deltaTime;
 
             if ((transform.position - endPosition).magnitude < 1.0f)
             {
                 //dissapear
                 moving = false;
+                if (renderer != null)
+                    renderer.enabled = false;
             }
 
         }
@@ -35,5 +35,8 @@ public class MovementTriggerable : Triggerable
     public override void Triggered(string id)
     {
         moving = true;
+        if (renderer != null)
+            renderer.enabled = true;
+        direction = (endPosition - startPosition).normalized;
     }
 }

@@ -7,6 +7,7 @@ public class ItemInteraction : MonoBehaviour {
     private float grabDistance = 5;
     private bool togglePickup;
     private bool spacebarDown;
+    Debouncer.DebouncerResults pickupCorrected;
 
 	// Use this for initialization
 	void Start ()
@@ -17,18 +18,23 @@ public class ItemInteraction : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        GameObject playerHead = GameObject.Find("Head");
+        GameObject playerHead = GameObject.Find("LitCamera");
 
         RaycastHit hitOne;
 
-        if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position-playerHead.transform.position).magnitude<grabDistance)
+        pickupCorrected = Debouncer.Debounce("PickUp", pickupCorrected);
+
+        if (pickupCorrected.IsPressed())
         {
-            if (hitOne.collider.gameObject.tag == "Item")
+            Debug.Log("Pick up pressed");
+
+            if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position-playerHead.transform.position).magnitude<grabDistance)
             {
-                Debug.Log("Raycast hit");
-                if (Input.GetAxis("PickUp") > 0.0f)
+                if (hitOne.collider.gameObject.tag == "Item")
                 {
-                    Debug.Log("Pick up pressed");
+                    Debug.Log("Raycast hit");
+
+                        
                     if (togglePickup && !spacebarDown)
                     {
                         togglePickup = false;
@@ -40,40 +46,47 @@ public class ItemInteraction : MonoBehaviour {
                     }
                     spacebarDown = true;
                 }
-                else
-                {
-                    spacebarDown = false;
-                }
+            }
+        }
+        else
+        {
+            spacebarDown = false;
+        }
 
-                if (Input.GetKey(KeyCode.F) && togglePickup)
+        if (pickupCorrected.IsPressed() && togglePickup)
+        {
+            if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
+            {
+                if (hitOne.collider.gameObject.tag == "Item")
                 {
                     transform.rigidbody.velocity=((playerHead.transform.forward * 1000)*Time.deltaTime);
                     togglePickup = false;
                 }
             }
+        }
 
-            if (togglePickup)
-            {
-                transform.position = playerHead.transform.position + (playerHead.transform.forward.normalized * 2);
-                transform.rigidbody.useGravity = false;
-            }
-            else
-            {
-                transform.rigidbody.useGravity = true;
-            }
+        if (togglePickup)
+        {
+            transform.position = playerHead.transform.position + (playerHead.transform.forward.normalized * 2);
+            transform.rigidbody.useGravity = false;
+        }
+        else
+        {
+            transform.rigidbody.useGravity = true;
         }
 	}
 
     void OnGUI()
     {
-        GameObject playerHead = GameObject.Find("Head");
+        GameObject playerHead = GameObject.Find("LitCamera");
 
         RaycastHit hitOne;
 
-        if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
+        if (Input.GetKey(KeyCode.R))
         {
-            if (Input.GetKey(KeyCode.R))
+            if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
             {
+            
                 GUIStyle GUIS = new GUIStyle();
                 GUIS.alignment = TextAnchor.MiddleCenter;
                 GUIS.normal.textColor = Color.white;

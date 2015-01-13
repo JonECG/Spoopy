@@ -18,7 +18,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     private Vector3 delta;
 
-    private Image additivePlane, multiplyPlane, noisePlane, blinkPlane;
+    private Image additivePlane, multiplyPlane, noisePlane, blinkPlane, blinkFadePlane;
 
     //private Camera target;
 
@@ -45,6 +45,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
         multiplyPlane = transform.FindChild("MultiplyPlane").GetComponent<Image>();
         noisePlane = transform.FindChild("NoisePlane").GetComponent<Image>();
         blinkPlane = transform.FindChild("BlinkPlane").GetComponent<Image>();
+        blinkFadePlane = transform.FindChild("BlinkFadePlane").GetComponent<Image>();
         if (master == null)
         {
             master = this;
@@ -91,11 +92,29 @@ public class HeadsUpDisplayController : MonoBehaviour {
         noisePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta + new Vector2(xoff, yoff) * 2;
         multiplyPlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
         blinkPlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
+        blinkFadePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
         additivePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;
 
         float blinkYOff = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
-        float usedBlink = (transform.parent.name == "RightEyeAnchor") ? player.GetComponent<Blinker>().BlinkRightPercentage : player.GetComponent<Blinker>().BlinkLeftPercentage;
+        float usedBlink, usedFadeBlink;
+        if( transform.parent.name == "RightEyeAnchor" )
+        {
+            usedBlink = Mathf.Min(player.GetComponent<Blinker>().BlinkLeftPercentage, player.GetComponent<Blinker>().BlinkRightPercentage);
+            usedFadeBlink = player.GetComponent<Blinker>().BlinkRightPercentage;
+        }
+        else
+        if (transform.parent.name == "LeftEyeAnchor")
+        {
+            usedBlink = Mathf.Min( player.GetComponent<Blinker>().BlinkLeftPercentage, player.GetComponent<Blinker>().BlinkRightPercentage );
+            usedFadeBlink = player.GetComponent<Blinker>().BlinkLeftPercentage;
+        }
+        else
+        {
+            usedBlink = Mathf.Min(player.GetComponent<Blinker>().BlinkLeftPercentage, player.GetComponent<Blinker>().BlinkRightPercentage);
+            usedFadeBlink = Mathf.Max(player.GetComponent<Blinker>().BlinkLeftPercentage, player.GetComponent<Blinker>().BlinkRightPercentage);
+        }
         blinkPlane.rectTransform.localPosition = new Vector3(0, ((1.0f - usedBlink) * blinkYOff * 2), blinkPlane.rectTransform.localPosition.z);
+        blinkFadePlane.rectTransform.localPosition = new Vector3(0, ((1.0f - usedFadeBlink) * blinkYOff * 2), blinkFadePlane.rectTransform.localPosition.z);
     }
 
     //void OnGUI()
