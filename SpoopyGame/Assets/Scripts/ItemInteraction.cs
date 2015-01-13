@@ -24,7 +24,7 @@ public class ItemInteraction : MonoBehaviour {
 
         pickupCorrected = Debouncer.Debounce("PickUp", pickupCorrected);
 
-        if (Input.GetKey(KeyCode.Space))//pickupCorrected.IsPressed())
+        if (pickupCorrected.IsPressed())
         {
             Debug.Log("Pick up pressed");
 
