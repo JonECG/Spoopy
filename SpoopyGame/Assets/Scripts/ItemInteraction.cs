@@ -24,39 +24,35 @@ public class ItemInteraction : MonoBehaviour {
 
         pickupCorrected = Debouncer.Debounce("PickUp", pickupCorrected);
 
-        if (!togglePickup)
+        if (Input.GetKey(KeyCode.Space))//pickupCorrected.IsPressed())
         {
-            if (pickupCorrected.IsPressed())
-            {
-                Debug.Log("Pick up pressed");
+            Debug.Log("Pick up pressed");
 
-                if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
+            if (Physics.Raycast(playerHead.transform.position, transform.position-playerHead.transform.position,out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position-playerHead.transform.position))<25 && (transform.position-playerHead.transform.position).magnitude<grabDistance)
+            {
+                Debug.Log("Raycast hit");
+
+                if (hitOne.collider.gameObject.tag == "Item")
                 {
-                    if (hitOne.collider.gameObject.tag == "Item")
+                    if (togglePickup && !spacebarDown)
                     {
-                        Debug.Log("Raycast hit");
-
-
-                        if (togglePickup && !spacebarDown)
-                        {
-                            togglePickup = false;
-                        }
-                        else if ((!togglePickup && !spacebarDown))
-                        {
-                            togglePickup = true;
-                            Debug.Log("Pick up");
-                        }
-                        spacebarDown = true;
+                        togglePickup = false;
                     }
+                    else if ((!togglePickup && !spacebarDown))
+                    {
+                        togglePickup = true;
+                        Debug.Log("Pick up");
+                    }
+                    spacebarDown = true;
                 }
-            }
-            else
-            {
-                spacebarDown = false;
             }
         }
         else
-        if (pickupCorrected.IsPressed() )
+        {
+            spacebarDown = false;
+        }
+
+        if (pickupCorrected.IsPressed() && togglePickup)
         {
             if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
             {
