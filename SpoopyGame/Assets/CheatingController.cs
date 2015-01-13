@@ -23,12 +23,12 @@ public class CheatingController : MonoBehaviour {
             GameObject.Find("Player").GetComponent<MentalStability>().insanity = 0;
             GameObject.Find("Player").GetComponent<HealthyLiving>().health = 1;
             if (path != null)
-                path.renderer.enabled = true;
+                path.gameObject.SetActive(true);
         }
         else
         {
             if (path != null)
-                path.renderer.enabled = false;
+                path.gameObject.SetActive(false);
         }
 	}
 }
