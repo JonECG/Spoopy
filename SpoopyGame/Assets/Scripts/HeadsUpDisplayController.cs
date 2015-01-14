@@ -22,8 +22,55 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     //private Camera target;
 
+    public static HeadsUpDisplayController Instance { get; protected set; }
+
     static List<HeadsUpDisplayController> clones = new List<HeadsUpDisplayController>();
     static HeadsUpDisplayController master;
+
+    private int currentText = 0;
+    private List<Text> textsInUse = new List<Text>();
+    public GameObject textReference;
+
+    int offsetOfFlags = 20;
+
+    void OnGUI()
+    {
+        for (int i = 0; i < currentText; i++)
+        {
+            textsInUse[i].enabled = false;
+        }
+        currentText = 0;
+    }
+
+    public void DrawText(string message, float x, float y, Color color, float size = 0.1f)
+    {
+        if (master == this)
+        {
+            for (int i = 0; i < clones.Count; i++)
+            {
+                if( clones[i] != null )
+                    clones[i].DrawText(message, x, y, color, size);
+            }
+        }
+
+        if (currentText >= textsInUse.Count)
+        {
+            GameObject dupe = (GameObject)GameObject.Instantiate(textReference);
+            dupe.transform.SetParent( textReference.transform.parent.transform, false );
+            textsInUse.Add(dupe.GetComponent<Text>());
+        }
+
+        Text t = textsInUse[currentText++];
+
+        t.enabled = true;
+        t.text = message;
+        t.color = color;
+        RectTransform crt = GetComponent<Canvas>().GetComponent<RectTransform>();
+        t.fontSize = (int)(crt.sizeDelta.x * size);
+        t.rectTransform.localPosition = (0.85f) * new Vector3(x * crt.sizeDelta.x, y * crt.sizeDelta.y, 0);
+        t.gameObject.layer = noisePlane.gameObject.layer;
+        //t.rectTransform.position = new Vector3(0, 0, 0);
+    }
 
     void SetLayerRecursively( GameObject obj, int newLayer )
     {
@@ -49,8 +96,9 @@ public class HeadsUpDisplayController : MonoBehaviour {
         if (master == null)
         {
             master = this;
+            Instance = this;
             clones.Clear();
-            int offsetOfFlags = 2;
+            
             int cullAll = 0;
             for (int i = 0; i < targetCameras.Length; i++)
             {
@@ -65,7 +113,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
                 SetLayerRecursively(dupe, i + offsetOfFlags);
                 //dupe.layer = i + offsetOfFlags;
                 targetCameras[i].cullingMask = ( ~cullAll ) | ( 1 << ( i + offsetOfFlags ) );
-                dupe.transform.parent = targetCameras[i].transform;
+                dupe.transform.SetParent( targetCameras[i].transform, false );
             }
             GetComponent<Canvas>().enabled = false;
         }
@@ -84,10 +132,17 @@ public class HeadsUpDisplayController : MonoBehaviour {
         float invSqrInsane = 1 - (insane * insane);
         Color fade = new Color(invSqrInsane, invSqrInsane * health, invSqrInsane * health, 1);
 
-        delta = (delta + darkVision.lightDetector.averageColorAsVec - darkVision.adjustedLight) / 2;
+        Vector3 rat = new Vector3(darkVision.lightDetector.averageColorAsVec.x / darkVision.adjustedLight.x,
+            darkVision.lightDetector.averageColorAsVec.y / darkVision.adjustedLight.y,
+            darkVision.lightDetector.averageColorAsVec.z / darkVision.adjustedLight.z);
+        delta = (delta * 0 + (darkVision.lightDetector.averageColorAsVec - darkVision.adjustedLight)) / 1;
 
-        multiplyPlane.material.color = new Color(Mathf.Min(1 + delta.x, 1) * fade.r, Mathf.Min(1 + delta.y, 1) * fade.g, Mathf.Min(1 + delta.z, 1) * fade.b, 1);
+        multiplyPlane.material.color = new Color(Mathf.Min(1 + delta.x * 3, 1) * fade.r, Mathf.Min(1 + delta.y * 3, 1) * fade.g, Mathf.Min(1 + delta.z * 3, 1) * fade.b, 1);
         additivePlane.material.color = new Color(Mathf.Max(delta.x, 0), Mathf.Max(delta.y, 0), Mathf.Max(delta.z, 0), 1);
+        //delta = (delta + rat) / 2;
+
+        //multiplyPlane.material.color = new Color(Mathf.Min(delta.x, 1) * fade.r, Mathf.Min(delta.y, 1) * fade.g, Mathf.Min(delta.z, 1) * fade.b, 1);
+        //additivePlane.material.color = new Color(Mathf.Max(delta.x - 1, 0), Mathf.Max(delta.y - 1, 0), Mathf.Max(delta.z-1, 0), 1);
         noisePlane.rectTransform.localPosition = new Vector3(-xoff, -yoff, noisePlane.rectTransform.localPosition.z);
         noisePlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta + new Vector2(xoff, yoff) * 2;
         multiplyPlane.rectTransform.sizeDelta = noisePlane.transform.parent.GetComponent<RectTransform>().sizeDelta * 1.1f;

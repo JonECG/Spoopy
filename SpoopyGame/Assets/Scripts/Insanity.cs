@@ -32,7 +32,7 @@ public class Insanity : MonoBehaviour
             if (tempHit.collider == this.collider)
             {
                 Color seenPixel = lightDetect.capturedTex.GetPixel((int)(campos.x*lightDetect.capturedTex.width), (int)(campos.y*lightDetect.capturedTex.height));
-                float avgColorSeenScaled = Mathf.Min( ( seenPixel.r + seenPixel.g + seenPixel.b ), 1 );
+                float avgColorSeenScaled = Mathf.Min( ( seenPixel.r + seenPixel.g + seenPixel.b )*2, 1 );
                 FindObjectOfType<MentalStability>().insanity += percentPerSecond * Time.deltaTime * avgColorSeenScaled;
             }
         }

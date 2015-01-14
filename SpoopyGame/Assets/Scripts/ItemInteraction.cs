@@ -12,6 +12,16 @@ public class ItemInteraction : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        //Creates a new array of materials, one larger to fit new material
+        var mats = renderer.materials;
+        Material[] newMats = new Material[mats.Length+1];
+        for (int i = 0; i < mats.Length; i++)
+        {
+            newMats[i] = mats[i];
+        }
+        newMats[mats.Length] = Resources.Load<Material>("InteractableOverlay");
+        renderer.materials = newMats;
+
         spacebarDown = false;
 	}
 	

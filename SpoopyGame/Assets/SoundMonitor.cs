@@ -11,6 +11,7 @@ public class SoundMonitor : MonoBehaviour {
 
     private AudioSource ringSource, beatSource;
 
+    private float tweenedHealth = 1;
 	void Start () 
 	{
         ringSource = gameObject.AddComponent<AudioSource>();
@@ -29,8 +30,11 @@ public class SoundMonitor : MonoBehaviour {
 	
 	void Update () 
 	{
-        ringSource.volume = stable.insanity;
-        beatSource.volume = Mathf.Sqrt( 1 - healthy.health );
-        beatSource.pitch = (3 - healthy.health) / 2.0f;
+        
+        tweenedHealth = (10*tweenedHealth + healthy.health) / 11;
+        //tweenedHealth = Mathf.Min( 1, Input.mousePosition.x / Screen.width );
+        ringSource.volume = stable.insanity * stable.insanity;
+        beatSource.volume = Mathf.Sqrt(1 - tweenedHealth) + 0.2f;
+        beatSource.pitch = (3 - tweenedHealth*2) / 1.5f;
 	}
 }
