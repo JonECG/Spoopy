@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
         sprintStamina = 1;
         head = GameObject.Find("Head").transform;
 
-        if (!Application.isEditor)
+        if (Application.isEditor)
         {
             GameObject.Destroy(GameObject.Find("OVRCameraRig"));
             anchor = GameObject.Find("Head").transform;
@@ -60,8 +60,5 @@ public class PlayerMovement : MonoBehaviour {
         transform.Rotate(new Vector3(0, 1, 0), ( lateral + longinalStick) * mouseSensitivity );
         if( GameObject.Find( "LeftEyeAnchor" ) == null )
             head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
-
-        HeadsUpDisplayController.Instance.DrawText("12345678987654321", 0,0, Color.blue, 0.1f);
-        HeadsUpDisplayController.Instance.DrawText("Look at me!", 0, 0.5f, Color.blue, 0.1f);
 	}
 }

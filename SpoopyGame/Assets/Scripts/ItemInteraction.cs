@@ -4,10 +4,11 @@ using System.Collections;
 public class ItemInteraction : MonoBehaviour {
 
     public string info = "Just an object";
-    private float grabDistance = 5;
+    private float grabDistance = 3;
     private bool togglePickup;
     private bool spacebarDown;
     Debouncer.DebouncerResults pickupCorrected;
+    Debouncer.DebouncerResults throwCorrected;
 
 	// Use this for initialization
 	void Start ()
@@ -33,15 +34,17 @@ public class ItemInteraction : MonoBehaviour {
         RaycastHit hitOne;
 
         pickupCorrected = Debouncer.Debounce("PickUp", pickupCorrected);
+        throwCorrected = Debouncer.Debounce("Throw", throwCorrected);
+
+        if (!togglePickup && Physics.Raycast(playerHead.transform.position, transform.position - playerHead.transform.position, out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position - playerHead.transform.position)) < 25 && (transform.position - playerHead.transform.position).magnitude < grabDistance)
+        {
+            HeadsUpDisplayController.Instance.DrawText(info, 0, 0, Color.blue, 0.1f);
+        }
 
         if (pickupCorrected.IsPressed())
         {
-            Debug.Log("Pick up pressed");
-
             if (Physics.Raycast(playerHead.transform.position, transform.position-playerHead.transform.position,out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position-playerHead.transform.position))<25 && (transform.position-playerHead.transform.position).magnitude<grabDistance)
             {
-                Debug.Log("Raycast hit");
-
                 if (hitOne.collider.gameObject.tag == "Item")
                 {
                     if (togglePickup && !spacebarDown)
@@ -62,7 +65,7 @@ public class ItemInteraction : MonoBehaviour {
             spacebarDown = false;
         }
 
-        if (pickupCorrected.IsPressed() && togglePickup)
+        if (throwCorrected.IsPressed() && togglePickup)
         {
             if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
             {
@@ -84,23 +87,4 @@ public class ItemInteraction : MonoBehaviour {
             transform.rigidbody.useGravity = true;
         }
 	}
-
-    void OnGUI()
-    {
-        GameObject playerHead = GameObject.Find("LitCamera");
-
-        RaycastHit hitOne;
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            if (Physics.Raycast(playerHead.transform.position, playerHead.transform.forward.normalized, out hitOne) && (transform.position - playerHead.transform.position).magnitude < grabDistance)
-            {
-            
-                GUIStyle GUIS = new GUIStyle();
-                GUIS.alignment = TextAnchor.MiddleCenter;
-                GUIS.normal.textColor = Color.white;
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 0, 0), info, GUIS);
-            }
-        }
-    }
 }
