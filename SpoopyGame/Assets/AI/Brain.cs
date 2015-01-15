@@ -5,6 +5,9 @@ using System.Collections.Generic;
 public class Brain : MonoBehaviour {
 
     public float Reflexiveness = 1;
+    public float Stubbornness = 0;
+    private Motivation lastMotivation;
+
     public float CertaintyOfDirection { get; protected set; }
     public float CertaintyOfDistance { get; protected set; }
     public float CertaintyIsPlayer { get; protected set; }
@@ -34,6 +37,12 @@ public class Brain : MonoBehaviour {
         public float Alertness;
     }
 
+    public struct Motivation
+    {
+        public float MotivationFactor;
+        public ActingInterface Action;
+    }
+
     void Start()
     {
         PerceivedWorldPosition = transform.position;
@@ -51,7 +60,7 @@ public class Brain : MonoBehaviour {
         return (start + (goal - start) * Reflexiveness * Time.deltaTime).normalized;
     }
 
-    void CombineSenses()
+    Perception CombineSenses()
     {
         SenseInterface[] senses = GetComponents<SenseInterface>();
         Vector3 heldDirection = new Vector3();
@@ -85,24 +94,51 @@ public class Brain : MonoBehaviour {
         CertaintyIsPlayer = SenseLerp(CertaintyIsPlayer, (1 - heldInvPlayerCertainty));
         CertaintyOfDistance = SenseLerp(CertaintyOfDistance, (1 - heldInvDistanceCertainty));
         CertaintyOfDirection = SenseLerp(CertaintyOfDirection, (1 - heldInvDirectionCertainty));
+
+        Perception p = new Perception()
+        {
+            Alertness = Alertness,
+            CertaintyIsPlayer = CertaintyIsPlayer,
+            CertaintyOfDirection = CertaintyOfDirection,
+            CertaintyOfDistance = CertaintyOfDistance,
+            PerceivedDirection = PerceivedDirection,
+            PerceivedDistance = PerceivedDistance,
+            PerceivedWorldPosition = PerceivedWorldPosition
+        };
+
+        return p;
     }
 
-    void ThinkOnIt()
+    Motivation ThinkOnIt(Perception perceived)
     {
         ThoughtInterface[] ideas = GetComponents<ThoughtInterface>();
 
-        Perception p = new Perception() { Alertness = Alertness, CertaintyIsPlayer = CertaintyIsPlayer, CertaintyOfDirection = CertaintyOfDirection,
-            CertaintyOfDistance = CertaintyOfDistance,PerceivedDirection = PerceivedDirection, PerceivedDistance = PerceivedDistance, PerceivedWorldPosition = PerceivedWorldPosition };
+        Motivation largestMotivation = new Motivation() { Action = null, MotivationFactor = 0 };
 
         foreach (ThoughtInterface idea in ideas)
         {
-            idea.Think(p);
+            Motivation ideaMotivation = idea.Think(perceived);
+            if (ideaMotivation.MotivationFactor > largestMotivation.MotivationFactor)
+                largestMotivation = ideaMotivation;
         }
+
+        return largestMotivation;
     }
 
     void Update()
     {
-        CombineSenses();
-        ThinkOnIt();
+        Perception perception = CombineSenses();
+        Motivation motivation = ThinkOnIt( perception );
+
+        if (motivation.MotivationFactor < lastMotivation.MotivationFactor)
+            motivation = lastMotivation;
+
+        if (motivation.MotivationFactor > 0 && motivation.Action != null)
+        {
+            motivation.Action.Act(perception, motivation);
+        }
+
+        lastMotivation = motivation;
+        lastMotivation.MotivationFactor *= Stubbornness;
     }
 }
