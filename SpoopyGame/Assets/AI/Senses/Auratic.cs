@@ -21,13 +21,8 @@ public class Auratic : SenseInterface
         else
         {
             si.AlertingFactor = 0.0f;
-            si.CertaintyIsPlayer = 0.0f;
-            si.CertaintyOfDirection = 0.0f;
-            si.CertaintyOfDistance = 0.0f;
-            si.SensedDirection = new Vector3(0.0f, 0.0f, 0.0f);
-            si.SensedDistance = 0;
         }
 
-        return si;
+        return si; 
     }
 }

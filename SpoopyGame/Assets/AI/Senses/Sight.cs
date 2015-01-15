@@ -9,7 +9,7 @@ public class Sight : SenseInterface
 
         GameObject player = GameObject.Find("Player");
 
-        if (Vector3.Distance(player.transform.position, transform.position) <= distance && !Physics.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(transform.position, player.transform.position)) && Vector3.Angle(transform.forward, player.transform.position - transform.position) < 180)
+        if (Vector3.Distance(player.transform.position, transform.position) <= distance && !Physics.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(transform.position, player.transform.position)) && Vector3.Angle(transform.forward, player.transform.position - transform.position) <= 90)
         {
             si.AlertingFactor = 1.0f;
             si.CertaintyIsPlayer = 1.0f;

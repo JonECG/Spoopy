@@ -92,6 +92,9 @@ public class AIDetection : MonoBehaviour
             exploreCoordX=playerObject.transform.position.x;
             exploreCoordZ=playerObject.transform.position.z;
 
+            exploreNode.x = playerObject.transform.position.x;
+            exploreNode.y = playerObject.transform.position.z;
+
             transform.Translate((transform.forward.normalized*chaseSpeed)*Time.deltaTime, Space.World);
             renderer.material.color = Color.red;
             GetComponent<SoundStatePlayer>().SetState("Chase");
