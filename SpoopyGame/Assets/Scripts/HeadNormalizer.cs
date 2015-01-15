@@ -19,5 +19,10 @@ public class HeadNormalizer : MonoBehaviour {
             multiplier *= 0.9f;
         if (Input.GetKeyDown(KeyCode.P))
             multiplier /= 0.9f;
+
+        if (Input.GetButtonDown("RecalOculus"))
+        {
+            OVRManager.capiHmd.RecenterPose();
+        }
 	}
 }

@@ -4,21 +4,30 @@ using System.Collections;
 public class FillViewPort : MonoBehaviour {
 
     public float distanceAway = 0.1f;
+    public Camera targetCamera;
 
 	void Start() 
 	{
+        if( targetCamera == null )
         ListenHereCamera.OnPreRenderEvent += FillView;
 	}
 
     void OnDestroy()
     {
         //Debug.Log("Destroyed");
-        ListenHereCamera.OnPreRenderEvent -= FillView;
+        if (targetCamera == null)
+            ListenHereCamera.OnPreRenderEvent -= FillView;
+    }
+
+    void LateUpdate()
+    {
+        if (targetCamera != null)
+            FillView(targetCamera);
     }
 
     void FillView( Camera cam )
     {
-        if ( ( (1 << gameObject.layer) & cam.cullingMask) != 0 && gameObject.name != "Hud" )
+        if (targetCamera != null || ( ((1 << gameObject.layer) & cam.cullingMask) != 0 && gameObject.name != "Hud" ))
         {
             //Debug.Log(gameObject.name + " is adjusting to " + cam.gameObject.name);
             Vector3 v3ViewPort = new Vector3(0, 0, distanceAway);
@@ -29,7 +38,7 @@ public class FillViewPort : MonoBehaviour {
             float width = Mathf.Abs(Vector3.Dot(cam.transform.right, v3TopRight) - Vector3.Dot(cam.transform.right, v3BottomLeft));
             float height = Mathf.Abs(Vector3.Dot(cam.transform.up, v3TopRight) - Vector3.Dot(cam.transform.up, v3BottomLeft));
 
-            Vector2 rendDimensions = (cam.targetTexture != null) ? new Vector2(cam.targetTexture.width, cam.targetTexture.height) : new Vector2(Screen.width, Screen.height); 
+            Vector2 rendDimensions = /*(cam.targetTexture != null) ? new Vector2(cam.targetTexture.width, cam.targetTexture.height) :*/ new Vector2(Screen.width, Screen.height); 
 
             RectTransform rect = GetComponent<RectTransform>();
             rect.sizeDelta = rendDimensions;// new Vector2(cam.targetTexture.width, cam.targetTexture.height);

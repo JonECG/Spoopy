@@ -29,47 +29,45 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     private int currentText = 0;
     private List<Text> textsInUse = new List<Text>();
+
     public GameObject textReference;
 
     int offsetOfFlags = 20;
 
     void OnGUI()
     {
-        for (int i = 0; i < currentText; i++)
+        if (Instance == this)
         {
-            textsInUse[i].enabled = false;
+            for (int i = 0; i < currentText; i++)
+            {
+                textsInUse[i].enabled = false;
+            }
+            currentText = 0;
         }
-        currentText = 0;
     }
 
     public void DrawText(string message, float x, float y, Color color, float size = 0.1f)
     {
-        if (master == this)
+        if (Instance == this)
         {
-            for (int i = 0; i < clones.Count; i++)
+
+            if (currentText >= textsInUse.Count)
             {
-                if( clones[i] != null )
-                    clones[i].DrawText(message, x, y, color, size);
+                GameObject dupe = (GameObject)GameObject.Instantiate(textReference);
+                dupe.transform.SetParent(textReference.transform.parent.transform, false);
+                textsInUse.Add(dupe.GetComponent<Text>());
             }
+
+            Text t = textsInUse[currentText++];
+
+            t.enabled = true;
+            t.text = message;
+            t.color = color;
+            RectTransform crt = t.transform.parent.GetComponent<Canvas>().GetComponent<RectTransform>();
+            t.fontSize = (int)(crt.sizeDelta.x * size);
+            t.rectTransform.localPosition = (0.85f) * new Vector3(x * crt.sizeDelta.x, y * crt.sizeDelta.y, 0);
+            //t.rectTransform.position = new Vector3(0, 0, 0);
         }
-
-        if (currentText >= textsInUse.Count)
-        {
-            GameObject dupe = (GameObject)GameObject.Instantiate(textReference);
-            dupe.transform.SetParent( textReference.transform.parent.transform, false );
-            textsInUse.Add(dupe.GetComponent<Text>());
-        }
-
-        Text t = textsInUse[currentText++];
-
-        t.enabled = true;
-        t.text = message;
-        t.color = color;
-        RectTransform crt = GetComponent<Canvas>().GetComponent<RectTransform>();
-        t.fontSize = (int)(crt.sizeDelta.x * size);
-        t.rectTransform.localPosition = (0.85f) * new Vector3(x * crt.sizeDelta.x, y * crt.sizeDelta.y, 0);
-        t.gameObject.layer = noisePlane.gameObject.layer;
-        //t.rectTransform.position = new Vector3(0, 0, 0);
     }
 
     void SetLayerRecursively( GameObject obj, int newLayer )

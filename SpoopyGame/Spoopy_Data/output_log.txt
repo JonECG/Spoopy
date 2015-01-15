@@ -18,41 +18,87 @@ Loading D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Managed\UnityEngine.UI.dll
 desktop: 1920x1080 75Hz; virtual: 3840x1080 at 0,0
 Platform assembly: D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Managed\System.dll (this message is harmless)
-Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+UnloadTime: 4.921302 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1365 unused Assets to reduce memory usage. Loaded Objects now: 2226.
+Total: 2.418325 ms (FindLiveObjects: 0.137661 ms CreateObjectMapping: 0.145469 ms MarkObjects: 0.390383 ms  DeleteObjects: 1.300183 ms)
+
+Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Parent of RectTransform is being set with parent property. Consider using the SetParent method instead, with the worldPositionStays argument set to false. This will retain local orientation and scale rather than world orientation and scale, which can prevent common UI scaling issues.
+Raycast hit
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tap
+Pick up
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tap
+Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tap
+Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tap
+Raycast hit
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tap
+Pick up
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Tap
+UnloadTime: 3.445651 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5701 unused Assets to reduce memory usage. Loaded Objects now: 2226.
+Total: 7.919451 ms (FindLiveObjects: 0.290938 ms CreateObjectMapping: 0.632832 ms MarkObjects: 0.356687 ms  DeleteObjects: 6.190666 ms)
+
+Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Pick up pressed
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 3.761246 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6732 unused Assets to reduce memory usage. Loaded Objects now: 2226.
+Total: 9.194980 ms (FindLiveObjects: 0.355454 ms CreateObjectMapping: 0.538318 ms MarkObjects: 0.292993 ms  DeleteObjects: 7.568516 ms)
 
 Hit
  
@@ -74,447 +120,11 @@ Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
+Raycast hit
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
+Pick up
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -526,39 +136,11 @@ Pick up pressed
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
+Raycast hit
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Pick up pressed
+Pick up
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
@@ -570,287 +152,88 @@ Hit
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Pick up pressed
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Tap
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Tap
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Tap
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
+Crash!!!
+SymInit: Symbol-SearchPath: '.;D:\Repositories\Spoopy\SpoopyGame;D:\Repositories\Spoopy\SpoopyGame;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'Jon'
+OS-Version: 6.2.9200 () 0x100-0x1
+D:\Repositories\Spoopy\SpoopyGame\Spoopy.exe:Spoopy.exe (001E0000), size: 12271616 (result: 0), SymType: '-exported-', PDB: 'D:\Repositories\Spoopy\SpoopyGame\Spoopy.exe', fileVersion: 4.6.1.51269
+C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (772A0000), size: 1470464 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\ntdll.dll', fileVersion: 6.3.9600.17278
+C:\Windows\SYSTEM32\KERNEL32.DLL:KERNEL32.DLL (76C50000), size: 1310720 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\KERNEL32.DLL', fileVersion: 6.3.9600.17056
+C:\Windows\SYSTEM32\KERNELBASE.dll:KERNELBASE.dll (76690000), size: 851968 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\KERNELBASE.dll', fileVersion: 6.3.9600.17278
+C:\Windows\system32\apphelp.dll:apphelp.dll (74100000), size: 626688 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\apphelp.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\HID.DLL:HID.DLL (6C3D0000), size: 40960 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\HID.DLL', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\WS2_32.dll:WS2_32.dll (76E70000), size: 315392 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WS2_32.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\USER32.dll:USER32.dll (764B0000), size: 1372160 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\USER32.dll', fileVersion: 6.3.9600.17238
+C:\Windows\SYSTEM32\VERSION.dll:VERSION.dll (74C40000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\VERSION.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\ole32.dll:ole32.dll (76180000), size: 1097728 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\ole32.dll', fileVersion: 6.3.9600.17042
+C:\Windows\SYSTEM32\SHLWAPI.dll:SHLWAPI.dll (76D90000), size: 266240 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\SHLWAPI.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\ADVAPI32.dll:ADVAPI32.dll (74E40000), size: 491520 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\ADVAPI32.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\GDI32.dll:GDI32.dll (76290000), size: 1077248 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\GDI32.dll', fileVersion: 6.3.9600.17246
+C:\Windows\SYSTEM32\SHELL32.dll:SHELL32.dll (74FC0000), size: 18575360 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\SHELL32.dll', fileVersion: 6.3.9600.17278
+C:\Windows\SYSTEM32\OPENGL32.dll:OPENGL32.dll (65BF0000), size: 868352 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\OPENGL32.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\WINMM.dll:WINMM.dll (73DF0000), size: 131072 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WINMM.dll', fileVersion: 6.3.9600.17078
+C:\Windows\SYSTEM32\OLEAUT32.dll:OLEAUT32.dll (770A0000), size: 552960 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\OLEAUT32.dll', fileVersion: 6.3.9600.16506
+C:\Windows\SYSTEM32\MSACM32.dll:MSACM32.dll (6C2C0000), size: 86016 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\MSACM32.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\IMM32.dll:IMM32.dll (76DE0000), size: 151552 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\IMM32.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\DNSAPI.dll:DNSAPI.dll (6FB60000), size: 507904 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\DNSAPI.dll', fileVersion: 6.3.9600.17039
+C:\Windows\SYSTEM32\IPHLPAPI.DLL:IPHLPAPI.DLL (73CF0000), size: 122880 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\IPHLPAPI.DLL', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\WINHTTP.dll:WINHTTP.dll (6C6C0000), size: 606208 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WINHTTP.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\msvcrt.dll:msvcrt.dll (76760000), size: 778240 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\msvcrt.dll', fileVersion: 7.0.9600.16384
+C:\Windows\SYSTEM32\NSI.dll:NSI.dll (77090000), size: 28672 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\NSI.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\RPCRT4.dll:RPCRT4.dll (769F0000), size: 720896 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\RPCRT4.dll', fileVersion: 6.3.9600.17216
+C:\Windows\SYSTEM32\combase.dll:combase.dll (74CE0000), size: 1368064 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\combase.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\sechost.dll:sechost.dll (76EC0000), size: 253952 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\sechost.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\GLU32.dll:GLU32.dll (66F80000), size: 147456 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\GLU32.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\DDRAW.dll:DDRAW.dll (66E50000), size: 946176 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\DDRAW.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\WINMMBASE.dll:WINMMBASE.dll (73DD0000), size: 131072 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WINMMBASE.dll', fileVersion: 6.3.9600.17080
+C:\Windows\SYSTEM32\MSCTF.dll:MSCTF.dll (74EC0000), size: 1011712 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\MSCTF.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\WINNSI.DLL:WINNSI.DLL (73CE0000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WINNSI.DLL', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\SspiCli.dll:SspiCli.dll (74CC0000), size: 118784 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\SspiCli.dll', fileVersion: 6.3.9600.16408
+C:\Windows\SYSTEM32\DCIMAN32.dll:DCIMAN32.dll (66DB0000), size: 28672 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\DCIMAN32.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\cfgmgr32.dll:cfgmgr32.dll (769B0000), size: 237568 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\cfgmgr32.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\DEVOBJ.dll:DEVOBJ.dll (74B90000), size: 126976 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\DEVOBJ.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\CRYPTBASE.dll:CRYPTBASE.dll (74CB0000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\CRYPTBASE.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\bcryptPrimitives.dll:bcryptPrimitives.dll (74C50000), size: 335872 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\bcryptPrimitives.dll', fileVersion: 6.3.9600.17120
+C:\Windows\SYSTEM32\nvinit.dll:nvinit.dll (74BB0000), size: 167936 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\nvinit.dll', fileVersion: 9.18.13.4062
+C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\detoured.dll:detoured.dll (0F000000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\detoured.dll'
+C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\nvd3d9wrap.dll:nvd3d9wrap.dll (74A60000), size: 180224 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\nvd3d9wrap.dll', fileVersion: 9.18.13.4062
+C:\Windows\SYSTEM32\SETUPAPI.dll:SETUPAPI.dll (76AA0000), size: 1757184 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\SETUPAPI.dll', fileVersion: 6.3.9600.17031
+C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\nvdxgiwrap.dll:nvdxgiwrap.dll (74A40000), size: 131072 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files (x86)\NVIDIA Corporation\CoProcManager\nvdxgiwrap.dll', fileVersion: 9.18.13.4062
+C:\Windows\SYSTEM32\shcore.dll:shcore.dll (749C0000), size: 483328 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\shcore.dll', fileVersion: 6.3.9600.17238
+D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Mono\mono.dll:mono.dll (10000000), size: 2289664 (result: 0), SymType: '-exported-', PDB: 'D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Mono\mono.dll'
+C:\Windows\SYSTEM32\PSAPI.DLL:PSAPI.DLL (76F00000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\PSAPI.DLL', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\MSWSOCK.dll:MSWSOCK.dll (6FC30000), size: 282624 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\MSWSOCK.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (748D0000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\kernel.appcore.dll', fileVersion: 6.3.9600.16384
+C:\Windows\system32\uxtheme.dll:uxtheme.dll (748E0000), size: 897024 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\uxtheme.dll', fileVersion: 6.3.9600.17031
+C:\Windows\system32\dwmapi.dll:dwmapi.dll (6C690000), size: 98304 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\dwmapi.dll', fileVersion: 6.3.9600.17238
+C:\Windows\SYSTEM32\d3d11.dll:d3d11.dll (67210000), size: 1765376 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\d3d11.dll', fileVersion: 6.3.9600.17041
+C:\Windows\SYSTEM32\dxgi.dll:dxgi.dll (676B0000), size: 401408 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\dxgi.dll', fileVersion: 6.3.9600.17201
+C:\Windows\SYSTEM32\WINTRUST.dll:WINTRUST.dll (76820000), size: 229376 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\WINTRUST.dll', fileVersion: 6.3.9600.17085
+C:\Windows\SYSTEM32\CRYPT32.dll:CRYPT32.dll (76F10000), size: 1568768 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\CRYPT32.dll', fileVersion: 6.3.9600.16431
+C:\Windows\SYSTEM32\MSASN1.dll:MSASN1.dll (76490000), size: 57344 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\MSASN1.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\nvumdshim.dll:nvumdshim.dll (67580000), size: 872448 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\nvumdshim.dll', fileVersion: 9.18.13.4062
+C:\Windows\system32\nvwgf2um.dll:nvwgf2um.dll (65D70000), size: 16080896 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\nvwgf2um.dll', fileVersion: 9.18.13.4062
+C:\Windows\SYSTEM32\bcrypt.dll:bcrypt.dll (74720000), size: 118784 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\bcrypt.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\MMDevAPI.DLL:MMDevAPI.DLL (73D80000), size: 303104 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\MMDevAPI.DLL', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\wdmaud.drv:wdmaud.drv (60CE0000), size: 212992 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\wdmaud.drv', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\ksuser.dll:ksuser.dll (67680000), size: 28672 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\ksuser.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\AVRT.dll:AVRT.dll (67670000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\AVRT.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\AUDIOSES.DLL:AUDIOSES.DLL (6C110000), size: 348160 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\AUDIOSES.DLL', fileVersion: 6.3.9600.17090
+C:\Windows\SYSTEM32\powrprof.dll:powrprof.dll (69CA0000), size: 253952 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\powrprof.dll', fileVersion: 6.3.9600.17031
+C:\Windows\SYSTEM32\msacm32.drv:msacm32.drv (67660000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\msacm32.drv', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\midimap.dll:midimap.dll (66F40000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\midimap.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\dsound.dll:dsound.dll (63290000), size: 495616 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\dsound.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\clbcatq.dll:clbcatq.dll (77130000), size: 512000 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\clbcatq.dll', fileVersion: 2001.12.10530.16384
+C:\Windows\SYSTEM32\xinput1_3.dll:xinput1_3.dll (098E0000), size: 90112 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\xinput1_3.dll', fileVersion: 9.18.944.0
+C:\Windows\system32\nvapi.dll:nvapi.dll (61E00000), size: 2957312 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\nvapi.dll', fileVersion: 9.18.13.4062
+D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Plugins\OculusPlugin.dll:OculusPlugin.dll (59350000), size: 692224 (result: 0), SymType: '-exported-', PDB: 'D:\Repositories\Spoopy\SpoopyGame\Spoopy_Data\Plugins\OculusPlugin.dll'
+C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (65AA0000), size: 1343488 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\dbghelp.dll', fileVersion: 6.3.9600.16520
+C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17031_none_a9efdb8b01377ea7\comctl32.dll:comctl32.dll (6C4A0000), size: 1990656 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17031_none_a9efdb8b01377ea7\comctl32.dll', fileVersion: 6.10.9600.17031
+C:\Windows\SYSTEM32\D3DCompiler_47.dll:D3DCompiler_47.dll (58FF0000), size: 3497984 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\D3DCompiler_47.dll', fileVersion: 6.3.9600.16384
+C:\Windows\SYSTEM32\CRYPTSP.dll:CRYPTSP.dll (74770000), size: 98304 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\CRYPTSP.dll', fileVersion: 6.3.9600.16384
+
+========== OUTPUTING STACK TRACE ==================
+
+(0x676B2F26) (dxgi): (filename not available): (function-name not available) + 0x0
+(0x76C6919F) (KERNEL32): (filename not available): BaseThreadInitThunk + 0xe
+(0x772F0BBB) (ntdll): (filename not available): RtlInitializeExceptionChain + 0x84
+(0x772F0B91) (ntdll): (filename not available): RtlInitializeExceptionChain + 0x5a

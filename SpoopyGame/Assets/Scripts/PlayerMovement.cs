@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour {
             anchor = GameObject.Find("CenterEyeAnchor").transform;
         }
 
-        GameObject.Find("LitCamera").transform.parent = anchor;
-        GameObject.Find("Headlamp").transform.parent = anchor;
+        GameObject.Find("LitCamera").transform.SetParent( anchor, false );
+        GameObject.Find("Headlamp").transform.SetParent(anchor, false);
 	}
 	
 	// Update is called once per frame
