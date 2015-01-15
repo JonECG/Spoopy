@@ -38,7 +38,7 @@ public class ItemInteraction : MonoBehaviour {
 
         if (!togglePickup && Physics.Raycast(playerHead.transform.position, transform.position - playerHead.transform.position, out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position - playerHead.transform.position)) < 25 && (transform.position - playerHead.transform.position).magnitude < grabDistance)
         {
-            HeadsUpDisplayController.Instance.DrawText(info, 0, 0, Color.blue, 0.1f);
+            HeadsUpDisplayController.Instance.DrawText(info, 0, -0.4f, Color.blue, 0.06f);
         }
 
         if (pickupCorrected.IsPressed())

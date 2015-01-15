@@ -3,6 +3,6 @@ using System.Collections;
 
 public abstract class ActingInterface : MonoBehaviour {
 
-    public void Act(Brain.Perception perceived);
+    public abstract void Act(Brain.Perception perceived);
 
 }

@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour {
     Debouncer.DebouncerResults sprintCorrected;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         sprintStamina = 1;
         head = GameObject.Find("Head").transform;
 
@@ -57,7 +57,15 @@ public class PlayerMovement : MonoBehaviour {
         float longinal = Input.GetAxis("Mouse Y");
         float longinalStick = Input.GetAxis("TurningX");
 
-        transform.Rotate(new Vector3(0, 1, 0), ( lateral + longinalStick) * mouseSensitivity );
+
+        float headAngle = Mathf.Atan2(forwardReference.z, forwardReference.x);
+        float playerAngle = Mathf.Atan2(transform.forward.z, transform.forward.x);
+        float diffAngle = Mathf.Deg2Rad * (Mathf.Repeat((Mathf.Repeat((playerAngle - headAngle) * Mathf.Rad2Deg, 360)) + 540, 360) - 180);
+        float normDiffAngle = Mathf.Sign( diffAngle ) * Mathf.Pow( diffAngle / Mathf.PI, 2 );
+
+        //HeadsUpDisplayController.Instance.DrawText(normDiffAngle.ToString(), 0, 0.2f, Color.green);
+
+        transform.Rotate(new Vector3(0, 1, 0), ( lateral + longinalStick + normDiffAngle * 4 ) * mouseSensitivity );
         if( GameObject.Find( "LeftEyeAnchor" ) == null )
             head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
 	}
