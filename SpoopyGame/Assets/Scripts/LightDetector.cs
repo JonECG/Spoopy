@@ -42,4 +42,32 @@ public class LightDetector : MonoBehaviour {
     {
         return averageColor;
     }
+
+    public bool CanSee( GameObject go, out Color seenColor )
+    {
+        seenColor = new Color(0, 0, 0);
+        bool result = false;
+        //Get this object's position in the camera's viewpoint to test and see if it's onscreen.
+        Vector3 campos = camera.WorldToViewportPoint(go.transform.position);
+        //if all the values are positive and between 0 and 1, this object is on screen.
+
+        float blinkCoverage = Mathf.Min(FindObjectOfType<Blinker>().BlinkLeftPercentage, FindObjectOfType<Blinker>().BlinkRightPercentage);
+        bool checkIfOnScreen = (campos.x > 0.0f && campos.x < 1.0f && campos.y > 0.0f && campos.y < 1.0f - blinkCoverage && campos.z > 0.0f);
+
+        if (checkIfOnScreen)
+        {
+            //Checking to see if it's behind an object
+            RaycastHit tempHit;
+            Physics.Raycast(transform.position, (go.transform.position - transform.position).normalized, out tempHit);
+
+            //if we cast a ray to hit the object and the object hit is this object then we can do the sanity stuff
+            if (tempHit.collider == go.collider)
+            {
+                seenColor = capturedTex.GetPixel((int)(campos.x * capturedTex.width), (int)(campos.y * capturedTex.height));
+                result = true;
+            }
+        }
+
+        return result;
+    }
 }

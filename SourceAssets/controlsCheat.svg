@@ -10,7 +10,7 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="720"
+   width="1440"
    height="720"
    id="svg2"
    version="1.1"
@@ -28,17 +28,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98633581"
-     inkscape:cx="337.65198"
-     inkscape:cy="384.27787"
+     inkscape:zoom="0.49316791"
+     inkscape:cx="921.63159"
+     inkscape:cy="242.33838"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="944"
-     inkscape:window-height="1001"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -243,27 +243,31 @@
        d="M 49.983339,318.3087 682.98631,372.20797"
        id="path3846"
        inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3034"
+       d="m 722.10198,72.169114 2.51855,594.843416"
+       style="fill:none;stroke:#000000;stroke-width:9.94801712;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <rect
        style="fill:#00586b;fill-opacity:1;stroke:none"
        id="rect3852"
-       width="722.198"
+       width="1444.0616"
        height="159.01607"
-       x="-1.1042782"
-       y="-2.1979759"
-       transform="translate(3.0902453,-58.835387)" />
+       x="1.985967"
+       y="-61.033363" />
     <text
        sodipodi:linespacing="125%"
        id="text3848"
-       y="31.246744"
-       x="547.30969"
-       style="font-size:40.35223389000000100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       y="45.167789"
+       x="434.72873"
+       style="font-size:27.59766197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
        xml:space="preserve"
        transform="scale(0.66940306,1.4938683)"><tspan
          id="tspan3850"
-         style="font-size:72.63403320000000500px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Iskoola Pota;-inkscape-font-specification:Iskoola Pota;fill:#ffffff"
-         y="31.246744"
-         x="547.30969"
-         sodipodi:role="line">Spoopy Game Controls CheatSheet</tspan></text>
+         style="font-size:49.67580032px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Iskoola Pota;-inkscape-font-specification:Iskoola Pota"
+         y="45.167789"
+         x="434.72873"
+         sodipodi:role="line">Game Controls CheatSheet</tspan></text>
     <rect
        transform="matrix(0.5423434,0.84015691,-0.80665761,0.59101904,0,0)"
        y="-20.253046"
@@ -304,5 +308,88 @@
        x="278.04254"
        y="529.11383"
        transform="matrix(0.99533521,-0.09647702,0.17826183,0.98398309,0,0)" />
+    <text
+       transform="scale(0.66940306,1.4938683)"
+       xml:space="preserve"
+       style="font-size:27.59766197px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       x="1718.7096"
+       y="47.882496"
+       id="text3026"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="1718.7096"
+         y="47.882496"
+         style="font-size:49.67580032px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Iskoola Pota;-inkscape-font-specification:Iskoola Pota"
+         id="tspan3028">Game Info CheatSheet</tspan></text>
+    <text
+       transform="scale(0.84148593,1.188374)"
+       xml:space="preserve"
+       style="font-size:75.5823822px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       x="868.18768"
+       y="49.183258"
+       id="text3030"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="890.24237"
+         y="49.183258"
+         style="font-size:136.04830933px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Longdon Decorative;-inkscape-font-specification:Longdon Decorative"
+         id="tspan3032">Spoopy </tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text3036"
+       y="195.61719"
+       x="762.3139"
+       style="font-size:23.18591118px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       xml:space="preserve"><tspan
+         id="tspan3038"
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="195.61719"
+         x="762.3139"
+         sodipodi:role="line">-Get to the end</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="247.78549"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3040">-Enemies can sense you in many</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="299.9538"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3044">    ways</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="352.1221"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3046">-Looking at enemies will make you</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="404.29041"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3048">    go insane (screen static)</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="456.45871"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3050">-Letting yourself get hit by enemies</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="508.62704"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3052">    is generally bad for your health</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="560.79535"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3054">-Go get spooped</tspan><tspan
+         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="612.96362"
+         x="762.3139"
+         sodipodi:role="line"
+         id="tspan3042" /></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:11.1675396;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 1450.0471,97.228577 -3.3245671,98.527605"
+       id="path3056"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

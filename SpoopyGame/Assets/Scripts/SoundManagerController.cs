@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SoundManagerController : MonoBehaviour {
 
+
+    public delegate void SoundCreatedHandler(AudioSource clip);
+    public event SoundCreatedHandler SoundCreatedEvent;
     //Singleton static logic
     private static SoundManagerController instance = null;
     public static SoundManagerController Instance
@@ -80,19 +83,19 @@ public class SoundManagerController : MonoBehaviour {
 
     }
 
-    public void PlaySoundAt(string name, Vector3 soundPosition)
+    public void PlaySoundAt(string name, Vector3 soundPosition, string tag = "Untagged" )
     {
         AudioClip loaded = Resources.Load<AudioClip>(name);
-        PlaySoundAt(loaded, soundPosition);
+        PlaySoundAt(loaded, soundPosition, tag);
     }
 
-    public void PlaySoundAt(string name, Transform soundParent)
+    public void PlaySoundAt(string name, Transform soundParent, string tag = "Untagged")
     {
         AudioClip loaded = Resources.Load<AudioClip>(name);
-        PlaySoundAt(loaded, soundParent);
+        PlaySoundAt(loaded, soundParent, tag);
     }
 
-    public void PlaySoundAt(AudioClip clip, Vector3 soundPosition)
+    public AudioSource PlaySoundAt(AudioClip clip, Vector3 soundPosition, string tag = "Untagged")
     {
         GameObject source = new GameObject(clip.name + "SOUNDED");
         source.AddComponent<AudioSource>();
@@ -100,17 +103,22 @@ public class SoundManagerController : MonoBehaviour {
         source.transform.position = soundPosition;
         source.AddComponent<DestroyOnSoundEnd>();
         source.audio.Play();
+        source.tag = tag;
+        //Debug.Log( source.audio.spread );
+        //source.audio.spread = 360;
+
+        if( SoundCreatedEvent != null )
+            SoundCreatedEvent(source.audio);
+
+        return source.audio;
     }
 
-    public void PlaySoundAt(AudioClip clip, Transform soundParent)
+    public AudioSource PlaySoundAt(AudioClip clip, Transform soundParent, string tag = "Untagged")
     {
-        GameObject source = new GameObject(clip.name + "SOUNDED");
-        source.AddComponent<AudioSource>();
-        source.audio.clip = clip;
-        source.transform.parent = soundParent;
+        AudioSource source = PlaySoundAt(clip, soundParent.position, tag);
+        source.transform.SetParent(soundParent, false);
         source.transform.localPosition = new Vector3(0, 0, 0);
-        source.AddComponent<DestroyOnSoundEnd>();
-        source.audio.Play();
+        return source;
     }
 
 	// Use this for initialization
