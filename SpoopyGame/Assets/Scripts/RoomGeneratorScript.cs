@@ -15,10 +15,10 @@ public class RoomGeneratorScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        getRectHallWay(7, 7, true, true, false, false);
+        //getRectHallWay(7, 7, true, true, false, false);
 
-        GameObject temp = getRectRoom(7, 7, true, false, false, false);
-        temp.transform.Translate(new Vector3(0, 0, tileWidth * 7));
+        //GameObject temp = getRectRoom(7, 7, true, false, false, false);
+        //temp.transform.Translate(new Vector3(0, 0, tileWidth * 7));
 	}
 	
 	// Update is called once per frame

@@ -7,7 +7,7 @@ public class RoomNode : Node {
     
     public int parentRoomDirection;
     public int currentDepth;
-
+    public GameObject landMark;
     private int roomSize;
     private bool[] exits = new bool[numExits];
     public bool isActive = false;
@@ -88,6 +88,12 @@ public class RoomNode : Node {
        Vector3 fixedPosition = new Vector3(this.transform.position.x - (int)(roomSize / 2), this.transform.position.y, this.transform.position.z - (int)(roomSize / 2));
        newRoom.transform.position = fixedPosition;
        newRoom.transform.parent = this.transform;
+    }
+
+    public void createLandMark()
+    {
+        GameObject TempLandMark = Instantiate(landMark, this.transform.position, Quaternion.identity) as GameObject;
+        TempLandMark.transform.parent = this.transform;
     }
 
     public void connectDoor(GameObject door){

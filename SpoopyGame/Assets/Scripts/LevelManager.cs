@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour {
     public GameObject mainNode;
     public GameObject doorNode;
     public GameObject player;
+    public GameObject startingRoom;
+    public GameObject landMark;
     public int maxPathDepth;
     public int maxRoomSize;
     private Random rand = new Random();
@@ -30,20 +32,28 @@ public class LevelManager : MonoBehaviour {
 
     private GameObject genreateStartRoom()
     {
-        GameObject newRoomNode = Instantiate(mainNode, Vector3.zero, Quaternion.identity) as GameObject;
-        RoomNode tempRoom = newRoomNode.GetComponent<RoomNode>();
-        tempRoom.setRoomSize(genRoomSize());
-        int numberOfExits = Random.Range(1, 4);
-        Debug.Log(numberOfExits);
-        for (int i = 0; i < numberOfExits; i++)
-        {
-            tempRoom.openExit(i);
-        }
-        tempRoom.SpawnRoom(this.GetComponent<RoomGeneratorScript>());
-        tempRoom.setIsActive(true);
-        spawnDoorNodes(newRoomNode);
-        startingNode = newRoomNode;
-        return newRoomNode;
+        startingRoom.transform.position = Vector3.zero;
+        RoomNode tempRoom = startingRoom.GetComponent<RoomNode>();
+        tempRoom.setRoomSize(3);
+        int numberOfExits = 1;
+        tempRoom.openExit(0);
+        spawnDoorNodes(startingRoom);
+        startingNode = startingRoom;
+        return startingRoom;
+        //GameObject newRoomNode = Instantiate(mainNode, Vector3.zero, Quaternion.identity) as GameObject;
+        //RoomNode tempRoom = newRoomNode.GetComponent<RoomNode>();
+        //tempRoom.setRoomSize(genRoomSize());
+        //int numberOfExits = Random.Range(1, 4);
+        //Debug.Log(numberOfExits);
+        //for (int i = 0; i < numberOfExits; i++)
+        //{
+        //    tempRoom.openExit(i);
+        //}
+        //tempRoom.SpawnRoom(this.GetComponent<RoomGeneratorScript>());
+        //tempRoom.setIsActive(true);
+        //spawnDoorNodes(newRoomNode);
+        //startingNode = newRoomNode;
+        //return newRoomNode;
     }
 
     private void OpenRandomRoomExits(RoomNode node)
@@ -127,6 +137,10 @@ public class LevelManager : MonoBehaviour {
                     tempNewRoomNode.setParentRoomDirection(openConnectingPath(i));
                     spawnDoorNodes(newRoomNode);
                     tempNewRoomNode.SpawnRoom(this.GetComponent<RoomGeneratorScript>());
+                    if (Random.Range(0, 20) % 3 == 0)
+                    {
+                        tempNewRoomNode.createLandMark();
+                    }
                     genreateRooms(newDepth, newRoomNode);
                 }
             }
