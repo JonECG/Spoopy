@@ -18,10 +18,19 @@ public class Touch : SenseInterface {
         }
     }
 
+    void OnTriggerExit(Collider c)
+    {
+        if (c.gameObject.GetComponent<PlayerController>() != null)
+        {
+            isTouching = false;
+        }
+    }
+
     public override Brain.SensedInfo Sense()
     {
         Brain.SensedInfo result = new Brain.SensedInfo();
-        
+
+        Debug.Log("Touching: " + isTouching);
         if( isTouching )
         {
             GameObject player = GameObject.Find("Player");
@@ -34,7 +43,7 @@ public class Touch : SenseInterface {
             result.SensedDistance = Vector3.Distance(player.transform.position, transform.position);
         }
 
-        isTouching = false;
+        //isTouching = false;
 
         return result;
     }

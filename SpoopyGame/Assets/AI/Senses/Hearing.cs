@@ -8,12 +8,11 @@ public class Hearing : SenseInterface {
 
     private void AudioSourceMade(AudioSource sounded)
     {
-        Debug.Log("Heard");
         if (sounded.tag == "AlertingSound" || sounded.tag == "PlayerMadeSound")
         {
             Debug.Log("Alerted");
             if (lastIndex < heardInterests.Length)
-                heardInterests[lastIndex] = sounded;
+                heardInterests[lastIndex++] = sounded;
             else
                 heardInterests[0] = sounded;
         }
@@ -34,37 +33,45 @@ public class Hearing : SenseInterface {
     public override Brain.SensedInfo Sense()
     {
         Brain.SensedInfo result = new Brain.SensedInfo();
+
+        int addedCount = 0;
+
         for (int i = 0; i < lastIndex; i++)
         {
             if (heardInterests[i] == null)
             {
-                heardInterests[i] = heardInterests[lastIndex--];
+                heardInterests[i] = heardInterests[--lastIndex];
             }
+            if (i < lastIndex && heardInterests[i] != null)
+            {
+                //float[] data = new float[1];
+                //heardInterests[i].clip.GetData(data, heardInterests[i].timeSamples);
+                //float level = data[0];
+                float ratio = Mathf.Max(0, distance - (heardInterests[i].transform.position - transform.position).magnitude) / distance;
+                float intensity = ratio * ratio;
+                float sqrtRatio = Mathf.Sqrt(ratio);
 
-
-            //float[] data = new float[1];
-            //heardInterests[i].clip.GetData(data, heardInterests[i].timeSamples);
-            //float level = data[0];
-            float ratio = Mathf.Max(0, distance - (heardInterests[i].transform.position - transform.position).magnitude) / distance;
-            float intensity = ratio*ratio;
-            float sqrtRatio = Mathf.Sqrt( ratio );
-
-            Debug.Log("Listening");
-            result.CertaintyIsPlayer += ((heardInterests[i].tag == "PlayerMadeSound") ? 1 : 0) * sqrtRatio;
-            result.CertaintyOfDirection += sqrtRatio;
-            result.CertaintyOfDistance += sqrtRatio;
-            result.AlertingFactor += intensity;
-            result.SensedDirection += (heardInterests[i].transform.position - transform.position).normalized;
-            result.SensedDistance += (heardInterests[i].transform.position - transform.position).magnitude;
+                Debug.Log("Listening");
+                result.CertaintyIsPlayer += ((heardInterests[i].tag == "PlayerMadeSound") ? 1 : 0) * sqrtRatio;
+                result.CertaintyOfDirection += sqrtRatio;
+                result.CertaintyOfDistance += sqrtRatio;
+                result.AlertingFactor += sqrtRatio;
+                result.SensedDirection += (heardInterests[i].transform.position - transform.position).normalized;
+                result.SensedDistance += (heardInterests[i].transform.position - transform.position).magnitude;
+                addedCount++;
+            }
         }
 
-        result.CertaintyIsPlayer /= heardInterests.Length;
-        result.CertaintyOfDirection /= heardInterests.Length;
-        result.CertaintyOfDistance /= heardInterests.Length;
-        result.AlertingFactor /= heardInterests.Length;
-        result.SensedDirection /= heardInterests.Length;
-        result.SensedDistance /= heardInterests.Length;
-        result.SensedDirection.Normalize();
+        if (lastIndex > 0)
+        {
+            result.CertaintyIsPlayer /= addedCount;
+            result.CertaintyOfDirection /= addedCount;
+            result.CertaintyOfDistance /= addedCount;
+            result.AlertingFactor /= addedCount;
+            result.SensedDirection /= addedCount;
+            result.SensedDistance /= addedCount;
+            result.SensedDirection.Normalize();
+        }
 
         return result;
     }
