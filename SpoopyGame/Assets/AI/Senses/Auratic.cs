@@ -9,14 +9,19 @@ public class Auratic : SenseInterface
 
         GameObject player = GameObject.Find("Player");
 
-        if (Vector3.Distance(player.transform.position, transform.position) <= distance && !Physics.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(transform.position, player.transform.position)))
+        RaycastHit hit;
+
+        if (Vector3.Distance(player.transform.position, transform.position) <= distance && Physics.Raycast(transform.position+transform.up, player.transform.position - transform.position, out hit, Vector3.Distance(transform.position, player.transform.position)))
         {
-            si.AlertingFactor = 1.0f;
-            si.CertaintyIsPlayer = 1.0f;
-            si.CertaintyOfDirection = 1.0f;
-            si.CertaintyOfDistance = 1.0f;
-            si.SensedDirection = player.transform.position - transform.position;
-            si.SensedDistance = Vector3.Distance(player.transform.position, transform.position);
+            if (hit.collider.name == "Player")
+            {
+                si.AlertingFactor = 1.0f;
+                si.CertaintyIsPlayer = 1.0f;
+                si.CertaintyOfDirection = 1.0f;
+                si.CertaintyOfDistance = 1.0f;
+                si.SensedDirection = player.transform.position - transform.position;
+                si.SensedDistance = Vector3.Distance(player.transform.position, transform.position);
+            }
         }
         else
         {
