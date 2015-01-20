@@ -53,7 +53,8 @@ public class HeadLamp : MonoBehaviour {
 
         if (headLampToggleCorrected.IsPressed())
         {
-            SoundManagerController.Instance.PlaySoundAt(isTurnedOn ? clickOff : (currentBatteryLife > 0) ? clickOn : clickDead, transform.position, "PlayerMadeSound");
+            if( SoundManagerController.Instance != null )
+                SoundManagerController.Instance.PlaySoundAt(isTurnedOn ? clickOff : (currentBatteryLife > 0) ? clickOn : clickDead, transform.position, "PlayerMadeSound");
             if (currentBatteryLife > 0)
                 isTurnedOn = !isTurnedOn;
         }
@@ -61,7 +62,8 @@ public class HeadLamp : MonoBehaviour {
         if (headLampChargeCorrected.IsPressed() || tapped)
         {
             currentBatteryLife = Mathf.Min(batteryLifeInSeconds, currentBatteryLife + batteryLifeInSeconds / numberOfShakesToCharge);
-            SoundManagerController.Instance.PlaySoundAt((currentBatteryLife == batteryLifeInSeconds) ? rechargeFull : recharge, transform.position, "PlayerMadeSound");
+            if (SoundManagerController.Instance != null)
+                SoundManagerController.Instance.PlaySoundAt((currentBatteryLife == batteryLifeInSeconds) ? rechargeFull : recharge, transform.position, "PlayerMadeSound");
         }
 
         if (isTurnedOn)
@@ -72,7 +74,8 @@ public class HeadLamp : MonoBehaviour {
             {
                 currentBatteryLife = 0;
                 isTurnedOn = false;
-                SoundManagerController.Instance.PlaySoundAt(clickOff, transform.position, "PlayerMadeSound");
+                if (SoundManagerController.Instance != null)
+                    SoundManagerController.Instance.PlaySoundAt(clickOff, transform.position, "PlayerMadeSound");
             }
         }
 

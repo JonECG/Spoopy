@@ -8,6 +8,7 @@ public class Hearing : SenseInterface {
 
     private void AudioSourceMade(AudioSource sounded)
     {
+        Debug.Log("Heard");
         if (sounded.tag == "AlertingSound" || sounded.tag == "PlayerMadeSound")
         {
             Debug.Log("Alerted");
@@ -40,6 +41,7 @@ public class Hearing : SenseInterface {
                 heardInterests[i] = heardInterests[lastIndex--];
             }
 
+
             //float[] data = new float[1];
             //heardInterests[i].clip.GetData(data, heardInterests[i].timeSamples);
             //float level = data[0];
@@ -47,6 +49,7 @@ public class Hearing : SenseInterface {
             float intensity = ratio*ratio;
             float sqrtRatio = Mathf.Sqrt( ratio );
 
+            Debug.Log("Listening");
             result.CertaintyIsPlayer += ((heardInterests[i].tag == "PlayerMadeSound") ? 1 : 0) * sqrtRatio;
             result.CertaintyOfDirection += sqrtRatio;
             result.CertaintyOfDistance += sqrtRatio;
