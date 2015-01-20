@@ -6,7 +6,9 @@ public class Brain : MonoBehaviour {
 
     public float Reflexiveness = 1;
     public float Stubbornness = 0;
+    public float AttentionLossTime = 1.0f;
     private Motivation lastMotivation;
+    private Vector3 lastPosition;
 
     public float CertaintyOfDirection { get; protected set; }
     public float CertaintyOfDistance { get; protected set; }
@@ -50,14 +52,14 @@ public class Brain : MonoBehaviour {
         PerceivedDirection = new Vector3(1, 0, 0);
     }
 
-    private float SenseLerp(float start, float goal)
+    private float SenseLerp(float start, float goal, float factor = 1.0f )
     {
-        return start + (goal - start) * Reflexiveness * Time.deltaTime;
+        return start + (goal - start) * Reflexiveness * Time.deltaTime * factor;
     }
 
-    private Vector3 SenseLerp(Vector3 start, Vector3 goal, bool normalized)
+    private Vector3 SenseLerp(Vector3 start, Vector3 goal, bool normalized, float factor = 1.0f)
     {
-        Vector3 lerped = (start + (goal - start) * Reflexiveness * Time.deltaTime);
+        Vector3 lerped = (start + (goal - start) * Reflexiveness * Time.deltaTime * factor);
         return (normalized) ? lerped.normalized : lerped;
     }
 
@@ -88,10 +90,10 @@ public class Brain : MonoBehaviour {
         heldDirection.Normalize();
         heldDistance /= senses.Length;
 
-        Alertness = SenseLerp(Alertness, (1 - heldInvAlertness));
-        PerceivedDistance = SenseLerp(PerceivedDistance, heldDistance);
-        PerceivedDirection = SenseLerp(PerceivedDirection, heldDirection, true);
-        PerceivedWorldPosition = SenseLerp(PerceivedWorldPosition, heldDirection * heldDistance + transform.position, false);
+        Alertness = Mathf.Max( 0, Alertness - Time.deltaTime / AttentionLossTime, (1 - heldInvAlertness) );
+        PerceivedDistance = SenseLerp(PerceivedDistance, heldDistance, 1 - heldInvDistanceCertainty);
+        PerceivedDirection = SenseLerp(PerceivedDirection, heldDirection, true, 1 - heldInvDirectionCertainty);
+        PerceivedWorldPosition = SenseLerp(PerceivedWorldPosition, PerceivedDirection * PerceivedDistance + transform.position, false );
         CertaintyIsPlayer = SenseLerp(CertaintyIsPlayer, (1 - heldInvPlayerCertainty));
         CertaintyOfDistance = SenseLerp(CertaintyOfDistance, (1 - heldInvDistanceCertainty));
         CertaintyOfDirection = SenseLerp(CertaintyOfDirection, (1 - heldInvDirectionCertainty));
@@ -126,8 +128,18 @@ public class Brain : MonoBehaviour {
         return largestMotivation;
     }
 
+    private void AccountForMovement()
+    {
+        Vector3 delta = transform.position - lastPosition;
+        lastPosition = transform.position;
+
+        Vector3 perceivedTotal = PerceivedDirection * PerceivedDistance;
+        perceivedTotal -= delta;
+    }
+
     void Update()
     {
+        AccountForMovement();
         Perception perception = CombineSenses();
         Motivation motivation = ThinkOnIt( perception );
 

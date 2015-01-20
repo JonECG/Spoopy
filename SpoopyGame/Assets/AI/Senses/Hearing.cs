@@ -55,7 +55,7 @@ public class Hearing : SenseInterface {
                 result.CertaintyIsPlayer += ((heardInterests[i].tag == "PlayerMadeSound") ? 1 : 0) * sqrtRatio;
                 result.CertaintyOfDirection += sqrtRatio;
                 result.CertaintyOfDistance += sqrtRatio;
-                result.AlertingFactor += sqrtRatio;
+                result.AlertingFactor += Mathf.Pow( ratio, 0.1f );
                 result.SensedDirection += (heardInterests[i].transform.position - transform.position).normalized;
                 result.SensedDistance += (heardInterests[i].transform.position - transform.position).magnitude;
                 addedCount++;
