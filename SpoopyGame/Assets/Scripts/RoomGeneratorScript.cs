@@ -14,7 +14,7 @@ public class RoomGeneratorScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        getRectRoom(2, 3, true, true, true, true);
+        //getRectRoom(2, 3, true, true, true, true);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class RoomGeneratorScript : MonoBehaviour
 	
 	}
 
-    private GameObject getRectRoom(int XTileWidth, int YTileHeight,bool northDoor, bool eastDoor, bool southDoor, bool westDoor)
+    public GameObject getRectRoom(int XTileWidth, int YTileHeight,bool northDoor, bool eastDoor, bool southDoor, bool westDoor)
     {
         GameObject parentRoomObject = new GameObject();
 
