@@ -5,10 +5,11 @@ public class LevelManager : MonoBehaviour {
 
     public GameObject mainNode;
     public GameObject doorNode;
+    public GameObject player;
     public int maxPathDepth;
     public int maxRoomSize;
     private Random rand = new Random();
-
+    private GameObject startingNode;
     private Vector3 northVector = new Vector3(1.0f, 0.0f, 0.0f);
     private Vector3 eastVector = new Vector3(0.0f, 0.0f, 1.0f);
     private Vector3 southhVector = new Vector3(-1.0f, 0.0f, 0.0f);
@@ -17,6 +18,9 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         genreateNodeMap(genreateStartRoom());
+        startingNode.GetComponent<RoomNode>().setIsActive(true);
+        player.transform.position = startingNode.transform.position;
+        RoomVisualizerScript.weightDungeon(startingNode);
 	}
 
 	// Update is called once per frame
@@ -36,7 +40,9 @@ public class LevelManager : MonoBehaviour {
             tempRoom.openExit(i);
         }
         tempRoom.SpawnRoom(this.GetComponent<RoomGeneratorScript>());
+        tempRoom.setIsActive(true);
         spawnDoorNodes(newRoomNode);
+        startingNode = newRoomNode;
         return newRoomNode;
     }
 
@@ -91,13 +97,10 @@ public class LevelManager : MonoBehaviour {
                 tempNewRoomNode.setParentRoomDirection(openConnectingPath(i));
                 spawnDoorNodes(newRoomNode);
                 tempNewRoomNode.SpawnRoom(this.GetComponent<RoomGeneratorScript>());
-
                 genreateRooms(newDepth, newRoomNode);
             }
         }
     }
-
-    
 
     private void genreateRooms(int currentDepth, GameObject lastRoom)
     {
@@ -160,9 +163,20 @@ public class LevelManager : MonoBehaviour {
             {
                 Vector3 positionOfDoor = core.transform.position + (getDirectionVector(i) * (node.getRoomSize()));
                 GameObject newDoor = Instantiate(doorNode, positionOfDoor, Quaternion.identity) as GameObject;
+                newDoor.GetComponent<DoorNode>().setExitDirection(getDirectionVector(i));
                 newDoor.transform.parent = core.transform;
+
+                connectDoorAndRoom(core, newDoor);
             }
         }
+    }
+
+    private void connectDoorAndRoom(GameObject room, GameObject door)
+    {
+        RoomNode rNode = room.GetComponent<RoomNode>();
+        DoorNode dNode = door.GetComponent<DoorNode>();
+        rNode.connectDoor(door);
+        dNode.connectToRoomCore(room);
     }
 
     private int openConnectingPath(int connectingDirection)
