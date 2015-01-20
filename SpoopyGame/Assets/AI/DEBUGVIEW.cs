@@ -8,7 +8,7 @@ public class DEBUGVIEW : MonoBehaviour {
         int row = 0;
         float vOff = 0.5f;
         float vGap = 0.04f;
-        float hOff = -0.5f;
+        float hOff = -0.3f;
         float hGap = 0.04f;
         float textSize = 0.02f;
 
@@ -21,6 +21,7 @@ public class DEBUGVIEW : MonoBehaviour {
             HeadsUpDisplayController.Instance.DrawText("PerceivedDistance: " + b.PerceivedDistance, hOff + hGap, vOff - vGap * (row++), Color.white, textSize);
             HeadsUpDisplayController.Instance.DrawText("CertaintyOfDirection: " + b.CertaintyOfDirection, hOff + hGap, vOff - vGap * (row++), Color.white, textSize);
             HeadsUpDisplayController.Instance.DrawText("PerceivedDirection: <" + b.PerceivedDirection.x + "," + b.PerceivedDirection.y + "," + b.PerceivedDirection.z + ">", hOff + hGap, vOff - vGap * (row++), Color.white, textSize);
+            HeadsUpDisplayController.Instance.DrawText("PerceivedPosition: <" + b.PerceivedWorldPosition.x + "," + b.PerceivedWorldPosition.y + "," + b.PerceivedWorldPosition.z + ">", hOff + hGap, vOff - vGap * (row++), Color.white, textSize);
 
         HeadsUpDisplayController.Instance.DrawText("SENSES", hOff, vOff - vGap * (row++), Color.red, textSize);
         SenseInterface[] senses = GetComponents<SenseInterface>();

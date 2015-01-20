@@ -55,9 +55,10 @@ public class Brain : MonoBehaviour {
         return start + (goal - start) * Reflexiveness * Time.deltaTime;
     }
 
-    private Vector3 SenseLerp(Vector3 start, Vector3 goal)
+    private Vector3 SenseLerp(Vector3 start, Vector3 goal, bool normalized)
     {
-        return (start + (goal - start) * Reflexiveness * Time.deltaTime).normalized;
+        Vector3 lerped = (start + (goal - start) * Reflexiveness * Time.deltaTime);
+        return (normalized) ? lerped.normalized : lerped;
     }
 
     Perception CombineSenses()
@@ -89,8 +90,8 @@ public class Brain : MonoBehaviour {
 
         Alertness = SenseLerp(Alertness, (1 - heldInvAlertness));
         PerceivedDistance = SenseLerp(PerceivedDistance, heldDistance);
-        PerceivedDirection = SenseLerp(PerceivedDirection, heldDirection);
-        PerceivedWorldPosition = SenseLerp(PerceivedWorldPosition, heldDirection * heldDistance + transform.position);
+        PerceivedDirection = SenseLerp(PerceivedDirection, heldDirection, true);
+        PerceivedWorldPosition = SenseLerp(PerceivedWorldPosition, heldDirection * heldDistance + transform.position, false);
         CertaintyIsPlayer = SenseLerp(CertaintyIsPlayer, (1 - heldInvPlayerCertainty));
         CertaintyOfDistance = SenseLerp(CertaintyOfDistance, (1 - heldInvDistanceCertainty));
         CertaintyOfDirection = SenseLerp(CertaintyOfDirection, (1 - heldInvDirectionCertainty));
