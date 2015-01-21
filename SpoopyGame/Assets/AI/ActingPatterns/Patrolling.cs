@@ -8,18 +8,25 @@ public class Patrolling : ActingInterface
     public float patrolDistance = 5;
     public float patrolSpeed = 0.4f;
 
+    void Start()
+    {
+        patrolHere = transform.position;
+    }
+
     public override void Act(Brain.Perception perceived, Brain.Motivation motivation)
     {
-        patrolHere=perceived.PerceivedWorldPosition;
-        if ((goHere.x == 0.0f && goHere.y == 0.0f && goHere.z == 0.0f) || ((goHere.x - transform.position.x < 1.0f && goHere.x - transform.position.x > -1.0f) && (goHere.z - transform.position.z < 1.0f && goHere.z - transform.position.z > -1.0f)))
-        {
-            goHere.x = Random.Range(patrolHere.x - patrolDistance, patrolHere.x + patrolDistance);
-            goHere.z = Random.Range(patrolHere.z - patrolDistance, patrolHere.z + patrolDistance);
 
-            while ((Physics.Raycast(transform.position, new Vector3(goHere.x, transform.position.y, goHere.z) - transform.position, Vector3.Distance(new Vector3(goHere.x, transform.position.y, goHere.z), transform.position))))
+        Vector3 diff = new Vector3( goHere.x - transform.position.x, 0, goHere.z - transform.position.z );
+        if (goHere.sqrMagnitude < 0.1 || diff.sqrMagnitude < 0.3f)
+        {
+            goHere.x = patrolHere.x + Random.Range(-patrolDistance, patrolDistance);
+            goHere.z = patrolHere.z + Random.Range(-patrolDistance, patrolDistance);
+            goHere.y = transform.position.y;
+
+            RaycastHit info;
+            if (Physics.Raycast(transform.position, (goHere - transform.position).normalized, out info, (goHere - transform.position).magnitude + 2, 1 << LayerMask.NameToLayer("Map")) && info.distance < (goHere - transform.position).magnitude + 2)
             {
-                goHere.x = Random.Range(patrolHere.x - patrolDistance, patrolHere.x + patrolDistance);
-                goHere.z = Random.Range(patrolHere.z - patrolDistance, patrolHere.z + patrolDistance);
+                goHere = transform.position + (goHere - transform.position).normalized * Mathf.Max(0, info.distance - 2);
             }
         }
         transform.LookAt(new Vector3(goHere.x, transform.position.y, goHere.z));

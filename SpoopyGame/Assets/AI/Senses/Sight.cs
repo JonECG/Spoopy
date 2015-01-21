@@ -13,7 +13,7 @@ public class Sight : SenseInterface
         float dist = (player.transform.position - transform.position).magnitude;
 
         if (dist <= distance && Vector3.Angle(transform.forward, player.transform.position - transform.position) <= SightAngle
-            && !Physics.Raycast(transform.position, (player.transform.position - transform.position).normalized, dist, 1 << LayerMask.NameToLayer("Map")))
+            && !Physics.Raycast(transform.position, (player.transform.position - transform.position + transform.up).normalized, dist, 1 << LayerMask.NameToLayer("Map")))
         {
             si.AlertingFactor = 1.0f;
             si.CertaintyIsPlayer = 1.0f;

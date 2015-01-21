@@ -9,9 +9,10 @@ public class Pursue : ActingInterface
     public override void Act(Brain.Perception perceived, Brain.Motivation motivation)
     {
         goHere = perceived.PerceivedWorldPosition;
+        goHere.y = transform.position.y;
 
-        transform.LookAt(new Vector3(goHere.x, transform.position.y, goHere.z));
-        transform.Translate((transform.forward.normalized * pursueSpeed) * Time.deltaTime, Space.World);
+        transform.LookAt(goHere);
+        transform.Translate((transform.forward.normalized * Mathf.Min( pursueSpeed * Time.deltaTime, Mathf.Max( Vector3.Distance( goHere, transform.position ) - 0.01f, 0 ) ) ), Space.World);
         //GetComponent<SoundStatePlayer>().SetState("Chase");
     }
 }

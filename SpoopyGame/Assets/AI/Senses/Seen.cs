@@ -11,7 +11,7 @@ public class Seen : SenseInterface {
         Color seenPixel;
         if (light.CanSee(gameObject, out seenPixel))
         {
-            float brightness = (seenPixel.r + seenPixel.g + seenPixel.b) / 3;
+            float brightness = Mathf.Min( (seenPixel.r + seenPixel.g + seenPixel.b) / 2, 1 );
             result.CertaintyIsPlayer = brightness;
             result.CertaintyOfDistance = brightness;
             result.CertaintyOfDirection = brightness;

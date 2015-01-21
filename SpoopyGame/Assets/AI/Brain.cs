@@ -135,6 +135,9 @@ public class Brain : MonoBehaviour {
 
         Vector3 perceivedTotal = PerceivedDirection * PerceivedDistance;
         perceivedTotal -= delta;
+
+        PerceivedDirection = perceivedTotal.normalized;
+        PerceivedDistance = perceivedTotal.magnitude;
     }
 
     void Update()
