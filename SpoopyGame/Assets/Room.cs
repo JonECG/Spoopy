@@ -148,4 +148,9 @@ public class Room : MonoBehaviour {
         }
         newRoom.transform.parent = this.transform;        
     }
+
+    public List<Door> getDoors()
+    {
+        return doors;
+    }
 }
