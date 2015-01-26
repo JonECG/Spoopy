@@ -5,7 +5,7 @@ public class ItemInteraction : MonoBehaviour {
 
     public string info = "Just an object";
     private float grabDistance = 3;
-    static public bool togglePickup;
+    public bool togglePickup;
     static public bool lookingAtObject;
     private bool spacebarDown;
     Debouncer.DebouncerResults pickupCorrected;

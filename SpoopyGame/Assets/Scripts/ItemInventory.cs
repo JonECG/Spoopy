@@ -22,7 +22,15 @@ public class ItemInventory : MonoBehaviour {
         storeCorrected = Debouncer.Debounce("Store", storeCorrected);
         openInventoryCorrected = Debouncer.Debounce("OpenInventory", openInventoryCorrected);
 
-        if (!ItemInteraction.togglePickup)
+        ItemInteraction[] items=Object.FindObjectsOfType(typeof(ItemInteraction)) as ItemInteraction[];
+
+        bool checkForItem=false;
+        for(int i=0; i<items.Length && !checkForItem; i++)
+        {
+            checkForItem = items[i].togglePickup;
+        }
+
+        if (!checkForItem)
         {
             GameObject bag = GameObject.Find("ItemBag");
 
