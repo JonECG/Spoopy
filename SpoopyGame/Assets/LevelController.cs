@@ -15,11 +15,7 @@ public class LevelController : MonoBehaviour {
 	void Start () {
         roomGen = this.GetComponent<RoomGeneratorScript>();
         randomFirstroom();
-        second = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
-
-        first.GetComponent<Room>().createRoom(5, 3, roomGen);
-        second.GetComponent<Room>().createRoom(5, 5, roomGen);
-        second.GetComponent<Room>().placeGenRoom(first.GetComponent<Room>().doors[0]);
+        genreateMap();
 
 
 	}
@@ -32,6 +28,9 @@ public class LevelController : MonoBehaviour {
     void randomFirstroom()
     {
         first = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
+        int randomRoomSizeX = getRandomOddValueInSize();
+        int randomRoomSizeY = getRandomOddValueInSize();
+        first.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, roomGen);
     }
 
     void genreateMap()
@@ -41,6 +40,9 @@ public class LevelController : MonoBehaviour {
         {
             int randomRoomSizeX = getRandomOddValueInSize();
             int randomRoomSizeY = getRandomOddValueInSize();
+            GameObject newRoom = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
+            newRoom.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, roomGen);
+            newRoom.GetComponent<Room>().placeGenRoom(d);
         }
     }
 

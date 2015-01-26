@@ -69,7 +69,18 @@ public class LevelManager : MonoBehaviour {
 
     private int genRoomSize()
     {
-        
+        bool isOdd = false;
+        int finalRoomSize = 0;
+        while (!isOdd)
+        {
+            int genRoomSize = Random.Range(3, maxRoomSize);
+            if (!(genRoomSize % 2 == 0))
+            {
+                isOdd = true;
+                finalRoomSize = genRoomSize;
+            }
+        }
+        return finalRoomSize;
     }
 
     public void genreateNodeMap(GameObject startingRoom)

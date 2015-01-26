@@ -4,7 +4,6 @@ using System.Collections;
 public class Door : MonoBehaviour
 {
     public bool isLocked { get; set; }
-    public Vector3 exitDirection { get; set; }
     public Vector3 roomCenterDirection { get; set; }
     public Vector3 position { get; set; }
     private Room room { get; set; }
@@ -21,7 +20,7 @@ public class Door : MonoBehaviour
 	}
 
     public void setExitDirection(Vector3 exitDirection) {
-        this.exitDirection = exitDirection;
+        this.transform.forward = exitDirection;
     }
 
     public void setRoom(Room room)
