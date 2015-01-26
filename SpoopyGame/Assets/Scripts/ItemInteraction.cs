@@ -5,7 +5,8 @@ public class ItemInteraction : MonoBehaviour {
 
     public string info = "Just an object";
     private float grabDistance = 3;
-    private bool togglePickup;
+    static public bool togglePickup;
+    static public bool lookingAtObject;
     private bool spacebarDown;
     Debouncer.DebouncerResults pickupCorrected;
     Debouncer.DebouncerResults throwCorrected;
@@ -39,7 +40,10 @@ public class ItemInteraction : MonoBehaviour {
         if (!togglePickup && Physics.Raycast(playerHead.transform.position, transform.position - playerHead.transform.position, out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position - playerHead.transform.position)) < 25 && (transform.position - playerHead.transform.position).magnitude < grabDistance)
         {
             HeadsUpDisplayController.Instance.DrawText(info, 0, -0.4f, Color.blue, 0.06f);
+            lookingAtObject = true;
         }
+        else
+            lookingAtObject = false;
 
         if (pickupCorrected.IsPressed())
         {
@@ -79,12 +83,30 @@ public class ItemInteraction : MonoBehaviour {
 
         if (togglePickup)
         {
+            ItemInventory.opened = false;
             RaycastHit info;
             Physics.Raycast(playerHead.transform.position, playerHead.transform.forward, out info, 2, 1 << LayerMask.NameToLayer("Map") );
             rigidbody.MovePosition(playerHead.transform.position + (playerHead.transform.forward.normalized * ( info.collider != null ? info.distance - 0.1f : 2 )));
             //transform.position = playerHead.transform.position + (playerHead.transform.forward.normalized * 2);
             transform.rigidbody.useGravity = false;
             //transform.rigidbody.isKinematic = true;
+
+            ItemInventory.opened = false;
+
+            GameObject bag = GameObject.Find("ItemBag");
+
+            ItemInventory item = (ItemInventory)bag.GetComponent("ItemInventory");
+
+            item.removeItem(gameObject);
+
+            if (Vector3.Distance(bag.transform.position, transform.position) < 0.5)
+            {
+                if (item.AskToStore())
+                {
+                    item.StoreItem(gameObject);
+                    togglePickup = false;
+                }
+            }
         }
         else
         {
