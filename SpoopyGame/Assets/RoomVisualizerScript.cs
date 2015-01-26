@@ -9,74 +9,74 @@ public class RoomVisualizerScript : MonoBehaviour {
 	// Update is called once per frame
     void Update() { }
 
-    public static void visualizeRooms(GameObject startRoom) 
+    public static void visualizeRooms(Room startRoom)
     {
-        if (startRoom.GetComponent<RoomNode>().getWeight() == 0)
+        if (startRoom.getWeight() == 0)
         {
-            startRoom.SetActive(true);
+            startRoom.isPlayerRoom = true;
         }
         else
         {
-            startRoom.SetActive(false);
+            startRoom.isPlayerRoom = false;
         }
-        for (int i = 0; i < startRoom.GetComponent<RoomNode>().getNumConnections(); i++)
+        for (int i = 0; i < startRoom.doors.Count; i++)
         {
-            if (startRoom.GetComponent<RoomNode>().connections[i].GetComponent<RoomNode>().getWeight() == 0)
+            if (startRoom.doors[i].getConnectedRoom().getWeight() == 0)
             {
-                startRoom.GetComponent<RoomNode>().connections[i].SetActive(true);
+                startRoom.doors[i].getConnectedRoom().gameObject.SetActive(true);
             }
             else
             {
-                startRoom.GetComponent<RoomNode>().connections[i].SetActive(false);
+                startRoom.doors[i].getConnectedRoom().gameObject.SetActive(false);
             }
-            visualizeSubRooms(startRoom, startRoom.GetComponent<RoomNode>().connections[i]);
+            visualizeSubRooms(startRoom, startRoom.doors[i].getConnectedRoom());
         }
     }
 
-    private static void visualizeSubRooms(GameObject lastRoom, GameObject targetRoom)
+    private static void visualizeSubRooms(Room lastRoom, Room targetRoom)
     {
-        for (int i = 0; i < targetRoom.GetComponent<RoomNode>().getNumConnections(); i++)
+        for (int i = 0; i < targetRoom.doors.Count; i++)
         {
-            if (targetRoom.GetComponent<RoomNode>().connections[i] != lastRoom)
+            if (targetRoom.doors[i].getConnectedRoom() != lastRoom)
             {
-                if (targetRoom.GetComponent<RoomNode>().connections[i].GetComponent<RoomNode>().getWeight() == 0)
+                if (targetRoom.doors[i].getConnectedRoom().getWeight() == 0)
                 {
-                    targetRoom.GetComponent<RoomNode>().connections[i].SetActive(true);
+                    targetRoom.doors[i].getConnectedRoom().gameObject.SetActive(true);
                 }
                 else
                 {
-                    targetRoom.GetComponent<RoomNode>().connections[i].SetActive(false);
+                    targetRoom.doors[i].getConnectedRoom().gameObject.SetActive(false);
                 }
-                visualizeSubRooms(targetRoom, targetRoom.GetComponent<RoomNode>().connections[i]);
+                visualizeSubRooms(targetRoom, targetRoom.doors[i].getConnectedRoom());
             }
         }
     }
 
-    public static void weightDungeon(GameObject activeRoom)
+    public static void weightDungeon(Room activeRoom)
     {
-        activeRoom.GetComponent<RoomNode>().setWeight(0);
-        for (int i = 0; i < activeRoom.GetComponent<RoomNode>().getNumConnections(); i++)
+        activeRoom.sightWeight = 0;
+        for (int i = 0; i < activeRoom.doors.Count; i++)
         {
-            activeRoom.GetComponent<RoomNode>().connections[i].GetComponent<RoomNode>().setWeight(0);
-            Vector3 direction = activeRoom.transform.position - activeRoom.GetComponent<RoomNode>().connections[i].transform.position;
-            weightRooms(activeRoom.GetComponent<RoomNode>().connections[i], activeRoom, direction.normalized, 0);
+            activeRoom.doors[i].getConnectedRoom().sightWeight = 0;
+            Vector3 direction = activeRoom.transform.position - activeRoom.doors[i].getConnectedRoom().transform.position;
+            weightRooms(activeRoom.doors[i].getConnectedRoom(), activeRoom, direction.normalized, 0);
         }
     }
 
-    private static void weightRooms(GameObject activeRoom, GameObject lastroom, Vector3 lastDirection, int lastWeight)
+    private static void weightRooms(Room activeRoom, Room lastroom, Vector3 lastDirection, int lastWeight)
     {
-        for (int i = 0; i < activeRoom.GetComponent<RoomNode>().getNumConnections(); i++)
+        for (int i = 0; i < activeRoom.doors.Count; i++)
         {
-            if (!(activeRoom.GetComponent<RoomNode>().connections[i] == lastroom))
+            if (!(activeRoom.doors[i].getConnectedRoom() == lastroom))
             {
                 int weight = lastWeight;
-                Vector3 direction = activeRoom.transform.position - activeRoom.GetComponent<RoomNode>().connections[i].transform.position;
-                if(!(Vector3.Dot(direction.normalized, lastDirection.normalized) > 0.8f))
+                Vector3 direction = activeRoom.transform.position - activeRoom.doors[i].getConnectedRoom().transform.position;
+                if (!(Vector3.Dot(direction.normalized, lastDirection.normalized) > 0.8f))
                 {
                     weight = weight + 1;
                 }
-                activeRoom.GetComponent<RoomNode>().connections[i].GetComponent<RoomNode>().setWeight(weight);
-                weightRooms(activeRoom.GetComponent<RoomNode>().connections[i], activeRoom, lastDirection.normalized, weight);
+                activeRoom.doors[i].getConnectedRoom().setWeight(weight);
+                weightRooms(activeRoom.doors[i].getConnectedRoom(), activeRoom, lastDirection.normalized, weight);
             }
         }
     }

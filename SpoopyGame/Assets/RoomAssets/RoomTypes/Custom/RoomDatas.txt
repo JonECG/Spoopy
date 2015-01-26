@@ -1,2 +1,0 @@
-StartingRoom,1;
-FinishRoom,1;

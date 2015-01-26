@@ -8,7 +8,9 @@ public class Door : MonoBehaviour
     public Vector3 position { get; set; }
     private Room room { get; set; }
     private Door otherDoor { get; set; }
-    
+    public int sizeOfWall { get; set; }
+    public bool used;
+
 	// Use this for initialization
 	void Start () {
 	    
@@ -29,9 +31,20 @@ public class Door : MonoBehaviour
         
     }
 
+    public Room getConnectedRoom()
+    {
+        return otherDoor.getRoom();
+    }
+
+    public Room getRoom()
+    {
+        return room;
+    }
+
     public void connectDoor(Door other)
     {
         otherDoor = other;
+        used = true;
     }
 
     public Vector3 getVectorToRoom()

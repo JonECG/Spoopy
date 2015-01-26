@@ -43,8 +43,8 @@ public class DoorNode : Node {
             if (dotProduct > 0)
             {
                 room.GetComponent<RoomNode>().setIsActive(true);
-                RoomVisualizerScript.weightDungeon(room);
-                RoomVisualizerScript.visualizeRooms(room);
+                //RoomVisualizerScript.weightDungeon(room);
+                //RoomVisualizerScript.visualizeRooms(room);
             }
             else
             {

@@ -4,21 +4,24 @@ using System.Collections.Generic;
 
 public class Room : MonoBehaviour {
 
-
     public bool isPreGenreatedRoom { get; set; }
+
     public GameObject prebuiltRoom { get; set; }
     public GameObject baseDoor;
+
     public List<Door> doors = new List<Door>();
 
     private bool hasPlayer { get; set; }
-    private bool endRoom { get; set; }
+    public int sightWeight { get; set; }
+    public bool endRoom { get; set; }
     public int sizeX;
     public int sizeZ;
-    private int sightWeight { get; set; }
-    public int roomDepth { get; set; }
+    public int roomDepth;
+    public bool isPlayerRoom = false;
 	// Use this for initialization
 	void Start () 
     {
+        
 	}
 	
 	// Update is called once per frame
@@ -34,9 +37,19 @@ public class Room : MonoBehaviour {
         }
 	}
 
-    public void placeGenRoom(Door connectingDoor)
+    public int getWeight()
     {
-        int doorSelection = Random.Range(0, doors.Count);
+        return sightWeight;
+    }
+
+    public void setWeight(int newWeight)
+    {
+        sightWeight = newWeight;
+    }
+
+    public void placeGenRoom(Door connectingDoor, int wallSize)
+    {
+        int doorSelection = getDoorWithWalSize(wallSize);
         Vector3 connectingDoorExit = connectingDoor.transform.forward.normalized;
         Vector3 thisDoosExit = doors[doorSelection].transform.forward.normalized;
         float angle = Vector3.Angle(thisDoosExit, connectingDoorExit);
@@ -46,7 +59,6 @@ public class Room : MonoBehaviour {
         
         if (dot != -1.0f)
         {
-            Debug.Log("Failed rotation");
             rotateRoom(180);
         }
         
@@ -61,7 +73,7 @@ public class Room : MonoBehaviour {
         this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -angle);
     }
 
-    public void createRoom(int x, int z, RoomGeneratorScript roomGen)
+    public void createRoom(int x, int z, int numDoors, RoomGeneratorScript roomGen)
     {
         setSize(x, z);
         if(isPreGenreatedRoom)
@@ -70,7 +82,7 @@ public class Room : MonoBehaviour {
         }
         else 
         {
-            genreateRoom(roomGen);
+            genreateRoom(roomGen, numDoors);
         }
         createRoomTrigger();
     }
@@ -97,7 +109,7 @@ public class Room : MonoBehaviour {
         
     }
 
-    private void genreateRoom(RoomGeneratorScript roomGen)
+    private void genreateRoom(RoomGeneratorScript roomGen, int numDoors)
     {
         bool[] exits = new bool[4];
         if (endRoom)
@@ -106,7 +118,7 @@ public class Room : MonoBehaviour {
         }
         else
         {
-            int exitAmount = Random.Range(2, 5);
+            int exitAmount = numDoors;
             for (int i = 0; i < exitAmount; i++)
             {
                 exits[i] = true;
@@ -122,6 +134,7 @@ public class Room : MonoBehaviour {
             newDoor.transform.position = new Vector3(1.0f, 0.0f, 0.0f) * (sizeX);
             northDoor.setRoom(this);
             northDoor.setExitDirection(northDoor.transform.position - this.transform.position);
+            northDoor.sizeOfWall = sizeX;
             newDoor.transform.parent = this.transform;
             addDoor(northDoor);
         }
@@ -132,6 +145,7 @@ public class Room : MonoBehaviour {
             newDoor.transform.position = new Vector3(0.0f, 0.0f, 1.0f) * (sizeZ);
             eastDoor.setRoom(this);
             eastDoor.setExitDirection(eastDoor.transform.position - this.transform.position);
+            eastDoor.sizeOfWall = sizeZ;
             newDoor.transform.parent = this.transform;
             addDoor(eastDoor);
         }
@@ -142,6 +156,7 @@ public class Room : MonoBehaviour {
             newDoor.transform.position = new Vector3(-1.0f, 0.0f, 0.0f) * (sizeX);
             southDoor.setRoom(this);
             southDoor.setExitDirection(southDoor.transform.position - this.transform.position);
+            southDoor.sizeOfWall = sizeX;
             newDoor.transform.parent = this.transform;
             addDoor(southDoor);
         }
@@ -152,6 +167,7 @@ public class Room : MonoBehaviour {
             newDoor.transform.position = new Vector3(0.0f, 0.0f, -1.0f) * (sizeZ);
             westDoor.setRoom(this);
             westDoor.setExitDirection(westDoor.transform.position - this.transform.position);
+            westDoor.sizeOfWall = sizeZ;
             newDoor.transform.parent = this.transform;
             addDoor(westDoor);
         }
@@ -166,5 +182,31 @@ public class Room : MonoBehaviour {
     public bool checkOverlap(Bounds otherBounds)
     {
         return this.gameObject.GetComponent<BoxCollider>().bounds.Intersects(otherBounds);
+    }
+
+    public int getDoorWithWalSize(int wallSize)
+    {
+        bool foundDoorOfSize = false;
+        int foundDoor = -1;
+        for (int i = 0; i < doors.Count && !foundDoorOfSize; i++)
+        {
+            if (doors[i].sizeOfWall == wallSize)
+            {
+                foundDoorOfSize = true;
+                foundDoor = i;
+            }
+        }
+        return foundDoor;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("TriggerEntered");
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("TriggerEntered by player");
+            RoomVisualizerScript.weightDungeon(this);
+            RoomVisualizerScript.visualizeRooms(this);
+        }
     }
 }

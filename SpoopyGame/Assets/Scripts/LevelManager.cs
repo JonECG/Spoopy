@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour {
         genreateNodeMap(genreateStartRoom());
         startingNode.GetComponent<RoomNode>().setIsActive(true);
         player.transform.position = startingNode.transform.position;
-        RoomVisualizerScript.weightDungeon(startingNode);
+        //RoomVisualizerScript.weightDungeon(startingNode);
 	}
 
 	// Update is called once per frame
