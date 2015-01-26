@@ -1,2 +1,8 @@
 StartingRoom,1;
 FinishRoom,1;
+CornerTruncRoom,2;
+InsanityRoom,1;
+PillarRoom,4;
+TinyAltarRoom,1;
+TorchRoom,2;
+WideCorner,2;
