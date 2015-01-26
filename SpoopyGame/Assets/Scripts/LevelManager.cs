@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Random.seed = 71570324;
         genreateNodeMap(genreateStartRoom());
         startingNode.GetComponent<RoomNode>().setIsActive(true);
         player.transform.position = startingNode.transform.position;

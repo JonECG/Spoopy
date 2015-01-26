@@ -8,7 +8,7 @@ public class HeadLamp : MonoBehaviour {
     public float numberOfShakesToCharge = 6;
     public float weakenTime = 5;
 
-    private float currentBatteryLife;
+    public float currentBatteryLife;
     private bool isTurnedOn;
     private float maxIntensity;
     private float maxGlow;

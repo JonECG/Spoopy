@@ -63,9 +63,9 @@ public class PlayerMovement : MonoBehaviour {
         float diffAngle = Mathf.Deg2Rad * (Mathf.Repeat((Mathf.Repeat((playerAngle - headAngle) * Mathf.Rad2Deg, 360)) + 540, 360) - 180);
         float normDiffAngle = Mathf.Sign( diffAngle ) * Mathf.Pow( diffAngle / Mathf.PI, 2 );
 
-        HeadsUpDisplayController.Instance.DrawText(normDiffAngle.ToString(), 0, 0.2f, Color.green);
+        //HeadsUpDisplayController.Instance.DrawText(normDiffAngle.ToString(), 0, 0.2f, Color.green);
 
-        transform.Rotate(new Vector3(0, 1, 0), ( lateral + longinalStick + normDiffAngle * 4 ) * mouseSensitivity );
+        transform.Rotate(new Vector3(0, 1, 0), ( lateral + longinalStick + normDiffAngle * 7 ) * mouseSensitivity );
         if( GameObject.Find( "LeftEyeAnchor" ) == null )
             head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
 	}

@@ -93,7 +93,7 @@ public class Brain : MonoBehaviour {
         Alertness = Mathf.Max( 0, Alertness - Time.deltaTime / AttentionLossTime, (1 - heldInvAlertness) );
         PerceivedDistance = SenseLerp(PerceivedDistance, heldDistance, 1 - heldInvDistanceCertainty);
         PerceivedDirection = SenseLerp(PerceivedDirection, heldDirection, true, 1 - heldInvDirectionCertainty);
-        PerceivedWorldPosition = SenseLerp(PerceivedWorldPosition, PerceivedDirection * PerceivedDistance + transform.position, false );
+        PerceivedWorldPosition = PerceivedDirection * PerceivedDistance + transform.position;//, false );
         CertaintyIsPlayer = SenseLerp(CertaintyIsPlayer, (1 - heldInvPlayerCertainty));
         CertaintyOfDistance = SenseLerp(CertaintyOfDistance, (1 - heldInvDistanceCertainty));
         CertaintyOfDirection = SenseLerp(CertaintyOfDirection, (1 - heldInvDirectionCertainty));

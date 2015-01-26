@@ -92,8 +92,8 @@ public class RoomNode : Node {
 
     public void createLandMark()
     {
-        GameObject TempLandMark = Instantiate(landMark, this.transform.position, Quaternion.identity) as GameObject;
-        TempLandMark.transform.parent = this.transform;
+        //GameObject TempLandMark = Instantiate(landMark, this.transform.position, Quaternion.identity) as GameObject;
+        //TempLandMark.transform.parent = this.transform;
     }
 
     public void connectDoor(GameObject door){
