@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour {
     public GameObject baseRoom;
     public GameObject player;
     public int seededValue;
+    public bool finishPlaced;
     RoomGeneratorScript roomGen;
     GameObject first;
 
@@ -120,12 +121,11 @@ public class LevelController : MonoBehaviour {
                 {
                     int randomRoomSizeX = getRandomOddValueInSize(first.GetComponent<Room>().sizeX);
                     int randomRoomSizeY = getRandomOddValueInSize();
-                    GameObject newRoom = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
-                    newRoom.GetComponent<Room>().roomDepth = roomDistribution[distributionIndex];
                     int numDoors = 1;
+                    bool isAnEndRoom = false;
                     if (roomDistribution[distributionIndex] == 1)
                     {
-                        newRoom.GetComponent<Room>().endRoom = true;
+                        isAnEndRoom = true;
                         roomDistribution[distributionIndex] = 0;
                     }
                     else
@@ -138,15 +138,74 @@ public class LevelController : MonoBehaviour {
                         {
                             numDoors = Random.Range(2, 5);
                         }
-                        
+
                     }
-                    newRoom.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, numDoors, roomGen);
-                    newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX);
+                    GameObject newRoom;
+                    bool useFirstDoor = false;
+                    if (numDoors == 2 || isAnEndRoom)
+                    {
+                        if ((Random.Range(0, 51) % 10 == 0) || (isAnEndRoom && !finishPlaced))
+                        {
+                            newRoom = createPremadeRoom(roomDistribution[distributionIndex], isAnEndRoom);
+                            useFirstDoor = true;
+                        }
+                        else
+                        {
+                            newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
+                        }
+                    }
+                    else
+                    {
+                        newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
+                    }
+                    newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, useFirstDoor);
                     genreateRooms(newRoom, roomDistribution[distributionIndex]);
                     distributionIndex++;
                 }
             }
         }
+    }
+
+    private GameObject createRandomRoom( int depth, int x, int z, int doorCount, bool endRoom)
+    {
+        GameObject newRoom = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
+        newRoom.GetComponent<Room>().roomDepth = depth;
+        if (endRoom)
+        {
+            newRoom.GetComponent<Room>().endRoom = true;
+        }
+        newRoom.GetComponent<Room>().createRoom(x, z, doorCount, roomGen);
+        return newRoom;
+    }
+
+    private GameObject createPremadeRoom(int depth, bool endRoom)
+    {
+        GameObject newRoom;
+        if (!endRoom)
+        {
+            List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 2).ToList();
+            int randomSelection = Random.Range(0, room.Count);
+            newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
+        }
+        else
+        {
+            if (!finishPlaced)
+            {
+                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1).ToList();
+                int randomSelection = Random.Range(0, room.Count);
+                newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
+            }
+            else
+            {
+                RoomInfo room = CustomRooms.Rooms.Where(n => n.name == "FinishRoom").FirstOrDefault();
+                newRoom = Instantiate(room.gameObjectReference) as GameObject;
+                finishPlaced = true;
+            }
+        }
+        newRoom.transform.position = Vector3.zero;
+        newRoom.GetComponent<Room>().createRoom("NewRoom");
+        newRoom.GetComponent<Room>().roomDepth = depth;
+        return newRoom;
     }
 
     private int getRandomOddValueInSize(int largest = 100)

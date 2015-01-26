@@ -47,9 +47,14 @@ public class Room : MonoBehaviour {
         sightWeight = newWeight;
     }
 
-    public void placeGenRoom(Door connectingDoor, int wallSize)
-    {
-        int doorSelection = getDoorWithWalSize(wallSize);
+    public void placeGenRoom(Door connectingDoor, int wallSize, bool SelectFirst = false)
+    {   
+        int doorSelection = 0;
+        if (!SelectFirst)
+        {
+            doorSelection = getDoorWithWalSize(wallSize);
+        }
+        
         Vector3 connectingDoorExit = connectingDoor.transform.forward.normalized;
         Vector3 thisDoosExit = doors[doorSelection].transform.forward.normalized;
         float angle = Vector3.Angle(thisDoosExit, connectingDoorExit);
@@ -206,10 +211,8 @@ public class Room : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TriggerEntered");
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("TriggerEntered by player");
             RoomVisualizerScript.weightDungeon(this);
             RoomVisualizerScript.visualizeRooms(this);
         }
