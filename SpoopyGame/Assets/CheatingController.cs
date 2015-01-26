@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CheatingController : MonoBehaviour {
 
@@ -8,7 +9,7 @@ public class CheatingController : MonoBehaviour {
 
 	void Start () 
 	{
-	
+        IEnumerable<RoomInfo> r = CustomRooms.Rooms;
 	}
 	
 	void Update () 
