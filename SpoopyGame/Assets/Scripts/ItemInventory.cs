@@ -45,7 +45,14 @@ public class ItemInventory : MonoBehaviour {
             {
                 for (int i = 0; i < numItems; i++)
                 {
-                    objects[i].transform.position = transform.position + new Vector3(transform.forward.x, 0.5f, transform.forward.z);
+                    if ((i+1)/numItems < 0.5)
+                        objects[i].transform.position = transform.position + new Vector3(transform.forward.x, 0.5f, transform.forward.z)-(transform.right/(i+1));
+                    else
+                        objects[i].transform.position = transform.position + new Vector3(transform.forward.x, 0.5f, transform.forward.z)+(transform.right/(i+1));
+
+                    float scale = 1 / (float)numItems;
+
+                    objects[i].transform.localScale = new Vector3(scale, scale, scale);
                 }
             }
             else
