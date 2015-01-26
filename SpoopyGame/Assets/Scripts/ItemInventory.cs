@@ -9,6 +9,7 @@ public class ItemInventory : MonoBehaviour {
     List<GameObject> objects;
     Debouncer.DebouncerResults storeCorrected;
     Debouncer.DebouncerResults openInventoryCorrected;
+    Debouncer.DebouncerResults pickupCorrected;
 
 	// Use this for initialization
 	void Start ()
@@ -21,6 +22,7 @@ public class ItemInventory : MonoBehaviour {
     {
         storeCorrected = Debouncer.Debounce("Store", storeCorrected);
         openInventoryCorrected = Debouncer.Debounce("OpenInventory", openInventoryCorrected);
+        pickupCorrected = Debouncer.Debounce("PickUp", pickupCorrected);
 
         ItemInteraction[] items=Object.FindObjectsOfType(typeof(ItemInteraction)) as ItemInteraction[];
 
@@ -45,14 +47,8 @@ public class ItemInventory : MonoBehaviour {
             {
                 for (int i = 0; i < numItems; i++)
                 {
-                    if ((i+1)/numItems < 0.5)
-                        objects[i].transform.position = transform.position + new Vector3(transform.forward.x, 0.5f, transform.forward.z)-(transform.right/(i+1));
-                    else
-                        objects[i].transform.position = transform.position + new Vector3(transform.forward.x, 0.5f, transform.forward.z)+(transform.right/(i+1));
-
-                    float scale = 1 / (float)numItems;
-
-                    objects[i].transform.localScale = new Vector3(scale, scale, scale);
+                    float angle = i / (float)numItems * 2 * Mathf.PI;
+                    objects[i].transform.position = transform.position + new Vector3(Mathf.Cos(angle), 0.5f, Mathf.Sin(angle));
                 }
             }
             else
@@ -69,10 +65,38 @@ public class ItemInventory : MonoBehaviour {
     {
         if (numItems != 0 && !ItemInteraction.lookingAtObject)
         {
-            if(opened)
-                HeadsUpDisplayController.Instance.DrawText("(O) to close inventory", 0, -0.4f, Color.blue, 0.06f);
+            if (opened)
+            {
+                ItemInteraction[] items = Object.FindObjectsOfType(typeof(ItemInteraction)) as ItemInteraction[];
+                GameObject playerHead = GameObject.Find("LitCamera");
+
+                float angle=Vector3.Angle(playerHead.transform.forward, (transform.position-playerHead.transform.position));
+                bool bagClosest = true;
+                int itemSelect = -1;
+
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i].isInBag && Vector3.Angle(playerHead.transform.forward, (items[i].transform.position - playerHead.transform.position)) < angle)
+                    {
+                        angle = Vector3.Angle(playerHead.transform.forward, (items[i].transform.position - playerHead.transform.position));
+                        itemSelect = i;
+                        bagClosest = false;
+                    }
+                }
+
+                if (bagClosest)
+                    HeadsUpDisplayController.Instance.DrawText("(P) to close inventory", 0, -0.4f, Color.blue, 0.06f);
+                else
+                {
+                    HeadsUpDisplayController.Instance.DrawText(items[itemSelect].info, 0, -0.4f, Color.blue, 0.06f);
+                    if (pickupCorrected.IsPressed())
+                    {
+                        items[itemSelect].togglePickup = true;
+                    }
+                }
+            }
             else
-                HeadsUpDisplayController.Instance.DrawText("(O) to open inventory", 0, -0.4f, Color.blue, 0.06f);
+                HeadsUpDisplayController.Instance.DrawText("(P) to open inventory", 0, -0.4f, Color.blue, 0.06f);
 
             if (openInventoryCorrected.IsPressed())
             {

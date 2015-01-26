@@ -7,7 +7,7 @@ public class ItemInteraction : MonoBehaviour {
     private float grabDistance = 3;
     public bool togglePickup;
     static public bool lookingAtObject;
-    private bool spacebarDown;
+    public bool isInBag;
     Debouncer.DebouncerResults pickupCorrected;
     Debouncer.DebouncerResults throwCorrected;
 
@@ -23,8 +23,6 @@ public class ItemInteraction : MonoBehaviour {
         }
         newMats[mats.Length] = Resources.Load<Material>("InteractableOverlay");
         renderer.materials = newMats;
-
-        spacebarDown = false;
 	}
 	
 	// Update is called once per frame
@@ -32,12 +30,12 @@ public class ItemInteraction : MonoBehaviour {
     {
         GameObject playerHead = GameObject.Find("LitCamera");
 
-        RaycastHit hitOne;
-
         pickupCorrected = Debouncer.Debounce("PickUp", pickupCorrected);
         throwCorrected = Debouncer.Debounce("Throw", throwCorrected);
 
-        if (!togglePickup && Physics.Raycast(playerHead.transform.position, transform.position - playerHead.transform.position, out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position - playerHead.transform.position)) < 25 && (transform.position - playerHead.transform.position).magnitude < grabDistance)
+        RaycastHit hitOne;
+
+        if (!ItemInventory.opened && !togglePickup && Physics.Raycast(playerHead.transform.position, transform.position - playerHead.transform.position, out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position - playerHead.transform.position)) < 25 && (transform.position - playerHead.transform.position).magnitude < grabDistance)
         {
             HeadsUpDisplayController.Instance.DrawText(info, 0, -0.4f, Color.blue, 0.06f);
             lookingAtObject = true;
@@ -45,28 +43,23 @@ public class ItemInteraction : MonoBehaviour {
         else
             lookingAtObject = false;
 
-        if (pickupCorrected.IsPressed())
+        if (pickupCorrected.IsPressed() && !ItemInventory.opened)
         {
             if (Physics.Raycast(playerHead.transform.position, transform.position-playerHead.transform.position,out hitOne) && Vector3.Angle(playerHead.transform.forward, (transform.position-playerHead.transform.position))<25 && (transform.position-playerHead.transform.position).magnitude<grabDistance)
             {
                 if (hitOne.collider.gameObject.tag == "Item")
                 {
-                    if (togglePickup && !spacebarDown)
+                    if (togglePickup)
                     {
                         togglePickup = false;
                     }
-                    else if ((!togglePickup && !spacebarDown))
+                    else if ((!togglePickup))
                     {
                         togglePickup = true;
                         Debug.Log("Pick up");
                     }
-                    spacebarDown = true;
                 }
             }
-        }
-        else
-        {
-            spacebarDown = false;
         }
 
         if (throwCorrected.IsPressed() && togglePickup)
@@ -91,19 +84,19 @@ public class ItemInteraction : MonoBehaviour {
             transform.rigidbody.useGravity = false;
             //transform.rigidbody.isKinematic = true;
 
-            ItemInventory.opened = false;
-
             GameObject bag = GameObject.Find("ItemBag");
 
             ItemInventory item = (ItemInventory)bag.GetComponent("ItemInventory");
 
             item.removeItem(gameObject);
+            isInBag = false;
 
             if (Vector3.Distance(bag.transform.position, transform.position) < 0.5)
             {
                 if (item.AskToStore())
                 {
                     item.StoreItem(gameObject);
+                    isInBag = true;
                     togglePickup = false;
                 }
             }
