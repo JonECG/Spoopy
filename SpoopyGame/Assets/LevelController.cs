@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelController : MonoBehaviour {
     public int numberOfRooms;
@@ -14,7 +15,7 @@ public class LevelController : MonoBehaviour {
 	void Start () {
         Random.seed = seededValue;
         roomGen = this.GetComponent<RoomGeneratorScript>();
-        randomFirstroom();
+        prebuildFirstRoom();
         genreateMap(numberOfRooms);
         RoomVisualizerScript.weightDungeon(first.GetComponent<Room>());
         RoomVisualizerScript.visualizeRooms(first.GetComponent<Room>());
@@ -24,6 +25,16 @@ public class LevelController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
+    void prebuildFirstRoom()
+    {
+        RoomInfo room = CustomRooms.Rooms.Where(n => n.name == "StartingRoom").FirstOrDefault();
+        first = Instantiate(room.gameObjectReference) as GameObject;
+        first.transform.position = Vector3.zero;
+        first.GetComponent<Room>().createRoom("StartingRoom");
+        first.GetComponent<Room>().roomDepth = numberOfRooms;
+    }
 
     void randomFirstroom()
     {

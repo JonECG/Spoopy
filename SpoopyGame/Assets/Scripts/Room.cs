@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 public class Room : MonoBehaviour {
 
     public bool isPreGenreatedRoom { get; set; }
@@ -71,19 +71,24 @@ public class Room : MonoBehaviour {
     private void rotateRoom(float angle)
     {
         this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -angle);
+        
     }
+
+
+    public void createRoom(string roomName)
+    {
+        createRoomTrigger();
+        for (int i = 0; i < doors.Count; i++)
+        {
+            doors[i].setRoom(this);
+        }
+    }
+
 
     public void createRoom(int x, int z, int numDoors, RoomGeneratorScript roomGen)
     {
         setSize(x, z);
-        if(isPreGenreatedRoom)
-        {
-
-        }
-        else 
-        {
-            genreateRoom(roomGen, numDoors);
-        }
+        genreateRoom(roomGen, numDoors);
         createRoomTrigger();
     }
 
