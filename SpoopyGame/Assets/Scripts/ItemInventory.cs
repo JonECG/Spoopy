@@ -92,6 +92,7 @@ public class ItemInventory : MonoBehaviour {
                     if (pickupCorrected.IsPressed())
                     {
                         items[itemSelect].togglePickup = true;
+                        opened = false;
                     }
                 }
             }

@@ -79,10 +79,8 @@ public class ItemInteraction : MonoBehaviour {
             ItemInventory.opened = false;
             RaycastHit info;
             Physics.Raycast(playerHead.transform.position, playerHead.transform.forward, out info, 2, 1 << LayerMask.NameToLayer("Map") );
-            rigidbody.MovePosition(playerHead.transform.position + (playerHead.transform.forward.normalized * ( info.collider != null ? info.distance - 0.1f : 2 )));
-            //transform.position = playerHead.transform.position + (playerHead.transform.forward.normalized * 2);
+            transform.position= (playerHead.transform.position + (playerHead.transform.forward.normalized * (info.collider != null ? info.distance - 0.1f : 2)));
             transform.rigidbody.useGravity = false;
-            //transform.rigidbody.isKinematic = true;
 
             GameObject bag = GameObject.Find("ItemBag");
 
