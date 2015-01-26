@@ -12,8 +12,8 @@ public class Room : MonoBehaviour {
 
     private bool hasPlayer { get; set; }
     private bool endRoom { get; set; }
-    public int sizeX { get; set; }
-    public int sizeZ { get; set; }
+    public int sizeX;
+    public int sizeZ;
     private int sightWeight { get; set; }
     public int roomDepth { get; set; }
 	// Use this for initialization
