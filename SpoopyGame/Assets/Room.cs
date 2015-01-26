@@ -7,6 +7,7 @@ public class Room : MonoBehaviour {
 
     public bool isPreGenreatedRoom { get; set; }
     public GameObject prebuiltRoom { get; set; }
+    public GameObject baseDoor;
     public List<Door> doors = new List<Door>();
 
     private bool hasPlayer { get; set; }
@@ -18,8 +19,6 @@ public class Room : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        createRoom(3, 3, this.gameObject.GetComponent<RoomGeneratorScript>());
-        //this.tag = "Room";
 	}
 	
 	// Update is called once per frame
@@ -35,6 +34,18 @@ public class Room : MonoBehaviour {
         }
 	}
 
+    public void placeGenRoom(Door connectingDoor)
+    {
+        int doorSelection = Random.Range(0, doors.Count);
+        Vector3 connectingDoorExit = connectingDoor.exitDirection.normalized;
+        Vector3 thisDoosExit = doors[doorSelection].exitDirection.normalized;
+        float angle = Vector3.Angle(thisDoosExit, -connectingDoorExit);
+        this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -angle);
+        this.transform.position = connectingDoor.transform.position + doors[doorSelection].getVectorToRoom();
+        doors[doorSelection].connectDoor(connectingDoor);
+        connectingDoor.connectDoor(doors[doorSelection]);
+    }
+
     public void createRoom(int x, int z, RoomGeneratorScript roomGen)
     {
         setSize(x, z);
@@ -46,9 +57,8 @@ public class Room : MonoBehaviour {
         {
             genreateRoom(roomGen);
         }
+        createRoomTrigger();
     }
-
-
 
     private void setSize(int x, int z) 
     {
@@ -63,11 +73,13 @@ public class Room : MonoBehaviour {
 
     private void createRoomTrigger()
     {
-        BoxCollider roomColider = new BoxCollider();
+        this.gameObject.AddComponent("BoxCollider");
+        BoxCollider roomColider = this.GetComponent<BoxCollider>();
         roomColider.center = this.transform.position;
         roomColider.transform.parent = this.transform;
-        roomColider.size = new Vector3(sizeX, 0.0f, sizeZ);
+        roomColider.size = new Vector3((sizeX * 2) - 0.001f, 1.0f, (sizeZ * 2) - 0.001f);
         roomColider.isTrigger = true;
+        
     }
 
     private void genreateRoom(RoomGeneratorScript roomGen)
@@ -79,53 +91,60 @@ public class Room : MonoBehaviour {
         }
         else
         {
-            int exitAmount = Random.Range(1, 4);
-            int exitsOpened = 0;
-            while (exitsOpened <= exitAmount)
+            int exitAmount = Random.Range(2, 5);
+            for (int i = 0; i < exitAmount; i++)
             {
-                int exitSelect = Random.Range(0, 4);
-                if (!exits[exitSelect])
-                {
-                    exits[exitSelect] = true;
-                    exitsOpened++;
-                }
-
+                exits[i] = true;
             }
         }
-        GameObject newRoom = roomGen.getRectRoom(sizeX, sizeZ, exits[0], exits[1], exits[2], exits[3]);
+        GameObject newRoom = roomGen.getRectRoom(sizeX, sizeZ, exits[3], exits[0], exits[1], exits[2]);
         newRoom.transform.position = new Vector3(-(sizeX / 2), 0.0f, -(sizeZ/2));
         
         if (exits[0])
         {
-            //Door northDoor = new Door();
-            //northDoor.transform.position = new Vector3(1.0f, 0.0f, 0.0f);
-            //northDoor.setRoom(this);
-            //northDoor.setExitDirection(northDoor.transform.position - this.transform.position);
-            //northDoor.transform.parent = this.transform;
+            GameObject newDoor = Instantiate(baseDoor, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+            Door northDoor = newDoor.GetComponent<Door>();
+            newDoor.transform.position = new Vector3(1.0f, 0.0f, 0.0f) * (sizeX);
+            northDoor.setRoom(this);
+            northDoor.setExitDirection(northDoor.transform.position - this.transform.position);
+            newDoor.transform.parent = this.transform;
+            addDoor(northDoor);
+            Debug.DrawLine(newDoor.transform.position, northDoor.exitDirection, Color.green);
         }
         if (exits[1])
         {
-            //Door eastDoor = new Door();
-            //eastDoor.transform.position = new Vector3(0.0f, 0.0f, 1.0f);
-            //eastDoor.setRoom(this);
-            //eastDoor.setExitDirection(eastDoor.transform.position - this.transform.position);
-            //eastDoor.transform.parent = this.transform;
+            GameObject newDoor = Instantiate(baseDoor, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+            Door eastDoor = newDoor.GetComponent<Door>();
+            newDoor.transform.position = new Vector3(0.0f, 0.0f, 1.0f) * (sizeZ);
+            eastDoor.setRoom(this);
+            eastDoor.setExitDirection(eastDoor.transform.position - this.transform.position);
+            newDoor.transform.parent = this.transform;
+            addDoor(eastDoor);
+            Debug.DrawLine(newDoor.transform.position, eastDoor.exitDirection, Color.green);
         }
         if (exits[2])
         {
-            //Door southDoor = new Door();
-            //southDoor.transform.position = new Vector3(-1.0f, 0.0f, 0.0f);
-            //southDoor.setRoom(this);
-            //southDoor.setExitDirection(southDoor.transform.position - this.transform.position);
-            //southDoor.transform.parent = this.transform;
+            GameObject newDoor = Instantiate(baseDoor, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+            Door southDoor = newDoor.GetComponent<Door>();
+            newDoor.transform.position = new Vector3(-1.0f, 0.0f, 0.0f) * (sizeX);
+            southDoor.setRoom(this);
+            southDoor.setExitDirection(southDoor.transform.position - this.transform.position);
+            newDoor.transform.parent = this.transform;
+            addDoor(southDoor);
+
+            Debug.DrawLine(newDoor.transform.position, southDoor.exitDirection, Color.green);
         }
         if (exits[3])
         {
-            //Door westDoor = new Door();
-            //westDoor.transform.position = new Vector3(0.0f, 0.0f, -1.0f);
-            //westDoor.setRoom(this);
-            //westDoor.setExitDirection(westDoor.transform.position - this.transform.position);
-            //westDoor.transform.parent = this.transform;
+            GameObject newDoor = Instantiate(baseDoor, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+            Door westDoor = newDoor.GetComponent<Door>();
+            newDoor.transform.position = new Vector3(0.0f, 0.0f, -1.0f) * (sizeZ);
+            westDoor.setRoom(this);
+            westDoor.setExitDirection(westDoor.transform.position - this.transform.position);
+            newDoor.transform.parent = this.transform;
+            addDoor(westDoor);
+
+            Debug.DrawLine(newDoor.transform.position, westDoor.exitDirection, Color.green);
         }
         newRoom.transform.parent = this.transform;        
     }

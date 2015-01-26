@@ -27,5 +27,17 @@ public class Door : MonoBehaviour
     public void setRoom(Room room)
     {
         this.room = room;
+        
+    }
+
+    public void connectDoor(Door other)
+    {
+        otherDoor = other;
+    }
+
+    public Vector3 getVectorToRoom()
+    {
+        roomCenterDirection = room.transform.position -  this.transform.position ;
+        return roomCenterDirection;
     }
 }
