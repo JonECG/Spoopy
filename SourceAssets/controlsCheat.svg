@@ -14,11 +14,11 @@
    height="720"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="controlsCheat.svg"
-   inkscape:export-filename="D:\Repositories\Spoopy\SpoopyGame\Assets\Textures\controlsCheat.png"
-   inkscape:export-xdpi="128"
-   inkscape:export-ydpi="128">
+   inkscape:export-filename="C:\Users\awayman\Desktop\Spoopy\SpoopyGame\Assets\Textures\controlsCheat.png"
+   inkscape:export-xdpi="127.99586"
+   inkscape:export-ydpi="127.99586">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -28,14 +28,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49316791"
-     inkscape:cx="921.63159"
-     inkscape:cy="242.33838"
+     inkscape:zoom="0.69471635"
+     inkscape:cx="1053.8692"
+     inkscape:cy="183.5307"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
+     inkscape:window-height="1018"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -94,13 +94,13 @@
     <text
        xml:space="preserve"
        style="font-size:25.79129219px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#454d00;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
-       x="543.32715"
-       y="450.4476"
+       x="558.59467"
+       y="499.30368"
        id="text3015"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="543.32715"
-         y="450.4476"
+         x="558.59467"
+         y="499.30368"
          style="font-size:46.42432785px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#454d00;fill-opacity:1;font-family:Harrington;-inkscape-font-specification:Harrington"
          id="tspan3019">Toggle Light</tspan></text>
     <text
@@ -124,9 +124,9 @@
        y="425.63052"
        transform="matrix(0.9745756,0.22405892,-0.48190222,0.876225,0,0)" />
     <rect
-       transform="matrix(0.82570503,-0.56410212,0.70571561,0.70849522,0,0)"
-       y="607.0047"
-       x="-89.928337"
+       transform="matrix(0.99792261,0.06442411,0.11933342,0.99285424,0,0)"
+       y="464.42352"
+       x="303.0914"
        height="6.9532719"
        width="68.608704"
        id="rect3029"
@@ -216,23 +216,6 @@
          y="178.86655"
          style="font-size:46.42432785px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Harrington;-inkscape-font-specification:Harrington"
          id="tspan3828">Look Around</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text3830"
-       y="291.67896"
-       x="189.96889"
-       style="font-size:25.79129219px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
-       xml:space="preserve"><tspan
-         style="font-size:46.42432785px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="291.67896"
-         x="189.96889"
-         sodipodi:role="line"
-         id="tspan3836">Tap to Charge</tspan></text>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2.65606976;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 368.81151,291.68553 -10.85702,16.23917 9.34451,-48.79132 -22.79642,34.26174 7.80192,-55.73223 -6.72381,13.13975"
-       id="path3840"
-       inkscape:connector-curvature="0" />
     <path
        style="fill:#000000;fill-opacity:1;stroke:none"
        d="m 350.31801,169.14184 23.65873,16.52258 c 0,0 -13.57845,27.90636 -6.3616,39.91951 7.21685,12.01315 12.66221,19.3358 12.66221,19.3358 0,0 -16.36118,-32.67757 1.33402,-56.77918 17.69519,-24.10159 43.3872,-16.38627 43.3872,-16.38627 0,0 -14.69548,-10.52855 -31.11227,-4.32834 -16.41677,6.20022 -14.64528,10.89072 -14.64528,10.89072 l -30.12073,-19.44158 z"
@@ -290,24 +273,24 @@
          id="tspan3125">Interact/Pickup</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:25.79129219px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#550000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
-       x="493.52939"
-       y="502.72217"
+       style="font-size:25.79129219000000000px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       x="105.73416"
+       y="440.63422"
        id="text3127"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="493.52939"
-         y="502.72217"
-         style="font-size:46.42432785px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#550000;fill-opacity:1;font-family:Harrington;-inkscape-font-specification:Harrington"
+         x="105.73416"
+         y="440.63422"
+         style="font-size:46.42432784999999700px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;font-family:Harrington;-inkscape-font-specification:Harrington"
          id="tspan3129">Sprint</tspan></text>
     <rect
-       style="fill:#550000;fill-opacity:1;stroke:none"
+       style="fill:#4d4d4d;fill-opacity:1;stroke:none"
        id="rect3131"
        width="52.15786"
        height="6.1341672"
-       x="278.04254"
-       y="529.11383"
-       transform="matrix(0.99533521,-0.09647702,0.17826183,0.98398309,0,0)" />
+       x="329.08069"
+       y="311.02145"
+       transform="matrix(0.88702652,0.46171847,-0.38696618,0.92209391,0,0)" />
     <text
        transform="scale(0.66940306,1.4938683)"
        xml:space="preserve"
@@ -337,53 +320,63 @@
     <text
        sodipodi:linespacing="125%"
        id="text3036"
-       y="195.61719"
-       x="762.3139"
-       style="font-size:23.18591118px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       y="170.74483"
+       x="751.62665"
+       style="font-size:22.63280296px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
        xml:space="preserve"><tspan
          id="tspan3038"
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="195.61719"
-         x="762.3139"
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="170.74483"
+         x="751.62665"
          sodipodi:role="line">-Get to the end</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="247.78549"
-         x="762.3139"
-         sodipodi:role="line"
-         id="tspan3040">-Enemies can sense you in many</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="299.9538"
-         x="762.3139"
-         sodipodi:role="line"
-         id="tspan3044">    ways</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="352.1221"
-         x="762.3139"
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="221.66864"
+         x="751.62665"
          sodipodi:role="line"
          id="tspan3046">-Looking at enemies will make you</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="404.29041"
-         x="762.3139"
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="272.59247"
+         x="751.62665"
          sodipodi:role="line"
          id="tspan3048">    go insane (screen static)</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="456.45871"
-         x="762.3139"
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="323.5163"
+         x="751.62665"
          sodipodi:role="line"
-         id="tspan3050">-Letting yourself get hit by enemies</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="508.62704"
-         x="762.3139"
+         id="tspan3052">-Letting yourself get hit by enemies is </tspan><tspan
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="374.44009"
+         x="751.62665"
          sodipodi:role="line"
-         id="tspan3052">    is generally bad for your health</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="560.79535"
-         x="762.3139"
+         id="tspan3115">    generally bad for your health</tspan><tspan
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="425.36392"
+         x="751.62665"
+         sodipodi:role="line"
+         id="tspan3105">-Don't be alarmed, the map tends to</tspan><tspan
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="476.28775"
+         x="751.62665"
+         sodipodi:role="line"
+         id="tspan3109">    not adhere to the laws of physics.</tspan><tspan
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="527.21155"
+         x="751.62665"
+         sodipodi:role="line"
+         id="tspan3107">-Use your chalk to not lose your way</tspan><tspan
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="578.13538"
+         x="751.62665"
+         sodipodi:role="line"
+         id="tspan3119">-Turn faster in the direction you look</tspan><tspan
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="629.0592"
+         x="751.62665"
          sodipodi:role="line"
          id="tspan3054">-Go get spooped</tspan><tspan
-         style="font-size:41.73464584px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
-         y="612.96362"
-         x="762.3139"
+         style="font-size:40.73905563px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="679.98303"
+         x="751.62665"
          sodipodi:role="line"
          id="tspan3042" /></text>
     <path
@@ -391,5 +384,25 @@
        d="M 1450.0471,97.228577 -3.3245671,98.527605"
        id="path3056"
        inkscape:connector-curvature="0" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3099"
+       y="449.79474"
+       x="477.24402"
+       style="font-size:25.79129219000000000px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bauhaus 93;-inkscape-font-specification:Bauhaus 93"
+       xml:space="preserve"><tspan
+         id="tspan3101"
+         style="font-size:46.42432784999999700px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;font-family:Harrington;-inkscape-font-specification:Harrington"
+         y="449.79474"
+         x="477.24402"
+         sodipodi:role="line">Chalk</tspan></text>
+    <rect
+       transform="matrix(-0.98248929,0.18631908,-0.26673787,-0.96376912,0,0)"
+       y="-528.67139"
+       x="-280.26794"
+       height="6.1341672"
+       width="52.15786"
+       id="rect3103"
+       style="fill:#666666;fill-opacity:1;stroke:none" />
   </g>
 </svg>
