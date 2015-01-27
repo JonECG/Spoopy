@@ -8,8 +8,10 @@ public class LevelController : MonoBehaviour {
     public int maxRoomSize;
     public GameObject baseRoom;
     public GameObject player;
+    public int roomMod;
     public int seededValue;
     public bool finishPlaced;
+    private int odds;
     RoomGeneratorScript roomGen;
     GameObject first;
 
@@ -84,7 +86,6 @@ public class LevelController : MonoBehaviour {
             int randomRoomSizeX = getRandomOddValueInSize(first.GetComponent<Room>().sizeX);
             int randomRoomSizeY = getRandomOddValueInSize();
             GameObject newRoom = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
-            newRoom.GetComponent<Room>().roomDepth = roomDistribution[distributionIndex];
             int numDoors = 1;
             if (roomDistribution[distributionIndex] == 1)
             {
@@ -102,6 +103,7 @@ public class LevelController : MonoBehaviour {
                 }
             }
             newRoom.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, numDoors, roomGen);
+            newRoom.GetComponent<Room>().roomDepth = roomDistribution[distributionIndex];
             newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX);
             genreateRooms(newRoom, roomDistribution[distributionIndex]);
             distributionIndex++;
@@ -142,16 +144,20 @@ public class LevelController : MonoBehaviour {
                     }
                     GameObject newRoom;
                     bool useFirstDoor = false;
-                    if (numDoors == 2 || isAnEndRoom)
+                    Debug.Log("End" +isAnEndRoom);
+                    bool mod = (odds % roomMod == 0);
+                    Debug.Log(odds + roomMod + "Mod" + mod);
+                    if (mod || isAnEndRoom)
                     {
-                        if ((Random.Range(0, 1) % 10 == 0) || (isAnEndRoom && !finishPlaced))
+                        if ((isAnEndRoom && !finishPlaced))
                         {
-                            newRoom = createPremadeRoom(roomDistribution[distributionIndex], isAnEndRoom);
+                            newRoom = createPremadeRoom(roomDistribution[distributionIndex], 1,  isAnEndRoom);
                             useFirstDoor = true;
                         }
                         else
                         {
-                            newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
+                            newRoom = createPremadeRoom(roomDistribution[distributionIndex], numDoors, isAnEndRoom);
+                            useFirstDoor = true;
                         }
                     }
                     else
@@ -161,6 +167,7 @@ public class LevelController : MonoBehaviour {
                     newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, useFirstDoor);
                     genreateRooms(newRoom, roomDistribution[distributionIndex]);
                     distributionIndex++;
+                    odds++;
                 }
             }
         }
@@ -178,12 +185,12 @@ public class LevelController : MonoBehaviour {
         return newRoom;
     }
 
-    private GameObject createPremadeRoom(int depth, bool endRoom)
+    private GameObject createPremadeRoom(int depth, int numDoors, bool endRoom)
     {
         GameObject newRoom;
         if (!endRoom)
         {
-            List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 2).ToList();
+            List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == numDoors).ToList();
             int randomSelection = Random.Range(0, room.Count);
             newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
         }

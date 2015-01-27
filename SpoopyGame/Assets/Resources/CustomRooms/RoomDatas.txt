@@ -6,3 +6,6 @@ PillarRoom,4;
 TinyAltarRoom,1;
 TorchRoom,2;
 WideCorner,2;
+MonsterCycleRoom,4;
+PortHoleRoom,2;
+YRoomMonstMiddle,3;
