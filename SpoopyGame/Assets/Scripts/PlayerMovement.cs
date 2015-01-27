@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour {
     float sprintStamina;
     Debouncer.DebouncerResults sprintCorrected;
 
+    public float gravity = 0.9f;
+    public float fallingSpeed = 0;
+
 	// Use this for initialization
 	void Awake () {
         sprintStamina = 1;
@@ -42,6 +45,8 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 upReference = anchor.rotation * new Vector3(0, 1, 0);
         Vector3 forwardReference = anchor.rotation * new Vector3(0, 0, 1);
 
+        Vector3 movement = new Vector3();
+
         sprintCorrected = Debouncer.Debounce("Sprint", sprintCorrected);
         if (sprintCorrected.IsDown())
             sprintStamina -= Time.deltaTime / sprintDuration;
@@ -49,9 +54,18 @@ public class PlayerMovement : MonoBehaviour {
             sprintStamina += Time.deltaTime / sprintRecovery;
         sprintStamina = Mathf.Clamp(sprintStamina, 0, 1);
 
-        transform.position += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
-        transform.position += new Vector3(rightReference.x, 0, rightReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
+        fallingSpeed -= gravity * Time.deltaTime;
 
+        movement += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
+        movement += new Vector3(rightReference.x, 0, rightReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
+        movement.y += fallingSpeed;
+
+        GetComponent<CharacterController>().Move(movement);
+
+        if (GetComponent<CharacterController>().isGrounded)
+        {
+            fallingSpeed = 0;
+        }
 
         float lateral = Input.GetAxis("Mouse X");
         float longinal = Input.GetAxis("Mouse Y");

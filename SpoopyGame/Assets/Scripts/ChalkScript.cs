@@ -8,6 +8,8 @@ public class ChalkScript : MonoBehaviour
     private float distance = 4.0f;
     private Vector3 lastPos;
     private float threshold = 0.002f;
+
+    Debouncer.DebouncerResults chalkCorrected;
 	// Use this for initialization
 	void Start () 
     {
@@ -17,7 +19,8 @@ public class ChalkScript : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        if (Input.GetKey(KeyCode.U))
+        chalkCorrected = Debouncer.Debounce("Chalk", chalkCorrected);
+        if (chalkCorrected.IsDown())
         {
             placeChalk();
         }

@@ -11,17 +11,14 @@ public class Auratic : SenseInterface
 
         RaycastHit hit;
 
-        if (Vector3.Distance(player.transform.position, transform.position) <= distance && Physics.Raycast(transform.position+transform.up, player.transform.position - transform.position, out hit, Vector3.Distance(transform.position, player.transform.position)))
+        if (Vector3.Distance(player.transform.position, transform.position) <= distance && !Physics.Raycast(transform.position+transform.up, (player.transform.position - transform.position).normalized, out hit, Vector3.Distance(transform.position, player.transform.position), 1 << LayerMask.NameToLayer("Map")))
         {
-            if (hit.collider.name == "Player")
-            {
-                si.AlertingFactor = 1.0f;
-                si.CertaintyIsPlayer = 1.0f;
-                si.CertaintyOfDirection = 1.0f;
-                si.CertaintyOfDistance = 1.0f;
-                si.SensedDirection = player.transform.position - transform.position;
-                si.SensedDistance = Vector3.Distance(player.transform.position, transform.position);
-            }
+            si.AlertingFactor = 1.0f;
+            si.CertaintyIsPlayer = 1.0f;
+            si.CertaintyOfDirection = 1.0f;
+            si.CertaintyOfDistance = 1.0f;
+            si.SensedDirection = (player.transform.position - transform.position).normalized;
+            si.SensedDistance = Vector3.Distance(player.transform.position, transform.position);
         }
         else
         {
