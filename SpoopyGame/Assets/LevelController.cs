@@ -123,7 +123,7 @@ public class LevelController : MonoBehaviour {
                     int randomRoomSizeY = getRandomOddValueInSize();
                     int numDoors = 1;
                     bool isAnEndRoom = false;
-                    if (roomDistribution[distributionIndex] == 1)
+                    if (roomDistribution[distributionIndex] <= 1)
                     {
                         isAnEndRoom = true;
                         roomDistribution[distributionIndex] = 0;
@@ -144,7 +144,7 @@ public class LevelController : MonoBehaviour {
                     bool useFirstDoor = false;
                     if (numDoors == 2 || isAnEndRoom)
                     {
-                        if ((Random.Range(0, 51) % 10 == 0) || (isAnEndRoom && !finishPlaced))
+                        if ((Random.Range(0, 1) % 10 == 0) || (isAnEndRoom && !finishPlaced))
                         {
                             newRoom = createPremadeRoom(roomDistribution[distributionIndex], isAnEndRoom);
                             useFirstDoor = true;
@@ -191,7 +191,7 @@ public class LevelController : MonoBehaviour {
         {
             if (!finishPlaced)
             {
-                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1).ToList();
+                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom")).ToList();
                 int randomSelection = Random.Range(0, room.Count);
                 newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
             }

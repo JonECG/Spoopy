@@ -29,11 +29,11 @@ public class Room : MonoBehaviour {
     {
         if (sightWeight <= 1)
         {
-            this.gameObject.SetActive(true);
+            //this.gameObject.SetActive(true);
         }
         else
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
         }
 	}
 
@@ -114,7 +114,7 @@ public class Room : MonoBehaviour {
         BoxCollider roomColider = this.GetComponent<BoxCollider>();
         roomColider.center = this.transform.position;
         roomColider.transform.parent = this.transform;
-        roomColider.size = new Vector3((sizeX * 2) - 0.001f, 1.0f, (sizeZ * 2) - 0.001f);
+        roomColider.size = new Vector3((sizeX * 2) - 0.5f, 1.0f, (sizeZ * 2) - 0.5f);
         roomColider.isTrigger = true;
         
     }
