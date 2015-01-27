@@ -15,10 +15,12 @@ public class HeadNormalizer : MonoBehaviour {
         transform.localPosition = new Vector3(0, (riftHandle == null) ? 2 : OVRManager.profile.eyeHeight * multiplier);
         transform.localScale = new Vector3( multiplier, multiplier, multiplier );
 
+        /*
         if( Input.GetKeyDown( KeyCode.O ) )
             multiplier *= 0.9f;
         if (Input.GetKeyDown(KeyCode.P))
             multiplier /= 0.9f;
+         */
 
         if (Input.GetButtonDown("RecalOculus"))
         {

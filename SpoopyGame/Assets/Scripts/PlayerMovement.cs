@@ -62,11 +62,27 @@ public class PlayerMovement : MonoBehaviour {
         float playerAngle = Mathf.Atan2(transform.forward.z, transform.forward.x);
         float diffAngle = Mathf.Deg2Rad * (Mathf.Repeat((Mathf.Repeat((playerAngle - headAngle) * Mathf.Rad2Deg, 360)) + 540, 360) - 180);
         float normDiffAngle = Mathf.Sign( diffAngle ) * Mathf.Pow( diffAngle / Mathf.PI, 2 );
+        normDiffAngle *= 7;
+
+        float moveMultiplier = normDiffAngle / Mathf.Sqrt(1 + normDiffAngle * normDiffAngle) + 1;
+        moveMultiplier = Mathf.Pow(moveMultiplier, 2);
+        moveMultiplier /= 2;
+
+        float invMoveMultiplier = -normDiffAngle / Mathf.Sqrt(1 + normDiffAngle * normDiffAngle) + 1;
+        invMoveMultiplier = Mathf.Pow(invMoveMultiplier, 2);
+        invMoveMultiplier /= 2;
 
         //HeadsUpDisplayController.Instance.DrawText(normDiffAngle.ToString(), 0, 0.2f, Color.green);
+        //HeadsUpDisplayController.Instance.DrawText(moveMultiplier.ToString(), 0, 0.3f, Color.yellow);
 
-        transform.Rotate(new Vector3(0, 1, 0), ( lateral + longinalStick + normDiffAngle * 7 ) * mouseSensitivity );
-        if( GameObject.Find( "LeftEyeAnchor" ) == null )
+        if (GameObject.Find("LeftEyeAnchor") != null)
+        {
+            transform.Rotate(new Vector3(0, 1, 0), longinalStick * mouseSensitivity * ( longinalStick > 0 ? moveMultiplier : invMoveMultiplier ));
+        }
+        else
+        {
+            transform.Rotate(new Vector3(0, 1, 0), (lateral + longinalStick ) * mouseSensitivity);
             head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
+        }
 	}
 }
