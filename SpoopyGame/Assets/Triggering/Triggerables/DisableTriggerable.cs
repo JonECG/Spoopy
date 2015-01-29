@@ -15,5 +15,8 @@ public class DisableTriggerable : Triggerable {
             targetGameObject.SetActive(enableVsDisable);
         if (targetComponent != null)
             targetComponent.enabled = enableVsDisable;
+
+        if (targetComponent == null && targetGameObject == null)
+            gameObject.SetActive(enableVsDisable);
     }
 }

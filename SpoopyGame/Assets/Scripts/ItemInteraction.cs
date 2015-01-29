@@ -10,15 +10,20 @@ public class ItemInteraction : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        //Creates a new array of materials, one larger to fit new material
-        var mats = renderer.materials;
-        Material[] newMats = new Material[mats.Length+1];
-        for (int i = 0; i < mats.Length; i++)
+        Renderer[] rends = GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in rends)
         {
-            newMats[i] = mats[i];
+            //Creates a new array of materials, one larger to fit new material
+            var mats = renderer.materials;
+            Material[] newMats = new Material[mats.Length + 1];
+            for (int i = 0; i < mats.Length; i++)
+            {
+                newMats[i] = mats[i];
+            }
+            newMats[mats.Length] = Resources.Load<Material>("InteractableOverlay");
+            renderer.materials = newMats;
         }
-        newMats[mats.Length] = Resources.Load<Material>("InteractableOverlay");
-        renderer.materials = newMats;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +37,8 @@ public class ItemInteraction : MonoBehaviour {
             RaycastHit info;
             Physics.Raycast(playerHead.transform.position, playerHead.transform.forward, out info, 2, 1 << LayerMask.NameToLayer("Map"));
             transform.position = (playerHead.transform.position + (playerHead.transform.forward.normalized * (info.collider != null ? info.distance - 0.1f : 2)));
+
+            rigidbody.velocity = new Vector3();
 
             if (throwCorrected.IsPressed())
             {

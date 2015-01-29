@@ -8,6 +8,7 @@ public class CollisionTriggerer : Triggerer {
         if ( active && other.GetComponent<PlayerController>() != null)
         {
             SendTrigger();
+            collider.enabled = false;
         }
     }
 }

@@ -3,17 +3,18 @@ using System.Collections;
 
 public class MovementTriggerable : Triggerable
 {
-    private Vector3 startPosition;
-    public Vector3 EndPosition;
+    //private Vector3 startPosition;
+    public Vector3 PositionOffset;
+    //private Vector3 endPosition;
     public Triggerable OnMovementEnd;
     private Vector3 direction;
+    private float distTraveled;
     public float Speed;
     private bool moving = false;
     private string heldMessage;
 	// Use this for initialization
 	void Start () 
     {
-        startPosition = this.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -21,7 +22,7 @@ public class MovementTriggerable : Triggerable
     {
         if (moving)
         {
-            if ((transform.position - EndPosition).magnitude < Speed * Time.deltaTime)
+            if (distTraveled >= PositionOffset.magnitude)
             {
                 moving = false;
                 if (OnMovementEnd != null)
@@ -29,7 +30,9 @@ public class MovementTriggerable : Triggerable
             }
             else
             {
-                this.transform.position += direction * Speed * Time.deltaTime;
+                float toMove = Mathf.Min(PositionOffset.magnitude - distTraveled, Speed * Time.deltaTime);
+                this.transform.position += direction * toMove;
+                distTraveled += toMove;
             }
         }
 	}
@@ -37,8 +40,8 @@ public class MovementTriggerable : Triggerable
     public override void Triggered(string id)
     {
         heldMessage = id;
-        startPosition = transform.position;
+        distTraveled = 0;
         moving = true;
-        direction = (EndPosition - startPosition).normalized;
+        direction = (transform.root.rotation * PositionOffset).normalized;
     }
 }
