@@ -32,7 +32,7 @@ public class ItemHandler : MonoBehaviour
 
         GameObject playerHead = GameObject.Find("LitCamera");
 
-        angle = Vector3.Angle(playerHead.transform.forward, transform.position - playerHead.transform.position);
+        angle = Vector3.Angle(playerHead.transform.forward, inventory.transform.position - playerHead.transform.position);
 
         int selection = -1;
         for (int i = 0; i < items.Length && angle>0; i++)
