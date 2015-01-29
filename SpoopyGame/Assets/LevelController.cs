@@ -10,19 +10,29 @@ public class LevelController : MonoBehaviour {
     public GameObject player;
     public int roomMod;
     public int seededValue;
-    public bool finishPlaced;
+    private bool finishPlaced;
+
     private int odds;
     RoomGeneratorScript roomGen;
     GameObject first;
 
 	void Start () {
+        finishPlaced = false;
         Random.seed = seededValue;
         roomGen = this.GetComponent<RoomGeneratorScript>();
         prebuildFirstRoom();
         genreateMap(numberOfRooms);
         RoomVisualizerScript.weightDungeon(first.GetComponent<Room>());
         RoomVisualizerScript.visualizeRooms(first.GetComponent<Room>());
-        player.transform.position = first.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        if (first.GetComponent<Room>().useStartVector)
+        {
+            player.transform.position = first.GetComponent<Room>().startVector;
+        }
+        else
+        {
+            player.transform.position = first.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        }
+        
 	}
 	
 	void Update () {
@@ -32,10 +42,10 @@ public class LevelController : MonoBehaviour {
 
     void prebuildFirstRoom()
     {
-        RoomInfo room = CustomRooms.Rooms.Where(n => n.name == "StartingRoom").FirstOrDefault();
+        RoomInfo room = CustomRooms.Rooms.Where(n => n.name == "GameStartRoom").FirstOrDefault();
         first = Instantiate(room.gameObjectReference) as GameObject;
         first.transform.position = Vector3.zero;
-        first.GetComponent<Room>().createRoom("StartingRoom");
+        first.GetComponent<Room>().createRoom("GameStartRoom");
         first.GetComponent<Room>().roomDepth = numberOfRooms;
     }
 
@@ -196,9 +206,9 @@ public class LevelController : MonoBehaviour {
         }
         else
         {
-            if (!finishPlaced)
+            if (finishPlaced)
             {
-                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom")).ToList();
+                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom")).ToList();
                 int randomSelection = Random.Range(0, room.Count);
                 newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
             }

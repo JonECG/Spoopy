@@ -9,3 +9,4 @@ WideCorner,2;
 MonsterCycleRoom,4;
 PortHoleRoom,2;
 YRoomMonstMiddle,3;
+GameStartRoom,1;

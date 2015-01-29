@@ -5,12 +5,11 @@ using System.Linq;
 public class Room : MonoBehaviour {
 
     public bool isPreGenreatedRoom { get; set; }
-
     public GameObject prebuiltRoom { get; set; }
     public GameObject baseDoor;
-
     public List<Door> doors = new List<Door>();
-
+    public bool useStartVector;
+    public Vector3 startVector;
     private bool hasPlayer { get; set; }
     public int sightWeight { get; set; }
     public bool endRoom { get; set; }
