@@ -3,11 +3,11 @@ using System.Collections;
 
 public class DoorKnob : MonoBehaviour {
 
-    SwingDoor door;
+    public SwingDoor door;
     GameObject looking;
 
-    bool isGrabbed = false;
-    float grabbedDistance;
+    public bool isGrabbed = false;
+    public float grabbedDistance;
 	void Start () 
 	{
         door = transform.parent.GetComponent<SwingDoor>();
@@ -17,16 +17,6 @@ public class DoorKnob : MonoBehaviour {
 	
 	void Update () 
 	{
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if( Vector3.Angle( looking.transform.forward, transform.position - looking.transform.position ) < 20 )
-            {
-                isGrabbed = true;
-                door.RequestUnlatch();
-                grabbedDistance = (transform.position - looking.transform.position).magnitude;
-            }
-            //if( Physics.Raycast(
-        }
         if (isGrabbed)
         {
 
@@ -46,12 +36,6 @@ public class DoorKnob : MonoBehaviour {
                 door.transform.localEulerAngles += new Vector3(0, Mathf.Min( angle, 300 * Time.deltaTime ), 0);
             else
                 door.transform.localEulerAngles -= new Vector3(0, Mathf.Min(angle, 300 * Time.deltaTime), 0);
-
-            if (Input.GetKeyUp(KeyCode.C))
-            {
-                isGrabbed = false;
-                door.RequestLatch();
-            }
         }
 	}
 }

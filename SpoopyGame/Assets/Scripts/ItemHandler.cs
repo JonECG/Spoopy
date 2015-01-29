@@ -24,6 +24,8 @@ public class ItemHandler : MonoBehaviour
 
         ItemInteraction[] items = FindObjectsOfType<ItemInteraction>();
 
+        DoorKnob[] doors = FindObjectsOfType<DoorKnob>();
+
         float angle = 360.0f;
 
         GameObject playerHead = GameObject.Find("LitCamera");
@@ -46,14 +48,28 @@ public class ItemHandler : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < doors.Length && angle > 0; i++)
+        {
+            if (Vector3.Distance(playerHead.transform.position, doors[i].transform.position) < 3 && Vector3.Angle(playerHead.transform.forward, doors[i].transform.position - playerHead.transform.position) < angle)
+            {
+                angle = Vector3.Angle(playerHead.transform.forward, doors[i].transform.position - playerHead.transform.position);
+                selection = i+items.Length;
+            }
+            if (doors[i].isGrabbed)
+            {
+                angle = 0;
+                selection = i+items.Length;
+            }
+        }
+
         if (angle < 25)
         {
-            if (selection >= 0)
+            if (selection >=0  && selection<items.Length)
             {
                 if (pickupCorrected.IsPressed() && !items[selection].isPickedUp)
                 {
                     items[selection].isPickedUp = true;
-                    if(ItemInventory.isInBag(items[selection]))
+                    if (ItemInventory.isInBag(items[selection]))
                     {
                         ItemInventory.removeItem(items[selection]);
                         ItemInventory.isOpen = false;
@@ -82,6 +98,20 @@ public class ItemHandler : MonoBehaviour
                 else if (!items[selection].isPickedUp)
                     HeadsUpDisplayController.Instance.DrawText(items[selection].info, 0, 0, Color.blue);
             }
+            else if (selection >= (items.Length))
+            {
+                if (Input.GetKeyDown(KeyCode.C) && !doors[selection-items.Length].isGrabbed)
+                {
+                    doors[selection - items.Length].isGrabbed = true;
+                    doors[selection - items.Length].door.RequestUnlatch();
+                    doors[selection - items.Length].grabbedDistance = Vector3.Distance(doors[selection - items.Length].transform.position, playerHead.transform.position);
+                }
+                else if (Input.GetKeyDown(KeyCode.C) && doors[selection-items.Length].isGrabbed)
+                {
+                    doors[selection - items.Length].isGrabbed = false;
+                    doors[selection - items.Length].door.RequestLatch();
+                }
+            }
             else
             {
                 if (openInventory.IsPressed() && !ItemInventory.isOpen)
@@ -92,7 +122,7 @@ public class ItemHandler : MonoBehaviour
                 {
                     ItemInventory.isOpen = false;
                 }
-                else if (!ItemInventory.isOpen && ItemInventory.objects.Count>0)
+                else if (!ItemInventory.isOpen && ItemInventory.objects.Count > 0)
                     HeadsUpDisplayController.Instance.DrawText("Open Inventory", 0, 0, Color.blue);
                 else if (ItemInventory.isOpen)
                     HeadsUpDisplayController.Instance.DrawText("Close Inventory", 0, 0, Color.blue);
