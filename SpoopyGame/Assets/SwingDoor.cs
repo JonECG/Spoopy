@@ -15,9 +15,32 @@ public class SwingDoor : MonoBehaviour {
     internal bool latched = true;
 
     public ColorCodeValues color;
+    public ColorCode adjColor;
+
+    public AudioClip unlockSound;
+
+    public float CurrentSwing
+    {
+        get
+        {
+            return transform.localEulerAngles.y > 180 ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+        }
+        set
+        {
+            float currentSwing = value;
+
+            if (closed)
+                currentSwing = Mathf.Clamp(currentSwing, closedCenter - ClosedThreshold, closedCenter + ClosedThreshold);
+            else
+                currentSwing = Mathf.Clamp(currentSwing, SwingMin, SwingMax);
+
+            transform.localEulerAngles = new Vector3(0, currentSwing, 0);
+        }
+    }
 
 	void Start () 
 	{
+        adjColor = ColorCode.FromValue(color);
         if (Locked)
         {
             transform.FindChild("DoorKnob").renderer.material.color = ColorCode.FromValue( color ).Color;
@@ -26,34 +49,26 @@ public class SwingDoor : MonoBehaviour {
 	
 	void Update () 
 	{
-        float currentSwing = transform.localEulerAngles.y > 180 ? transform.localEulerAngles.y - 360: transform.localEulerAngles.y;
-
-        
         if (Input.GetKey(KeyCode.O))
         {
-            currentSwing -= 50 * Time.deltaTime;
+            CurrentSwing -= 50 * Time.deltaTime;
         }
 
         if (Input.GetKey(KeyCode.P))
         {
-            currentSwing += 50 * Time.deltaTime;
+            CurrentSwing += 50 * Time.deltaTime;
         }
 
-        if( closed )
-            currentSwing = Mathf.Clamp(currentSwing, closedCenter - ClosedThreshold, closedCenter+ClosedThreshold);
-        else
-            currentSwing = Mathf.Clamp(currentSwing, SwingMin, SwingMax);
-
-        transform.localEulerAngles = new Vector3(0, currentSwing, 0 );
+        
 
         if (latched)
         {
-            if (ClosableOnMin && currentSwing < SwingMin + ClosedThreshold * 2)
+            if (ClosableOnMin && CurrentSwing < SwingMin + ClosedThreshold * 2)
             {
                 closedCenter = SwingMin + ClosedThreshold;
                 closed = true;
             }
-            if (ClosableOnMax && currentSwing > SwingMax - ClosedThreshold * 2)
+            if (ClosableOnMax && CurrentSwing > SwingMax - ClosedThreshold * 2)
             {
                 closedCenter = SwingMax - ClosedThreshold;
                 closed = true;

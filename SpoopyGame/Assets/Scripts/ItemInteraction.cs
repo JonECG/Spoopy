@@ -5,6 +5,7 @@ public class ItemInteraction : MonoBehaviour {
 
     public string info = "Just an object";
     public bool isPickedUp;
+    public bool isTakeable = false;
     Debouncer.DebouncerResults throwCorrected;
 
 	// Use this for initialization

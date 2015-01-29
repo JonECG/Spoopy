@@ -58,7 +58,7 @@ public class LightDetector : MonoBehaviour {
         {
             //Checking to see if it's behind an object
             RaycastHit tempHit;
-            Physics.Raycast(transform.position, (go.transform.position - transform.position).normalized, out tempHit);
+            Physics.Raycast(transform.position, (go.transform.position - transform.position).normalized, out tempHit, (go.transform.position - transform.position).magnitude, ~(1 << LayerMask.NameToLayer("CollisionTriggers")));
 
             //if we cast a ray to hit the object and the object hit is this object then we can do the sanity stuff
             if (tempHit.collider == go.collider)

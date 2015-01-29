@@ -34,6 +34,8 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
     int offsetOfFlags = 20;
 
+    bool hasOculus;
+
     void OnGUI()
     {
         if (Instance == this)
@@ -46,29 +48,53 @@ public class HeadsUpDisplayController : MonoBehaviour {
         }
     }
 
-    public void DrawText(string message, float x, float y, Color color, float size = 0.1f)
+    public void DrawText(string message, float x, float y, Color color, float size = 0.1f, float time = 0)
     {
         if (Instance == this)
         {
 
-            if (currentText >= textsInUse.Count)
+            if (time <= 0)
             {
-                GameObject dupe = (GameObject)GameObject.Instantiate(textReference);
-                dupe.transform.SetParent(textReference.transform.parent.transform, false);
-                textsInUse.Add(dupe.GetComponent<Text>());
+                if (currentText >= textsInUse.Count)
+                {
+                    GameObject dupe = (GameObject)GameObject.Instantiate(textReference);
+                    dupe.transform.SetParent(textReference.transform.parent.transform, false);
+                    textsInUse.Add(dupe.GetComponent<Text>());
+                }
+
+                Text t = textsInUse[currentText++];
+
+                t.enabled = true;
+                t.text = message;
+                t.color = color;
+                RectTransform crt = t.transform.parent.GetComponent<Canvas>().GetComponent<RectTransform>();
+                float mult = 1;
+                if (hasOculus)
+                    mult = 0.7f;
+                t.fontSize = (int)(crt.sizeDelta.x * size * mult);
+                t.rectTransform.localPosition = (0.85f * mult) * new Vector3(x * crt.sizeDelta.x, y * crt.sizeDelta.y, 0);
+                //t.rectTransform.position = new Vector3(0, 0, 0);
             }
+            else
+            {
+                StartCoroutine(PersistedText(message, x, y, color, size, time));
+            }
+        }
 
-            Text t = textsInUse[currentText++];
+    }
 
-            t.enabled = true;
-            t.text = message;
-            t.color = color;
-            RectTransform crt = t.transform.parent.GetComponent<Canvas>().GetComponent<RectTransform>();
-            t.fontSize = (int)(crt.sizeDelta.x * size);
-            t.rectTransform.localPosition = (0.85f) * new Vector3(x * crt.sizeDelta.x, y * crt.sizeDelta.y, 0);
-            //t.rectTransform.position = new Vector3(0, 0, 0);
+    IEnumerator PersistedText(string message, float x, float y, Color color, float size, float time)
+    {
+        float endTime = Time.time + time;
+        while (Time.time < endTime)
+        {
+            //Debug.Log("Drawing persisted text " + ( endTime - Time.time ));
+
+            DrawText(message, x, y, color, size);
+            yield return null;
         }
     }
+
 
     void SetLayerRecursively( GameObject obj, int newLayer )
     {
@@ -82,7 +108,7 @@ public class HeadsUpDisplayController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        hasOculus = (GameObject.Find("OVRCameraRig") != null);
         //GameObject one = transform.FindChild("NoiseLayer").gameObject;
         //GameObject two = one.transform.FindChild("NoisePlane").gameObject;
         //Image imageFound = two.GetComponent<Image>();

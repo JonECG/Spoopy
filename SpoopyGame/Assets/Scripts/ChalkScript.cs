@@ -37,7 +37,7 @@ public class ChalkScript : MonoBehaviour
             {
                 GameObject t = (GameObject)Instantiate(chalkquad, tempPos, Quaternion.identity);
                 t.transform.LookAt(t.transform.position + (hit.normal * -1));
-                t.transform.SetParent(hit.collider.gameObject.transform.root, true);
+                t.transform.SetParent(hit.collider.gameObject.transform, true);
                 lastPos = tempPos;
             }
         }

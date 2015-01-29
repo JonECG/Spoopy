@@ -33,9 +33,9 @@ public class DoorKnob : MonoBehaviour {
             Debug.Log(angle);
 
             if (dot < 0)
-                door.transform.localEulerAngles += new Vector3(0, Mathf.Min( angle, 300 * Time.deltaTime ), 0);
+                door.CurrentSwing += Mathf.Min(angle, 300 * Time.deltaTime);
             else
-                door.transform.localEulerAngles -= new Vector3(0, Mathf.Min(angle, 300 * Time.deltaTime), 0);
+                door.CurrentSwing -= Mathf.Min(angle, 300 * Time.deltaTime);
         }
 	}
 }

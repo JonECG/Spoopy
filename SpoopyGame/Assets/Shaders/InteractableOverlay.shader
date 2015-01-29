@@ -7,7 +7,7 @@
 	}
     SubShader {
         Pass {
-			Tags { "Queue"="Transparent" }
+			Tags { "Queue"="Transparent" "RenderType"="Transparent" }
 			Blend One One
 
             CGPROGRAM

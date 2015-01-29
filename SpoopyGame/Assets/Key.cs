@@ -13,17 +13,20 @@ public class Key : MonoBehaviour {
         {
             renderer.material.color = ColorCode.FromValue(color).Color;
         }
+
+        GetComponent<ItemInteraction>().info = "A " + ColorCode.FromValue(color).Name.ToUpper() + " Key";
 	}
 
     void OnCollisionEnter(Collision col)
     {
         SwingDoor swdoor = col.collider.GetComponentInParent<SwingDoor>();
 
-        if (swdoor != null)
+        if (swdoor != null && swdoor.Locked)
         {
             if (swdoor.color == color)
             {
                 swdoor.Locked = false;
+                SoundManagerController.Instance.PlaySoundAt(swdoor.unlockSound, swdoor.transform);
             }
         }
     }

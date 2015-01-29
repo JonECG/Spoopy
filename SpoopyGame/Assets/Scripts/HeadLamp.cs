@@ -9,7 +9,7 @@ public class HeadLamp : MonoBehaviour {
     public float weakenTime = 5;
 
     public float currentBatteryLife;
-    private bool isTurnedOn;
+    private bool isTurnedOn = false;
     private float maxIntensity;
     private float maxGlow;
     private Light glow;
@@ -22,7 +22,6 @@ public class HeadLamp : MonoBehaviour {
     Debouncer.DebouncerResults headLampToggleCorrected, headLampChargeCorrected;
 	void Start () 
 	{
-        isTurnedOn = false;
         currentBatteryLife = batteryLifeInSeconds;
         glow = transform.FindChild("Glow").light;
         maxIntensity = light.intensity;
@@ -94,4 +93,25 @@ public class HeadLamp : MonoBehaviour {
         glow.enabled = light.enabled;
 
 	}
+
+    public void TurnOn()
+    {
+        if (!isTurnedOn)
+        {
+            if (SoundManagerController.Instance != null)
+                SoundManagerController.Instance.PlaySoundAt((currentBatteryLife > 0) ? clickOn : clickDead, transform.position, "PlayerMadeSound");
+            if (currentBatteryLife > 0)
+                isTurnedOn = true;
+        }
+    }
+
+    public void TurnOff()
+    {
+        if (isTurnedOn)
+        {
+            if (SoundManagerController.Instance != null)
+                SoundManagerController.Instance.PlaySoundAt(clickOff, transform.position, "PlayerMadeSound");
+            isTurnedOn = false;
+        }
+    }
 }

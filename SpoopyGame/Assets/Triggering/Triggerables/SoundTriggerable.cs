@@ -7,6 +7,7 @@ public class SoundTriggerable : Triggerable
 
     public bool loop = false;
     public float loopOffset = 1;
+    public bool attached = true;
 
     private bool isLooping = false;
     private float time = 0;
@@ -30,7 +31,10 @@ public class SoundTriggerable : Triggerable
 
     public override void Triggered(string id)
     {
-        SoundManagerController.Instance.PlaySoundAt(soundToPlay, transform);
+        if( attached )
+            SoundManagerController.Instance.PlaySoundAt(soundToPlay, transform);
+        else
+            SoundManagerController.Instance.PlaySoundAt(soundToPlay, transform.position);
         if (loop)
         {
             isLooping = true;

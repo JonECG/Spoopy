@@ -56,8 +56,11 @@ public class PlayerMovement : MonoBehaviour {
 
         fallingSpeed -= gravity * Time.deltaTime;
 
-        movement += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
-        movement += new Vector3(rightReference.x, 0, rightReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
+        if (!FindObjectOfType<ItemInventory>().isDrawnOut)
+        {
+            movement += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
+            movement += new Vector3(rightReference.x, 0, rightReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
+        }
         movement.y += fallingSpeed;
 
         GetComponent<CharacterController>().Move(movement);
@@ -91,11 +94,13 @@ public class PlayerMovement : MonoBehaviour {
 
         if (GameObject.Find("LeftEyeAnchor") != null)
         {
-            transform.Rotate(new Vector3(0, 1, 0), longinalStick * mouseSensitivity * ( longinalStick > 0 ? moveMultiplier : invMoveMultiplier ));
+            if (!FindObjectOfType<ItemInventory>().isDrawnOut)
+                transform.Rotate(new Vector3(0, 1, 0), longinalStick * mouseSensitivity * ( longinalStick > 0 ? moveMultiplier : invMoveMultiplier ));
         }
         else
         {
-            transform.Rotate(new Vector3(0, 1, 0), (lateral + longinalStick ) * mouseSensitivity);
+            if (!FindObjectOfType<ItemInventory>().isDrawnOut)
+                transform.Rotate(new Vector3(0, 1, 0), (lateral + longinalStick ) * mouseSensitivity);
             head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
         }
 	}
