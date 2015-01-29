@@ -100,17 +100,22 @@ public class ItemHandler : MonoBehaviour
             }
             else if (selection >= (items.Length))
             {
-                if (Input.GetKeyDown(KeyCode.C) && !doors[selection-items.Length].isGrabbed)
+                if (Input.GetKeyDown(KeyCode.C) && !doors[selection - items.Length].isGrabbed)
                 {
                     doors[selection - items.Length].isGrabbed = true;
                     doors[selection - items.Length].door.RequestUnlatch();
                     doors[selection - items.Length].grabbedDistance = Vector3.Distance(doors[selection - items.Length].transform.position, playerHead.transform.position);
                 }
-                else if (Input.GetKeyDown(KeyCode.C) && doors[selection-items.Length].isGrabbed)
+                else if (Input.GetKeyDown(KeyCode.C) && doors[selection - items.Length].isGrabbed)
                 {
                     doors[selection - items.Length].isGrabbed = false;
                     doors[selection - items.Length].door.RequestLatch();
                 }
+                else if (doors[selection - items.Length].isGrabbed)
+                    HeadsUpDisplayController.Instance.DrawText("Close Door",0,0,Color.blue);
+                else if (!doors[selection - items.Length].isGrabbed)
+                    HeadsUpDisplayController.Instance.DrawText("Open Door",0,0,Color.blue);
+                //Add more else ifs for more heads up displays if needed, I'm going to bed
             }
             else
             {
