@@ -42,7 +42,7 @@ public class ItemInventory : MonoBehaviour
             for (int i = 0; i < objects.Count; i++)
             {
                 float angle = i / (float)objects.Count * 2 * Mathf.PI;
-                objects[i].transform.position = transform.position + new Vector3(Mathf.Cos(angle), 0.5f, Mathf.Sin(angle));
+                objects[i].transform.position = transform.position + ( new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * ( Mathf.Sqrt( objects.Count ) - 1 ) ) + new Vector3(0, 1.0f, 0); ;
             }
         }
 	}

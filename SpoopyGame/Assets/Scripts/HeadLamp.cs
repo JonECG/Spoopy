@@ -19,9 +19,13 @@ public class HeadLamp : MonoBehaviour {
     private float tapThreshold = 150;
     private float tapDelay = 0.1f;
 
+    private float lastTimeWithCharge;
+    public float delayForPromptingRecharge = 8;
+
     Debouncer.DebouncerResults headLampToggleCorrected, headLampChargeCorrected;
 	void Start () 
 	{
+        lastTimeWithCharge = Time.time;
         currentBatteryLife = batteryLifeInSeconds;
         glow = transform.FindChild("Glow").light;
         maxIntensity = light.intensity;
@@ -49,6 +53,18 @@ public class HeadLamp : MonoBehaviour {
 
         headLampToggleCorrected = Debouncer.Debounce("HeadLampToggle", headLampToggleCorrected);
         headLampChargeCorrected = Debouncer.Debounce("HeadLampRecharge", headLampChargeCorrected);
+
+
+        if (currentBatteryLife > 0)
+        {
+            lastTimeWithCharge = Time.time;
+        }
+
+        if (Time.time - lastTimeWithCharge > delayForPromptingRecharge)
+        {
+            HeadsUpDisplayController.Instance.DrawText("Press (X) Several Times to Recharge Your Headlamp", 0, 0, Color.yellow, 0.05f);
+            HeadsUpDisplayController.Instance.DrawText("Then Press (Y) to Turn Your Headlamp On", 0, -0.2f, Color.yellow, 0.05f);
+        }
 
         if (headLampToggleCorrected.IsPressed())
         {
