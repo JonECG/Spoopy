@@ -11,14 +11,40 @@ public class LevelController : MonoBehaviour {
     public int roomMod;
     public int seededValue;
     private bool finishPlaced;
+    private bool firstLevel;
+    private bool newLevel;
 
     private int odds;
     RoomGeneratorScript roomGen;
     GameObject first;
+    GameObject LevelContainer;
 
 	void Start () {
+        
+        firstLevel = true;
+        CreateLevel();
+        firstLevel = false;
+        newLevel = false;
+	}
+
+
+
+    void Update()
+    {
+        if (newLevel)
+        {
+            
+            CreateLevel();
+        }
+	}
+
+    private void CreateLevel()
+    {
+        ClearDungeon();
+        LevelContainer = new GameObject();
+        LevelContainer.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         finishPlaced = false;
-        Random.seed = seededValue;
+        Random.seed = seededValue + 37 * 5;
         roomGen = this.GetComponent<RoomGeneratorScript>();
         prebuildFirstRoom();
         genreateMap(numberOfRooms);
@@ -32,24 +58,37 @@ public class LevelController : MonoBehaviour {
         {
             player.transform.position = first.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
         }
-        
-	}
-	
-	void Update () {
-	
-	}
+    }
 
-
-    void prebuildFirstRoom()
+    public void activateNewLevel()
     {
-        RoomInfo room = CustomRooms.Rooms.Where(n => n.name == "GameStartRoom").FirstOrDefault();
+        newLevel = true;
+    }
+
+    private void ClearDungeon()
+    {
+        Destroy(LevelContainer);
+    }
+	
+    private void prebuildFirstRoom()
+    {
+        RoomInfo room;
+        if (firstLevel)
+        {
+            room = CustomRooms.Rooms.Where(n => n.name == "GameStartRoom").FirstOrDefault();
+        }
+        else
+        {
+            room = CustomRooms.Rooms.Where(n => n.name == "LevelStartRoom").FirstOrDefault();
+        }
         first = Instantiate(room.gameObjectReference) as GameObject;
         first.transform.position = Vector3.zero;
         first.GetComponent<Room>().createRoom("GameStartRoom");
         first.GetComponent<Room>().roomDepth = numberOfRooms;
+        first.gameObject.transform.SetParent(LevelContainer.transform);
     }
 
-    void randomFirstroom()
+    private void randomFirstroom()
     {
         first = Instantiate(baseRoom, Vector3.zero, Quaternion.identity) as GameObject;
         int randomRoomSizeX = getRandomOddValueInSize();
@@ -86,7 +125,7 @@ public class LevelController : MonoBehaviour {
         return roomDistribution;
     }
 
-    void genreateMap(int roomCount)
+    private void genreateMap(int roomCount)
     {
         List<Door> firstRoomsdoors = first.GetComponent<Room>().getDoors();
         int distributionIndex = 0;
@@ -115,6 +154,7 @@ public class LevelController : MonoBehaviour {
             newRoom.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, numDoors, roomGen);
             newRoom.GetComponent<Room>().roomDepth = roomDistribution[distributionIndex];
             newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX);
+            newRoom.gameObject.transform.SetParent(LevelContainer.transform);
             genreateRooms(newRoom, roomDistribution[distributionIndex]);
             distributionIndex++;
         }
@@ -175,6 +215,7 @@ public class LevelController : MonoBehaviour {
                         newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
                     }
                     newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, useFirstDoor);
+                    newRoom.gameObject.transform.SetParent(LevelContainer.transform);
                     genreateRooms(newRoom, roomDistribution[distributionIndex]);
                     distributionIndex++;
                     odds++;
