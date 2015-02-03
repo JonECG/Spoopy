@@ -13,30 +13,41 @@ public class LevelController : MonoBehaviour {
     private bool finishPlaced;
     private bool firstLevel;
     private bool newLevel;
-
+    private DarkVision playerVision;
     private int odds;
     RoomGeneratorScript roomGen;
     GameObject first;
     GameObject LevelContainer;
 
 	void Start () {
-        
+        Random.seed = seededValue;
         firstLevel = true;
+        playerVision = FindObjectOfType<DarkVision>();
         CreateLevel();
-        firstLevel = false;
         newLevel = false;
+        
 	}
-
-
 
     void Update()
     {
         if (newLevel)
         {
-            
-            CreateLevel();
+            StartCoroutine(lowerVisionLight(playerVision.adjustedLight, new Vector3(1.0f, 1.0f, 1.0f), 1.0f));
+            newLevel = false;
         }
 	}
+
+    IEnumerator lowerVisionLight(Vector3 startLight, Vector3 endLight, float time)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < time)
+        {
+            playerVision.adjustedLight = Vector3.Lerp(startLight, endLight, (elapsedTime/time));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        CreateLevel();
+    }
 
     private void CreateLevel()
     {
@@ -44,10 +55,21 @@ public class LevelController : MonoBehaviour {
         LevelContainer = new GameObject();
         LevelContainer.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         finishPlaced = false;
-        Random.seed = seededValue + 37 * 5;
+        Random.seed = Random.seed + 37 * 5;
+        numberOfRooms = numberOfRooms + 5;
         roomGen = this.GetComponent<RoomGeneratorScript>();
         prebuildFirstRoom();
-        genreateMap(numberOfRooms);
+        if (!firstLevel)
+        {
+            genreateMap(numberOfRooms);
+        }
+        else
+        {
+            Triggerable[] finalRoomListener = new Triggerable[1];
+            finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
+            first.transform.FindChild("FinishRoom").transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
+            firstLevel = false;
+        }
         RoomVisualizerScript.weightDungeon(first.GetComponent<Room>());
         RoomVisualizerScript.visualizeRooms(first.GetComponent<Room>());
         if (first.GetComponent<Room>().useStartVector)
@@ -249,7 +271,7 @@ public class LevelController : MonoBehaviour {
         {
             if (finishPlaced)
             {
-                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom")).ToList();
+                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom" && n.name != "LevelStartRoom")).ToList();
                 int randomSelection = Random.Range(0, room.Count);
                 newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
             }
@@ -257,6 +279,9 @@ public class LevelController : MonoBehaviour {
             {
                 RoomInfo room = CustomRooms.Rooms.Where(n => n.name == "FinishRoom").FirstOrDefault();
                 newRoom = Instantiate(room.gameObjectReference) as GameObject;
+                Triggerable[] finalRoomListener = new Triggerable[1];
+                finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
+                newRoom.transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
                 finishPlaced = true;
             }
         }

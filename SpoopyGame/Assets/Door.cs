@@ -6,8 +6,8 @@ public class Door : MonoBehaviour
     public bool isLocked { get; set; }
     public Vector3 roomCenterDirection { get; set; }
     public Vector3 position { get; set; }
-    private Room room { get; set; }
-    private Door otherDoor { get; set; }
+    public Room room;
+    public Door otherDoor;
     public int sizeOfWall { get; set; }
     public bool used;
 

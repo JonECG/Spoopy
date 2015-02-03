@@ -17,24 +17,27 @@ public class Room : MonoBehaviour {
     public int sizeZ;
     public int roomDepth;
     public bool isPlayerRoom = false;
+    public Vector3 startingPosition;
+    public bool visualized { get; set; }
 	// Use this for initialization
 	void Start () 
     {
-        
+        startingPosition = this.transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update () {}
+
+    void LateUpdate()
     {
-        if (sightWeight <= 1)
-        {
-            //this.gameObject.SetActive(true);
-        }
-        else
-        {
-            //this.gameObject.SetActive(false);
-        }
-	}
+        visualized = false;
+    }
+
+
+    public void setStartingPositoin(Vector3 position)
+    {
+        startingPosition = position;
+    }
 
     public int getWeight()
     {
@@ -67,7 +70,7 @@ public class Room : MonoBehaviour {
         }
         
         this.transform.position = connectingDoor.transform.position + doors[doorSelection].getVectorToRoom();
-
+        startingPosition = this.transform.position;
         doors[doorSelection].connectDoor(connectingDoor);
         connectingDoor.connectDoor(doors[doorSelection]);
     }
@@ -75,9 +78,7 @@ public class Room : MonoBehaviour {
     private void rotateRoom(float angle)
     {
         this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -angle);
-        
     }
-
 
     public void createRoom(string roomName)
     {
@@ -87,7 +88,6 @@ public class Room : MonoBehaviour {
             doors[i].setRoom(this);
         }
     }
-
 
     public void createRoom(int x, int z, int numDoors, RoomGeneratorScript roomGen)
     {
@@ -113,7 +113,7 @@ public class Room : MonoBehaviour {
         BoxCollider roomColider = this.GetComponent<BoxCollider>();
         roomColider.center = this.transform.position;
         roomColider.transform.parent = this.transform;
-        roomColider.size = new Vector3((sizeX * 2) - 0.5f, 1.0f, (sizeZ * 2) - 0.5f);
+        roomColider.size = new Vector3((sizeX * 2) - 0.8f, 1.0f, (sizeZ * 2) - 0.8f);
         roomColider.isTrigger = true;
         
     }
