@@ -43,5 +43,7 @@ public class DEBUGVIEW : MonoBehaviour {
         {
             HeadsUpDisplayController.Instance.DrawText(action.GetType().Name, hOff + hGap, vOff - vGap * (row++), Color.yellow, textSize);
         }
+
+        HeadsUpDisplayController.Instance.DrawText(b.lastMotivation.Action.GetType().Name, hOff + hGap, vOff - vGap * (row++), Color.green, textSize);
 	}
 }

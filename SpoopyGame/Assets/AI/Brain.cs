@@ -7,7 +7,7 @@ public class Brain : MonoBehaviour {
     public float Reflexiveness = 1;
     public float Stubbornness = 0;
     public float AttentionLossTime = 1.0f;
-    private Motivation lastMotivation;
+    public Motivation lastMotivation;
     private Vector3 lastPosition;
 
     public float CertaintyOfDirection { get; protected set; }
@@ -74,21 +74,27 @@ public class Brain : MonoBehaviour {
         float heldInvPlayerCertainty = 1;
         float heldInvAlertness = 1;
 
+        int accountedSenses = 0;
+
         foreach (SenseInterface sense in senses)
         {
-            SensedInfo sensed = sense.Sense();
+            if (sense.contributesToThought)
+            {
+                SensedInfo sensed = sense.Sense();
 
-            heldDirection += sensed.CertaintyOfDirection * sensed.SensedDirection;
-            heldDistance += sensed.CertaintyOfDistance * sensed.SensedDistance;
-            heldInvDistanceCertainty *= 1 - sensed.CertaintyOfDistance;
-            heldInvDirectionCertainty *= 1 - sensed.CertaintyOfDirection;
-            heldInvPlayerCertainty *= 1 - sensed.CertaintyIsPlayer;
-            heldInvAlertness *= 1 - sensed.AlertingFactor;
+                heldDirection += sensed.CertaintyOfDirection * sensed.SensedDirection;
+                heldDistance += sensed.CertaintyOfDistance * sensed.SensedDistance;
+                heldInvDistanceCertainty *= 1 - sensed.CertaintyOfDistance;
+                heldInvDirectionCertainty *= 1 - sensed.CertaintyOfDirection;
+                heldInvPlayerCertainty *= 1 - sensed.CertaintyIsPlayer;
+                heldInvAlertness *= 1 - sensed.AlertingFactor;
+                accountedSenses++;
+            }
         }
 
-        heldDirection /= senses.Length;
+        heldDirection /= accountedSenses;
         heldDirection.Normalize();
-        heldDistance /= senses.Length;
+        heldDistance /= accountedSenses;
 
         Alertness = Mathf.Max( 0, Alertness - Time.deltaTime / AttentionLossTime, (1 - heldInvAlertness) );
         PerceivedDistance = SenseLerp(PerceivedDistance, heldDistance, 1 - heldInvDistanceCertainty);
