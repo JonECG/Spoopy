@@ -137,7 +137,7 @@ public class ItemHandler : MonoBehaviour
                 else if (doors[selection - items.Length].isGrabbed)
                     HeadsUpDisplayController.Instance.DrawText("Turn to Move the Door",0,0,Color.blue);
                 else if (!doors[selection - items.Length].isGrabbed)
-                    HeadsUpDisplayController.Instance.DrawText("Press (A) to Grab Handle",0,0,Color.blue);
+                    HeadsUpDisplayController.Instance.DrawText("Hold (A) to Grab Handle",0,0,Color.blue);
                 //Add more else ifs for more heads up displays if needed, I'm going to bed
             }
             else

@@ -8,6 +8,8 @@ public class ItemInteraction : MonoBehaviour {
     public bool isTakeable = false;
     Debouncer.DebouncerResults throwCorrected;
 
+    float lastTimeNotHeld;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -45,6 +47,16 @@ public class ItemInteraction : MonoBehaviour {
             {
                 isPickedUp = false;
             }
+
+            if (Time.time - lastTimeNotHeld > 20 && ItemInventory.objects.Count == 0)
+            {
+                HeadsUpDisplayController.Instance.DrawText("You can store multiple items in your inventory", 0, 0, Color.yellow, 0.05f);
+                HeadsUpDisplayController.Instance.DrawText("To access your inventory look down to your left", 0, -0.2f, Color.yellow, 0.05f);
+            }
+        }
+        else
+        {
+            lastTimeNotHeld = Time.time;
         }
 
         if (ItemInventory.isInBag(this) && !ItemInventory.isOpen)
