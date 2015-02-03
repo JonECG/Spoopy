@@ -19,7 +19,7 @@ public class FallToTop : MonoBehaviour {
         {
             GameObject transport = GameObject.Find("AtTop");
 
-            other.transform.position = transport.transform.position;
+            other.transform.position = new Vector3(other.transform.position.x, transport.transform.position.y, other.transform.position.z);
         }
     }
 }
