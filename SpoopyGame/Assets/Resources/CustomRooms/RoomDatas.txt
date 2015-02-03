@@ -15,3 +15,5 @@ JaggedCornerRoom,2;
 YRoomMonstMiddle,3;
 GameStartRoom,1;
 LevelStartRoom,1;
+FallingRoom,2;
+Invisible Floor Room,2;

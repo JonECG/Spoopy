@@ -21,6 +21,7 @@ public class ItemInventory : MonoBehaviour
         viewing = GameObject.Find("LitCamera").camera;
         isOpen = false;
         objects = new List<GameObject>();
+        this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -90.0f);
 	}
 	
 	// Update is called once per frame
@@ -45,6 +46,7 @@ public class ItemInventory : MonoBehaviour
                 objects[i].transform.position = transform.position + ( new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * ( Mathf.Sqrt( objects.Count ) - 1 ) ) + new Vector3(0, 1.0f, 0); ;
             }
         }
+        
 	}
 
     static public void storeItem(ItemInteraction item)

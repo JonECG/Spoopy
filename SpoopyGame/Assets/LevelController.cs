@@ -11,8 +11,8 @@ public class LevelController : MonoBehaviour {
     public int roomMod;
     public int seededValue;
     private bool finishPlaced;
-    private bool firstLevel;
-    private bool newLevel;
+    private static bool firstLevel;
+    private static bool newLevel;
     private DarkVision playerVision;
     private int odds;
     RoomGeneratorScript roomGen;
@@ -21,11 +21,9 @@ public class LevelController : MonoBehaviour {
 
 	void Start () {
         Random.seed = seededValue;
-        firstLevel = true;
         playerVision = FindObjectOfType<DarkVision>();
         CreateLevel();
         newLevel = false;
-        
 	}
 
     void Update()
@@ -46,7 +44,7 @@ public class LevelController : MonoBehaviour {
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-        CreateLevel();
+        Application.LoadLevel("DoungenGenreationScene");
     }
 
     private void CreateLevel()
@@ -59,7 +57,7 @@ public class LevelController : MonoBehaviour {
         numberOfRooms = numberOfRooms + 5;
         roomGen = this.GetComponent<RoomGeneratorScript>();
         prebuildFirstRoom();
-        if (!firstLevel)
+        if (firstLevel)
         {
             genreateMap(numberOfRooms);
         }
@@ -68,7 +66,7 @@ public class LevelController : MonoBehaviour {
             Triggerable[] finalRoomListener = new Triggerable[1];
             finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
             first.transform.FindChild("FinishRoom").transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
-            firstLevel = false;
+            firstLevel = true;
         }
         RoomVisualizerScript.weightDungeon(first.GetComponent<Room>());
         RoomVisualizerScript.visualizeRooms(first.GetComponent<Room>());
@@ -95,7 +93,7 @@ public class LevelController : MonoBehaviour {
     private void prebuildFirstRoom()
     {
         RoomInfo room;
-        if (firstLevel)
+        if (!firstLevel)
         {
             room = CustomRooms.Rooms.Where(n => n.name == "GameStartRoom").FirstOrDefault();
         }
@@ -237,7 +235,6 @@ public class LevelController : MonoBehaviour {
                         newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
                     }
                     newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, useFirstDoor);
-                    newRoom.gameObject.transform.SetParent(LevelContainer.transform);
                     genreateRooms(newRoom, roomDistribution[distributionIndex]);
                     distributionIndex++;
                     odds++;
