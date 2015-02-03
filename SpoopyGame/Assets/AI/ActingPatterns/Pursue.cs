@@ -13,6 +13,5 @@ public class Pursue : ActingInterface
 
         transform.LookAt(goHere);
         transform.Translate((transform.forward.normalized * Mathf.Min( pursueSpeed * Time.deltaTime, Mathf.Max( Vector3.Distance( goHere, transform.position ) - 0.01f, 0 ) ) ), Space.World);
-        //GetComponent<SoundStatePlayer>().SetState("Chase");
     }
 }

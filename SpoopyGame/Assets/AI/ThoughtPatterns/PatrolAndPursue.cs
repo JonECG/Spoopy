@@ -15,13 +15,16 @@ public class PatrolAndPursue : ThoughtInterface {
 
         bool isPursued = perceived.Alertness > threshold;
 
-        if( isPursued )
-            GetComponent<SoundStatePlayer>().SetState("Patrol");
-        else
-            GetComponent<SoundStatePlayer>().SetState("Chase");
+        if (GetComponent<SoundStatePlayer>() != null)
+        {
+            if (isPursued)
+                GetComponent<SoundStatePlayer>().SetState("Patrol");
+            else
+                GetComponent<SoundStatePlayer>().SetState("Chase");
 
-        if( isPursued && !wasPursued )
-            GetComponent<SoundStatePlayer>().PlaySoundFrom("FoundPlayer");
+            if (isPursued && !wasPursued)
+                GetComponent<SoundStatePlayer>().PlaySoundFrom("FoundPlayer");
+        }
 
         motivate.Action = (perceived.Alertness > threshold) ? pursueAction : patrolAction;
         motivate.MotivationFactor = 1;

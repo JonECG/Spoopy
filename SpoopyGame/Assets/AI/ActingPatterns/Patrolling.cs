@@ -31,6 +31,5 @@ public class Patrolling : ActingInterface
         }
         transform.LookAt(new Vector3(goHere.x, transform.position.y, goHere.z));
         transform.Translate((transform.forward.normalized * patrolSpeed) * Time.deltaTime, Space.World);
-        //GetComponent<SoundStatePlayer>().SetState("Patrol");
     }
 }
