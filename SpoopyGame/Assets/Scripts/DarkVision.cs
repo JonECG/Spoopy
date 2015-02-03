@@ -13,7 +13,7 @@ public class DarkVision : MonoBehaviour {
     public float grandPower = 4;
     public float tweenResistance = 100;
 
-	void Start () 
+	void Awake () 
 	{
         maxIntensity = light.intensity;
         maxRange = light.range;

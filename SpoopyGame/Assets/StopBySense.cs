@@ -6,6 +6,7 @@ public class StopBySense : ThoughtInterface {
     public SenseInterface stoppingSense;
 
     private SpikeyBits spike;
+    int lastMode;
 
     public ActingInterface NotKnown, KnownButSenseStopped, Known;
 
@@ -35,6 +36,18 @@ public class StopBySense : ThoughtInterface {
         {
             mot.Action = NotKnown;
             spike.enabled = false;
+        }
+
+        if (GetComponent<SoundStatePlayer>() != null)
+        {
+            GetComponent<SoundStatePlayer>().SetState("SenseBlocked");
+            //if (isPursued)
+            //    GetComponent<SoundStatePlayer>().SetState("Patrol");
+            //else
+            //    GetComponent<SoundStatePlayer>().SetState("Chase");
+
+            //if (isPursued && !wasPursued)
+            //    GetComponent<SoundStatePlayer>().PlaySoundFrom("FoundPlayer");
         }
 
         mot.MotivationFactor = 1;

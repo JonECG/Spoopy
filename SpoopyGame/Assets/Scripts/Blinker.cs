@@ -16,6 +16,9 @@ public class Blinker : MonoBehaviour
 	void Update () 
     {
         BlinkLeftPercentage = Mathf.Clamp(BlinkLeftPercentage + ((Input.GetAxis("BlinkLeft") > 0.0f) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);
-        BlinkRightPercentage = Mathf.Clamp(BlinkRightPercentage + ((Input.GetAxis("BlinkRight") > 0.0f) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);  
-	}
+        BlinkRightPercentage = Mathf.Clamp(BlinkRightPercentage + ((Input.GetAxis("BlinkRight") > 0.0f) ? 2 : -1) * BlinkSpeed * Time.deltaTime, 0, 1);
+
+        BlinkLeftPercentage = Mathf.Max(BlinkLeftPercentage, BlinkRightPercentage);
+        BlinkRightPercentage = BlinkLeftPercentage;
+    }
 }
