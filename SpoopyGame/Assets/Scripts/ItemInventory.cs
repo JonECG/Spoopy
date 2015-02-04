@@ -38,6 +38,12 @@ public class ItemInventory : MonoBehaviour
 
         transform.localPosition = (transform.localPosition * tweenResistance + ((isDrawnOut) ? desiredLocalPlacement : unusedLocalPlacement)) / (tweenResistance + 1);
 
+        for (int i = 0; i < objects.Count; i++)
+        {
+            if( objects[i] != null )
+                objects[i].transform.parent = null;
+        }
+
         if (isOpen)
         {
             for (int i = 0; i < objects.Count; i++)

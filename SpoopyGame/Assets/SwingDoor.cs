@@ -50,15 +50,15 @@ public class SwingDoor : MonoBehaviour {
 	
 	void Update () 
 	{
-        if (Input.GetKey(KeyCode.O))
-        {
-            CurrentSwing -= 50 * Time.deltaTime;
-        }
+        //if (Input.GetKey(KeyCode.O))
+        //{
+        //    CurrentSwing -= 50 * Time.deltaTime;
+        //}
 
-        if (Input.GetKey(KeyCode.P))
-        {
-            CurrentSwing += 50 * Time.deltaTime;
-        }
+        //if (Input.GetKey(KeyCode.P))
+        //{
+        //    CurrentSwing += 50 * Time.deltaTime;
+        //}
 
         
 

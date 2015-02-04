@@ -33,6 +33,11 @@ public class LevelController : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            firstLevel = true;
+            Application.LoadLevel("DoungenGenreationScene");
+        }
         if (newLevel)
         {
             StartCoroutine(lowerVisionLight(playerVision.adjustedLight, new Vector3(1.0f, 1.0f, 1.0f), 1.0f));
