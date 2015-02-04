@@ -6,7 +6,7 @@ public class DeathHelper : MonoBehaviour {
     private static string[] message = { "" };
     private static float lastTimeRecorded = -50;
 
-    private static float messageDuration = 8;
+    private static float messageDuration = 14;
     private static float roomStart;
 
 	void Start () 
