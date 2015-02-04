@@ -2,24 +2,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 public enum DoorFrequency
 {
     Never = 0, Normal = 1, Always = 2
 }
 
-public struct RoomInfo
+public class RoomInfo
 {
     public string name;
     public GameObject gameObjectReference;
     public int numOfDoors;
     public DoorFrequency physicalDoorFrequency;
+    internal int count = 0;
 }
 
 public static class CustomRooms
 {
 
     public static IEnumerable<RoomInfo> Rooms { get; private set; }
+
+    public static void ResetCounts()
+    {
+        foreach(RoomInfo room in Rooms)
+        {
+            room.count = 0;
+        }
+    }
+
+    public static RoomInfo GetRandomOf(IEnumerable<RoomInfo> selection)
+    {
+        int low = selection.Min( n=>n.count );
+        List<RoomInfo> lowest = selection.Where(n => n.count == low).ToList();
+        RoomInfo result = lowest[Random.Range(0, lowest.Count)];
+        result.count++;
+        return result;
+    }
 
     static string[] GetLineFiles(string s, params char[] separators)
     {

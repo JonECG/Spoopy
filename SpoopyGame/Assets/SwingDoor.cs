@@ -18,6 +18,7 @@ public class SwingDoor : MonoBehaviour {
     public ColorCode adjColor;
 
     public AudioClip unlockSound;
+    public GameObject unlockEffect;
 
     public float CurrentSwing
     {

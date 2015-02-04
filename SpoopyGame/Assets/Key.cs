@@ -26,6 +26,7 @@ public class Key : MonoBehaviour {
             if (swdoor.color == color)
             {
                 swdoor.Locked = false;
+                swdoor.unlockEffect.particleSystem.Play();
                 SoundManagerController.Instance.PlaySoundAt(swdoor.unlockSound, swdoor.transform);
             }
         }
