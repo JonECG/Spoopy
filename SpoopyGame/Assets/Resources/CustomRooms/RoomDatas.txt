@@ -1,5 +1,5 @@
 StartingRoom,1,1;
-FinishRoom,1,1;
+FinishRoom,1,2;
 CornerTruncRoom,2,1;
 InsanityRoom,1,1;
 PillarRoom,4,1;

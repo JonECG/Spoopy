@@ -260,4 +260,18 @@ public class Room : MonoBehaviour {
             doors[i].addCollider();
         }
     }
+
+    public void lockDoors(GameObject swingDoor)
+    {
+        for (int i = 0; i < doors.Count; i++)
+        {
+                Vector3 doorShiftedPosition = doors[i].transform.position;
+                GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
+                newSwingDoor.transform.right = doors[i].transform.forward;
+                newSwingDoor.transform.parent = doors[i].transform;
+                ColorCodeValues keyColor = GetRandomColorEnum();
+                newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().color = keyColor;
+                newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = true;
+        }
+    }
 }

@@ -294,6 +294,7 @@ public class LevelController : MonoBehaviour {
                 finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
                 newRoom.transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
                 newRoom.GetComponent<Room>().freq = room.physicalDoorFrequency;
+                newRoom.GetComponent<Room>().lockDoors(doorPrefab);
                 finishPlaced = true;
             }
         }
