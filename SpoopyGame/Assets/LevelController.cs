@@ -26,6 +26,7 @@ public class LevelController : MonoBehaviour {
         doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMin = -90.0f;
         doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = false;
         playerVision = FindObjectOfType<DarkVision>();
+        CustomRooms.ResetCounts();
         CreateLevel();
         newLevel = false;
 	}
@@ -54,6 +55,7 @@ public class LevelController : MonoBehaviour {
     private void CreateLevel()
     {
         ClearDungeon();
+        CustomRooms.ResetCounts();
         LevelContainer = new GameObject();
         LevelContainer.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         finishPlaced = false;
@@ -269,19 +271,18 @@ public class LevelController : MonoBehaviour {
         GameObject newRoom;
         if (!endRoom)
         {
-            List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == numDoors).ToList();
-            int randomSelection = Random.Range(0, room.Count);
-            newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
-            newRoom.GetComponent<Room>().freq = room[randomSelection].physicalDoorFrequency;
+            RoomInfo room = CustomRooms.GetRandomOf(CustomRooms.Rooms.Where(n => n.numOfDoors == numDoors).ToList());
+            newRoom = Instantiate(room.gameObjectReference) as GameObject;
+            newRoom.GetComponent<Room>().freq = room.physicalDoorFrequency;
         }
         else
         {
             if (finishPlaced)
             {
-                List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom" && n.name != "LevelStartRoom")).ToList();
-                int randomSelection = Random.Range(0, room.Count);
-                newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
-                newRoom.GetComponent<Room>().freq = room[randomSelection].physicalDoorFrequency;
+                RoomInfo room = CustomRooms.GetRandomOf(CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom" && n.name != "LevelStartRoom")).ToList());
+
+                newRoom = Instantiate(room.gameObjectReference) as GameObject;
+                newRoom.GetComponent<Room>().freq = room.physicalDoorFrequency;
             }
             else
             {
