@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour {
     public int maxRoomSize;
     public GameObject baseRoom;
     public GameObject player;
+    public GameObject doorPrefab;
     public int roomMod;
     public int seededValue;
     private bool finishPlaced;
@@ -21,6 +22,9 @@ public class LevelController : MonoBehaviour {
 
 	void Start () {
         Random.seed = seededValue;
+        doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMax = 90.0f;
+        doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMin = -90.0f;
+        doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = false;
         playerVision = FindObjectOfType<DarkVision>();
         CreateLevel();
         newLevel = false;
@@ -173,7 +177,7 @@ public class LevelController : MonoBehaviour {
             }
             newRoom.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, numDoors, roomGen);
             newRoom.GetComponent<Room>().roomDepth = roomDistribution[distributionIndex];
-            newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX);
+            newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], newRoom.GetComponent<Room>().sizeX, doorPrefab);
             newRoom.gameObject.transform.SetParent(LevelContainer.transform);
             genreateRooms(newRoom, roomDistribution[distributionIndex]);
             distributionIndex++;
@@ -234,7 +238,7 @@ public class LevelController : MonoBehaviour {
                     {
                         newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
                     }
-                    newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, useFirstDoor);
+                    newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, doorPrefab, useFirstDoor);
                     genreateRooms(newRoom, roomDistribution[distributionIndex]);
                     distributionIndex++;
                     odds++;

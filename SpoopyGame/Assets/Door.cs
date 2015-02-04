@@ -45,6 +45,7 @@ public class Door : MonoBehaviour
     {
         otherDoor = other;
         other.otherDoor = (this);
+        other.used = true;
         used = true;
     }
 

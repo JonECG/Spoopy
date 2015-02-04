@@ -37,6 +37,7 @@ public class Room : MonoBehaviour {
     public void setStartingPositoin(Vector3 position)
     {
         startingPosition = position;
+        
     }
 
     public int getWeight()
@@ -49,7 +50,7 @@ public class Room : MonoBehaviour {
         sightWeight = newWeight;
     }
 
-    public void placeGenRoom(Door connectingDoor, int wallSize, bool SelectFirst = false)
+    public void placeGenRoom(Door connectingDoor, int wallSize, GameObject swingDoor, bool SelectFirst = false)
     {   
         int doorSelection = 0;
         if (!SelectFirst)
@@ -72,7 +73,21 @@ public class Room : MonoBehaviour {
         this.transform.position = connectingDoor.transform.position + doors[doorSelection].getVectorToRoom();
         startingPosition = this.transform.position;
         doors[doorSelection].connectDoor(connectingDoor);
+        spawnDoors(swingDoor);
+    }
 
+    private void spawnDoors(GameObject swingDoor)
+    {
+        for (int i = 0; i < doors.Count; i++)
+        {
+            if (!doors[i].used)
+            {
+                Vector3 doorShiftedPosition = doors[i].transform.position;
+                GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
+                newSwingDoor.transform.right = doors[i].transform.forward;
+                newSwingDoor.transform.parent = this.transform;
+            }
+        }
     }
 
     private void rotateRoom(float angle)
