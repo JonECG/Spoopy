@@ -19,6 +19,7 @@ public class Room : MonoBehaviour {
     public bool isPlayerRoom = false;
     public Vector3 startingPosition;
     public bool visualized { get; set; }
+    public DoorFrequency freq;
 	// Use this for initialization
 	void Start () 
     {
@@ -78,16 +79,28 @@ public class Room : MonoBehaviour {
 
     private void spawnDoors(GameObject swingDoor)
     {
-        for (int i = 0; i < doors.Count; i++)
+        if (freq != DoorFrequency.Never)
         {
-            if (!doors[i].used)
+            for (int i = 0; i < doors.Count; i++)
             {
-                Vector3 doorShiftedPosition = doors[i].transform.position;
-                GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
-                newSwingDoor.transform.right = doors[i].transform.forward;
-                newSwingDoor.transform.parent = this.transform;
+                bool makeDoor = true;
+                if (freq == DoorFrequency.Normal)
+                {
+                    if (Random.value < 0.5f)
+                    {
+                        makeDoor = false;
+                    }
+                }
+                if (!doors[i].used && makeDoor)
+                {
+                    Vector3 doorShiftedPosition = doors[i].transform.position;
+                    GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
+                    newSwingDoor.transform.right = doors[i].transform.forward;
+                    newSwingDoor.transform.parent = this.transform;
+                }
             }
         }
+
     }
 
     private void rotateRoom(float angle)

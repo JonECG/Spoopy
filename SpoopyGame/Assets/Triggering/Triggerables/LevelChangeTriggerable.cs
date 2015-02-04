@@ -15,6 +15,7 @@ public class LevelChangeTriggerable : Triggerable{
 
     public override void Triggered(string id)
     {
+        this.GetComponent<LevelController>().finishStartingLevel();
         this.GetComponent<LevelController>().activateNewLevel();
     }
 }

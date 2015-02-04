@@ -70,7 +70,6 @@ public class LevelController : MonoBehaviour {
             Triggerable[] finalRoomListener = new Triggerable[1];
             finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
             first.transform.FindChild("FinishRoom").transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
-            firstLevel = true;
         }
         RoomVisualizerScript.weightDungeon(first.GetComponent<Room>());
         RoomVisualizerScript.visualizeRooms(first.GetComponent<Room>());
@@ -82,6 +81,11 @@ public class LevelController : MonoBehaviour {
         {
             player.transform.position = first.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
         }
+    }
+
+    public void finishStartingLevel()
+    {
+        firstLevel = true;
     }
 
     public void activateNewLevel()
@@ -256,6 +260,7 @@ public class LevelController : MonoBehaviour {
             newRoom.GetComponent<Room>().endRoom = true;
         }
         newRoom.GetComponent<Room>().createRoom(x, z, doorCount, roomGen);
+        newRoom.GetComponent<Room>().freq = DoorFrequency.Always;
         return newRoom;
     }
 
@@ -267,6 +272,7 @@ public class LevelController : MonoBehaviour {
             List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == numDoors).ToList();
             int randomSelection = Random.Range(0, room.Count);
             newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
+            newRoom.GetComponent<Room>().freq = room[randomSelection].physicalDoorFrequency;
         }
         else
         {
@@ -275,6 +281,7 @@ public class LevelController : MonoBehaviour {
                 List<RoomInfo> room = CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom" && n.name != "LevelStartRoom")).ToList();
                 int randomSelection = Random.Range(0, room.Count);
                 newRoom = Instantiate(room[randomSelection].gameObjectReference) as GameObject;
+                newRoom.GetComponent<Room>().freq = room[randomSelection].physicalDoorFrequency;
             }
             else
             {
@@ -283,11 +290,13 @@ public class LevelController : MonoBehaviour {
                 Triggerable[] finalRoomListener = new Triggerable[1];
                 finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
                 newRoom.transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
+                newRoom.GetComponent<Room>().freq = room.physicalDoorFrequency;
                 finishPlaced = true;
             }
         }
         newRoom.transform.position = Vector3.zero;
         newRoom.GetComponent<Room>().createRoom("NewRoom");
+
         newRoom.GetComponent<Room>().roomDepth = depth;
         return newRoom;
     }
