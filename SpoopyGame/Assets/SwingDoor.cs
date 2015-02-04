@@ -42,9 +42,9 @@ public class SwingDoor : MonoBehaviour {
 	void Start () 
 	{
         adjColor = ColorCode.FromValue(color);
-        if (Locked)
+        //if (Locked)
         {
-            transform.FindChild("DoorKnob").renderer.material.color = ColorCode.FromValue( color ).Color;
+            transform.FindChild("DoorKnob").renderer.material.color = (Locked) ? ColorCode.FromValue( color ).Color : new Color(0.5f,0.25f,0.1f);
         }
 	}
 	

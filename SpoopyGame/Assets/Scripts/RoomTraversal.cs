@@ -99,11 +99,18 @@ public class RoomTraversal : MonoBehaviour {
             if (neededItems.Count > 0)
             {
                 List<Room> newlyAvailableRooms = nowAvailableRooms.Except(accessibleRooms).ToList();
-                int item = neededItems[Random.Range(0, neededItems.Count)];
+                int item;
+
+                do
+                {
+                    item = neededItems[Random.Range(0, neededItems.Count)];
+                }
+                while (item == 1 << (int)ColorCodeValues.White && neededItems.Count > 1);
+
                 Room placeRoom = newlyAvailableRooms[Random.Range(0, newlyAvailableRooms.Count)];
 
                 currentMask |= item;
-                Debug.LogError("Placed " + item + " in " + placeRoom.name);
+                Debug.Log("Placed " + item + " in " + placeRoom.name);
 
                 var placesForKey = placeRoom.transform.Cast<Transform>().Where(c => c.gameObject.tag == "ItemDropArea").ToArray();
 
