@@ -8,6 +8,8 @@ public class SpikeyBits : MonoBehaviour {
     public float range = 1;
     private HealthyLiving target;
 
+    public string[] hint = { "" };
+
 	void Start () 
 	{
         target = FindObjectOfType<HealthyLiving>();
@@ -17,6 +19,8 @@ public class SpikeyBits : MonoBehaviour {
 	{
         if (Vector3.SqrMagnitude(transform.position - target.transform.position) < range * range)
         {
+            if (!string.IsNullOrEmpty(hint[0]))
+                DeathHelper.RecordMessage(hint);
             target.health -= damage;
         }
 	}

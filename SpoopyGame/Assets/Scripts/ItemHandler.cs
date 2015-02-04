@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ItemHandler : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class ItemHandler : MonoBehaviour
     Debouncer.DebouncerResults storeCorrected;
     Debouncer.DebouncerResults interactCorrected;
 
+    ItemInventory inventory;
+    //ItemInteraction[] items;
+    //DoorKnob[] doors;
+
 	// Use this for initialization
 	void Start ()
     {
-
+        inventory = FindObjectOfType<ItemInventory>();
+        //items = FindObjectsOfType<ItemInteraction>();
+        //doors = FindObjectsOfType<DoorKnob>();
 	}
 	
 	// Update is called once per frame
@@ -22,11 +29,8 @@ public class ItemHandler : MonoBehaviour
         storeCorrected = Debouncer.Debounce("Store", storeCorrected);
         interactCorrected = Debouncer.Debounce("Interact", interactCorrected);
 
-        ItemInventory inventory = FindObjectOfType<ItemInventory>();
-
-        ItemInteraction[] items = FindObjectsOfType<ItemInteraction>();
-
-        DoorKnob[] doors = FindObjectsOfType<DoorKnob>();
+        List<ItemInteraction> items = ItemInteraction.allItems;
+        List<DoorKnob> doors = DoorKnob.allDoors;
 
         float angle = 360.0f;
 
@@ -35,38 +39,44 @@ public class ItemHandler : MonoBehaviour
         angle = Vector3.Angle(playerHead.transform.forward, inventory.transform.position - playerHead.transform.position);
 
         int selection = -1;
-        for (int i = 0; i < items.Length && angle>0; i++)
+        for (int i = 0; i < items.Count && angle>0; i++)
         {
-            if (Vector3.Distance(playerHead.transform.position, items[i].transform.position)<3 && Vector3.Angle(playerHead.transform.forward, items[i].transform.position - playerHead.transform.position) < angle)
+            if (items[i] != null)
             {
-                angle = Vector3.Angle(playerHead.transform.forward, items[i].transform.position - playerHead.transform.position);
-                selection = i;
-            }
+                if (Vector3.Distance(playerHead.transform.position, items[i].transform.position) < 3 && Vector3.Angle(playerHead.transform.forward, items[i].transform.position - playerHead.transform.position) < angle)
+                {
+                    angle = Vector3.Angle(playerHead.transform.forward, items[i].transform.position - playerHead.transform.position);
+                    selection = i;
+                }
 
-            if (items[i].isPickedUp)
-            {
-                angle = 0;
-                selection = i;
+                if (items[i].isPickedUp)
+                {
+                    angle = 0;
+                    selection = i;
+                }
             }
         }
 
-        for (int i = 0; i < doors.Length && angle > 0; i++)
+        for (int i = 0; i < doors.Count && angle > 0; i++)
         {
-            if (Vector3.Distance(playerHead.transform.position, doors[i].transform.position) < 3 && Vector3.Angle(playerHead.transform.forward, doors[i].transform.position - playerHead.transform.position) < angle)
+            if (doors[i] != null)
             {
-                angle = Vector3.Angle(playerHead.transform.forward, doors[i].transform.position - playerHead.transform.position);
-                selection = i+items.Length;
-            }
-            if (doors[i].isGrabbed)
-            {
-                angle = 0;
-                selection = i+items.Length;
+                if (Vector3.Distance(playerHead.transform.position, doors[i].transform.position) < 3 && Vector3.Angle(playerHead.transform.forward, doors[i].transform.position - playerHead.transform.position) < angle)
+                {
+                    angle = Vector3.Angle(playerHead.transform.forward, doors[i].transform.position - playerHead.transform.position);
+                    selection = i + items.Count;
+                }
+                if (doors[i].isGrabbed)
+                {
+                    angle = 0;
+                    selection = i + items.Count;
+                }
             }
         }
 
         if (angle < 25)
         {
-            if (selection >=0  && selection<items.Length)
+            if (selection >= 0 && selection < items.Count)
             {
                 //Picking up
                 if (pickupCorrected.IsPressed() && !items[selection].isPickedUp)
@@ -118,25 +128,25 @@ public class ItemHandler : MonoBehaviour
                     HeadsUpDisplayController.Instance.DrawText("Press (A) to " + (items[selection].isTakeable ? "Take" : "Pick up"), 0, 0.2f, Color.blue);
                 }
             }
-            else if (selection >= (items.Length))
+            else if (selection >= (items.Count))
             {
-                if (interactCorrected.IsPressed() && !doors[selection - items.Length].isGrabbed)
+                if (interactCorrected.IsPressed() && !doors[selection - items.Count].isGrabbed)
                 {
-                    doors[selection - items.Length].isGrabbed = true;
-                    doors[selection - items.Length].door.RequestUnlatch();
-                    doors[selection - items.Length].grabbedDistance = Vector3.Distance(doors[selection - items.Length].transform.position, playerHead.transform.position);
+                    doors[selection - items.Count].isGrabbed = true;
+                    doors[selection - items.Count].door.RequestUnlatch();
+                    doors[selection - items.Count].grabbedDistance = Vector3.Distance(doors[selection - items.Count].transform.position, playerHead.transform.position);
                 }
-                else if ((interactCorrected.IsReleased() || (Vector3.Distance(playerHead.transform.position, doors[selection - items.Length].transform.position) > 3)) && doors[selection - items.Length].isGrabbed)
+                else if ((interactCorrected.IsReleased() || (Vector3.Distance(playerHead.transform.position, doors[selection - items.Count].transform.position) > 3)) && doors[selection - items.Count].isGrabbed)
                 {
-                    doors[selection - items.Length].isGrabbed = false;
-                    doors[selection - items.Length].door.RequestLatch();
+                    doors[selection - items.Count].isGrabbed = false;
+                    doors[selection - items.Count].door.RequestLatch();
                 }
 
-                if (doors[selection - items.Length].door.Locked)
-                    HeadsUpDisplayController.Instance.DrawText("Locked -- Needs " + doors[selection - items.Length].door.adjColor.Name.ToUpper() + " Key", 0, 0, doors[selection - items.Length].door.adjColor.Color );
-                else if (doors[selection - items.Length].isGrabbed)
+                if (doors[selection - items.Count].door.Locked)
+                    HeadsUpDisplayController.Instance.DrawText("Locked -- Needs " + doors[selection - items.Count].door.adjColor.Name.ToUpper() + " Key", 0, 0, doors[selection - items.Count].door.adjColor.Color);
+                else if (doors[selection - items.Count].isGrabbed)
                     HeadsUpDisplayController.Instance.DrawText("Turn to Move the Door",0,0,Color.blue);
-                else if (!doors[selection - items.Length].isGrabbed)
+                else if (!doors[selection - items.Count].isGrabbed)
                     HeadsUpDisplayController.Instance.DrawText("Hold (A) to Grab Handle",0,0,Color.blue);
                 //Add more else ifs for more heads up displays if needed, I'm going to bed
             }

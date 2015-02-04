@@ -7,11 +7,15 @@ public class LightDetector : MonoBehaviour {
     public Vector3 averageColorAsVec;
     public Texture2D capturedTex;
 
+    public Blinker blink;
+
 	void Start () 
 	{
         RenderTexture r = new RenderTexture(16, 16, 16);
         r.Create();
         camera.targetTexture = r;
+
+        blink = FindObjectOfType<Blinker>();
 	}
 	
 	void OnPostRender () 
@@ -51,7 +55,7 @@ public class LightDetector : MonoBehaviour {
         Vector3 campos = camera.WorldToViewportPoint(go.transform.position);
         //if all the values are positive and between 0 and 1, this object is on screen.
 
-        float blinkCoverage = Mathf.Min(FindObjectOfType<Blinker>().BlinkLeftPercentage, FindObjectOfType<Blinker>().BlinkRightPercentage);
+        float blinkCoverage = Mathf.Min(blink.BlinkLeftPercentage, blink.BlinkRightPercentage);
         bool checkIfOnScreen = (campos.x > 0.0f && campos.x < 1.0f && campos.y > 0.0f && campos.y < 1.0f - blinkCoverage && campos.z > 0.0f);
 
         if (checkIfOnScreen)

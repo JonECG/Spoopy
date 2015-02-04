@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	
 	void Death () 
 	{
+        if (stable.insanity == 1)
+            DeathHelper.RecordMessage("Looking at unsettling objects will make you go insane", "You can press (LT) or (RT) to close your eyes");
         Application.LoadLevel(Application.loadedLevel);
 	}
 }

@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour {
     public float gravity = 0.9f;
     public float fallingSpeed = 0;
 
+    ItemInventory inventory;
+
 	// Use this for initialization
 	void Awake () {
         sprintStamina = 1;
@@ -37,7 +39,12 @@ public class PlayerMovement : MonoBehaviour {
         GameObject.Find("LitCamera").transform.SetParent( anchor, false );
         GameObject.Find("Headlamp").transform.SetParent(anchor, false);
 	}
-	
+
+    void Start()
+    {
+        inventory = FindObjectOfType<ItemInventory>();
+    }
+
 	// Update is called once per frame
 	void Update () {
 
@@ -56,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 
         fallingSpeed -= gravity * Time.deltaTime;
 
-        if (!FindObjectOfType<ItemInventory>().isDrawnOut)
+        if (!inventory.isDrawnOut)
         {
             movement += new Vector3(forwardReference.x, 0, forwardReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Vertical");
             movement += new Vector3(rightReference.x, 0, rightReference.z).normalized * (sprintCorrected.IsDown() && sprintStamina > 0 ? sprintMultiplier : 1) * Time.deltaTime * moveSpeed * Input.GetAxis("Horizontal");
@@ -94,12 +101,12 @@ public class PlayerMovement : MonoBehaviour {
 
         if (GameObject.Find("LeftEyeAnchor") != null)
         {
-            if (!FindObjectOfType<ItemInventory>().isDrawnOut)
+            if (!inventory.isDrawnOut)
                 transform.Rotate(new Vector3(0, 1, 0), longinalStick * mouseSensitivity * ( longinalStick > 0 ? moveMultiplier : invMoveMultiplier ));
         }
         else
         {
-            if (!FindObjectOfType<ItemInventory>().isDrawnOut)
+            if (!inventory.isDrawnOut)
                 transform.Rotate(new Vector3(0, 1, 0), (lateral + longinalStick ) * mouseSensitivity);
             head.Rotate(new Vector3(1, 0, 0), -(longinal) * mouseSensitivity);
         }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DoorKnob : MonoBehaviour {
 
@@ -8,12 +9,21 @@ public class DoorKnob : MonoBehaviour {
 
     public bool isGrabbed = false;
     public float grabbedDistance;
+
+    public static List<DoorKnob> allDoors = new List<DoorKnob>();
+
 	void Start () 
 	{
         door = transform.parent.GetComponent<SwingDoor>();
         looking = GameObject.Find( "LitCamera" );
 
+        allDoors.Add(this);
 	}
+
+    void OnDestroy()
+    {
+        allDoors.Remove(this);
+    }
 	
 	void Update () 
 	{

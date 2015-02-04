@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ItemInteraction : MonoBehaviour {
 
@@ -10,9 +11,12 @@ public class ItemInteraction : MonoBehaviour {
 
     float lastTimeNotHeld;
 
+    public static List<ItemInteraction> allItems = new List<ItemInteraction>();
+
 	// Use this for initialization
 	void Start ()
     {
+        allItems.Add(this);
         Renderer[] rends = GetComponentsInChildren<Renderer>();
 
         foreach (Renderer renderer in rends)
@@ -28,6 +32,11 @@ public class ItemInteraction : MonoBehaviour {
             renderer.materials = newMats;
         }
 	}
+
+    void OnDestroy()
+    {
+        allItems.Remove(this);
+    }
 	
 	// Update is called once per frame
 	void Update ()
