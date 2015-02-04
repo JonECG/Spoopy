@@ -11,9 +11,11 @@ public class Door : MonoBehaviour
     public int sizeOfWall { get; set; }
     public bool used;
 
+    public bool visited;
+
 	// Use this for initialization
 	void Start () {
-	    
+        visited = false;
 	}
 	
 	// Update is called once per frame

@@ -96,7 +96,7 @@ public class Room : MonoBehaviour {
                     Vector3 doorShiftedPosition = doors[i].transform.position;
                     GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
                     newSwingDoor.transform.right = doors[i].transform.forward;
-                    newSwingDoor.transform.parent = this.transform;
+                    newSwingDoor.transform.parent = doors[i].transform;
                 }
             }
         }
