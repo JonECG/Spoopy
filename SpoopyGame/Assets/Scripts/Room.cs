@@ -97,10 +97,24 @@ public class Room : MonoBehaviour {
                     GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
                     newSwingDoor.transform.right = doors[i].transform.forward;
                     newSwingDoor.transform.parent = doors[i].transform;
+                    ColorCodeValues keyColor = GetRandomColorEnum();
+                    newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().color = keyColor;
+                    if (Random.value < 0.3f)
+                    {
+                        newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = true;
+                        
+                    }
                 }
             }
         }
 
+    }
+
+    private ColorCodeValues GetRandomColorEnum()
+    {
+        System.Array A = System.Enum.GetValues(typeof(ColorCodeValues));
+        ColorCodeValues V = (ColorCodeValues)A.GetValue(UnityEngine.Random.Range(0, A.Length));
+        return V;
     }
 
     private void rotateRoom(float angle)
