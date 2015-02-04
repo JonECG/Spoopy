@@ -72,7 +72,7 @@ public class Room : MonoBehaviour {
         this.transform.position = connectingDoor.transform.position + doors[doorSelection].getVectorToRoom();
         startingPosition = this.transform.position;
         doors[doorSelection].connectDoor(connectingDoor);
-        connectingDoor.connectDoor(doors[doorSelection]);
+
     }
 
     private void rotateRoom(float angle)
@@ -87,6 +87,7 @@ public class Room : MonoBehaviour {
         {
             doors[i].setRoom(this);
         }
+        setUpDoors();
     }
 
     public void createRoom(int x, int z, int numDoors, RoomGeneratorScript roomGen)
@@ -94,6 +95,7 @@ public class Room : MonoBehaviour {
         setSize(x, z);
         genreateRoom(roomGen, numDoors);
         createRoomTrigger();
+        setUpDoors();
     }
 
     private void setSize(int x, int z) 
@@ -208,12 +210,11 @@ public class Room : MonoBehaviour {
         return foundDoor;
     }
 
-    void OnTriggerEnter(Collider other)
+    public void setUpDoors()
     {
-        if (other.gameObject.tag == "Player")
+        for (int i = 0; i < doors.Count; i++)
         {
-            RoomVisualizerScript.weightDungeon(this);
-            RoomVisualizerScript.visualizeRooms(this);
+            doors[i].addCollider();
         }
     }
 }

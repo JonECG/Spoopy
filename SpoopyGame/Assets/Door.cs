@@ -44,6 +44,7 @@ public class Door : MonoBehaviour
     public void connectDoor(Door other)
     {
         otherDoor = other;
+        other.otherDoor = (this);
         used = true;
     }
 
@@ -51,5 +52,26 @@ public class Door : MonoBehaviour
     {
         roomCenterDirection = room.transform.position -  this.transform.position ;
         return roomCenterDirection;
+    }
+
+    public void addCollider()
+    {
+        this.gameObject.AddComponent<BoxCollider>();
+        this.gameObject.GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 1.0f);
+        this.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Vector3 playerPos = this.transform.position - other.transform.position;
+            float dot = Vector3.Dot(playerPos.normalized, this.transform.forward.normalized);
+            if (dot > 0.0f)
+            {
+                RoomVisualizerScript.weightDungeon(this.room);
+                RoomVisualizerScript.visualizeRooms(this.room);
+            }
+        }
     }
 }

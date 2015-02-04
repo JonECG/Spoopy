@@ -17,3 +17,4 @@ GameStartRoom,1;
 LevelStartRoom,1;
 FallingRoom,2;
 Invisible Floor Room,2;
+Crazy EyeBall Room,1;

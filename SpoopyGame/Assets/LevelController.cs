@@ -53,7 +53,7 @@ public class LevelController : MonoBehaviour {
         LevelContainer = new GameObject();
         LevelContainer.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         finishPlaced = false;
-        Random.seed = Random.seed + 37 * 5;
+        Random.seed = Random.seed + 3775 * 3;
         numberOfRooms = numberOfRooms + 5;
         roomGen = this.GetComponent<RoomGeneratorScript>();
         prebuildFirstRoom();
