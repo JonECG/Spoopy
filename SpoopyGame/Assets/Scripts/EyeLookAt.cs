@@ -15,9 +15,9 @@ public class EyeLookAt : MonoBehaviour
         isUp = randomBoolean();
         isWeave = randomBoolean();
         isZMove = randomBoolean();
-        randomX = Random.Range(-0.2f, 0.2f);
-        randomY = Random.Range(-0.2f, 0.2f);
-        randomZ=Random.Range(-0.2f,0.2f);
+        randomX = Random.Range(-0.1f, 0.1f);
+        randomY = Random.Range(-0.1f, 0.1f);
+        randomZ=Random.Range(-0.1f,0.1f);
         transform.position = new Vector3(transform.position.x, transform.position.y + randomY, transform.position.z);
         transform.position = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + randomZ);
