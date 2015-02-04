@@ -11,6 +11,7 @@ public class Room : MonoBehaviour {
     public bool useStartVector;
     public Vector3 startVector;
     private bool hasPlayer { get; set; }
+    public int mark = 0;
     public int sightWeight { get; set; }
     public bool endRoom { get; set; }
     public int sizeX;

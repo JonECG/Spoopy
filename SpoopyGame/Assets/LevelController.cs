@@ -17,7 +17,7 @@ public class LevelController : MonoBehaviour {
     private DarkVision playerVision;
     private int odds;
     RoomGeneratorScript roomGen;
-    GameObject first;
+    public GameObject first;
     GameObject LevelContainer;
 
 	void Start () {
@@ -66,6 +66,7 @@ public class LevelController : MonoBehaviour {
         if (firstLevel)
         {
             genreateMap(numberOfRooms);
+            RoomTraversal.PopulateKeys(first);
         }
         else
         {
@@ -83,6 +84,7 @@ public class LevelController : MonoBehaviour {
         {
             player.transform.position = first.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
         }
+
     }
 
     public void finishStartingLevel()

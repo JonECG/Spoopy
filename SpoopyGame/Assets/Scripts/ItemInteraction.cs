@@ -37,6 +37,14 @@ public class ItemInteraction : MonoBehaviour {
     {
         allItems.Remove(this);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!isPickedUp && collision.gameObject.layer == LayerMask.NameToLayer("Map") )
+        {
+            transform.parent = collision.transform.root;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -44,6 +52,7 @@ public class ItemInteraction : MonoBehaviour {
         throwCorrected = Debouncer.Debounce("Throw", throwCorrected);
         if (isPickedUp)
         {
+            transform.parent = null;
             GameObject playerHead = GameObject.Find("LitCamera");
 
             RaycastHit info;
