@@ -3,11 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
+public enum DoorFrequency
+{
+    Never = 0, Normal = 1, Always = 2
+}
+
 public struct RoomInfo
 {
     public string name;
     public GameObject gameObjectReference;
     public int numOfDoors;
+    public DoorFrequency physicalDoorFrequency;
 }
 
 public static class CustomRooms
@@ -70,7 +76,10 @@ public static class CustomRooms
             int numDoors = 1;
             int.TryParse(parts[1], out numDoors);
 
-            roomStuff.Add(new RoomInfo() { name = name, numOfDoors = numDoors, gameObjectReference = Resources.Load("CustomRooms/" + name) as GameObject });
+            int df = 0;
+            int.TryParse(parts[2], out df );
+
+            roomStuff.Add(new RoomInfo() { name = name, numOfDoors = numDoors, gameObjectReference = Resources.Load("CustomRooms/" + name) as GameObject, physicalDoorFrequency = (DoorFrequency) df });
         }
 
         Rooms = roomStuff;
