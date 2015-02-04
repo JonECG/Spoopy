@@ -18,3 +18,5 @@ LevelStartRoom,1;
 FallingRoom,2;
 Invisible Floor Room,2;
 Crazy EyeBall Room,1;
+Tri-EyeBall Room,3;
+Plain 3-Door Room,3;
