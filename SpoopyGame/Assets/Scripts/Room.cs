@@ -98,7 +98,11 @@ public class Room : MonoBehaviour {
                     GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
                     newSwingDoor.transform.right = doors[i].transform.forward;
                     newSwingDoor.transform.parent = doors[i].transform;
-                    ColorCodeValues keyColor = GetRandomColorEnum();
+                    ColorCodeValues keyColor = ColorCodeValues.White;
+                    while (keyColor == ColorCodeValues.White)
+                    {
+                        keyColor = GetRandomColorEnum();
+                    }
                     newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().color = keyColor;
                     if (Random.value < 0.3f)
                     {
@@ -269,8 +273,7 @@ public class Room : MonoBehaviour {
                 GameObject newSwingDoor = Instantiate(swingDoor, doorShiftedPosition, Quaternion.identity) as GameObject;
                 newSwingDoor.transform.right = doors[i].transform.forward;
                 newSwingDoor.transform.parent = doors[i].transform;
-                ColorCodeValues keyColor = GetRandomColorEnum();
-                newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().color = keyColor;
+                newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().color = ColorCodeValues.White;
                 newSwingDoor.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = true;
         }
     }

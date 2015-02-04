@@ -282,7 +282,6 @@ public class LevelController : MonoBehaviour {
             if (finishPlaced)
             {
                 RoomInfo room = CustomRooms.GetRandomOf(CustomRooms.Rooms.Where(n => n.numOfDoors == 1 && (n.name != "FinishRoom" && n.name != "StartingRoom" && n.name != "GameStartRoom" && n.name != "LevelStartRoom")).ToList());
-
                 newRoom = Instantiate(room.gameObjectReference) as GameObject;
                 newRoom.GetComponent<Room>().freq = room.physicalDoorFrequency;
             }
