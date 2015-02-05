@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour {
     public GameObject baseRoom;
     public GameObject player;
     public GameObject doorPrefab;
+    private GameObject subDoorFab;
     public int roomMod;
     public int seededValue;
     private bool finishPlaced;
@@ -22,9 +23,10 @@ public class LevelController : MonoBehaviour {
 
 	void Start () {
         Random.seed = seededValue;
-        doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMax = 90.0f;
-        doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMin = -90.0f;
-        doorPrefab.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = false;
+        subDoorFab = Instantiate(doorPrefab, new Vector3(0.0f,30.0f,0.0f), Quaternion.identity) as GameObject;
+        subDoorFab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMax = 90.0f;
+        subDoorFab.transform.FindChild("Door").GetComponent<SwingDoor>().SwingMin = -90.0f;
+        subDoorFab.transform.FindChild("Door").GetComponent<SwingDoor>().Locked = false;
         playerVision = FindObjectOfType<DarkVision>();
         CustomRooms.ResetCounts();
         CreateLevel();
@@ -190,7 +192,7 @@ public class LevelController : MonoBehaviour {
             }
             newRoom.GetComponent<Room>().createRoom(randomRoomSizeX, randomRoomSizeY, numDoors, roomGen);
             newRoom.GetComponent<Room>().roomDepth = roomDistribution[distributionIndex];
-            newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], newRoom.GetComponent<Room>().sizeX, doorPrefab);
+            newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], newRoom.GetComponent<Room>().sizeX, subDoorFab);
             newRoom.gameObject.transform.SetParent(LevelContainer.transform);
             genreateRooms(newRoom, roomDistribution[distributionIndex]);
             distributionIndex++;
@@ -251,7 +253,7 @@ public class LevelController : MonoBehaviour {
                     {
                         newRoom = createRandomRoom(roomDistribution[distributionIndex], randomRoomSizeX, randomRoomSizeY, numDoors, isAnEndRoom);
                     }
-                    newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, doorPrefab, useFirstDoor);
+                    newRoom.GetComponent<Room>().placeGenRoom(firstRoomsdoors[i], randomRoomSizeX, subDoorFab, useFirstDoor);
                     genreateRooms(newRoom, roomDistribution[distributionIndex]);
                     distributionIndex++;
                     odds++;
@@ -298,7 +300,7 @@ public class LevelController : MonoBehaviour {
                 finalRoomListener[0] = this.gameObject.GetComponent<LevelChangeTriggerable>();
                 newRoom.transform.Find("LevelChangeTrigger").GetComponent<CollisionTriggerer>().listeners = finalRoomListener;
                 newRoom.GetComponent<Room>().freq = room.physicalDoorFrequency;
-                newRoom.GetComponent<Room>().lockDoors(doorPrefab);
+                newRoom.GetComponent<Room>().lockDoors(subDoorFab);
                 finishPlaced = true;
             }
         }
