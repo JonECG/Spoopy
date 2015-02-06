@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     Transform anchor;
     Transform head;
     int moveSpeed = 3;
-    float mouseSensitivity = 2.0f;
+    float mouseSensitivity = 3.0f;
 
     public float sprintRecovery = 6;
     public float sprintDuration = 5;

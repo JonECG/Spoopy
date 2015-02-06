@@ -21,10 +21,10 @@ public class DeathHelper : MonoBehaviour {
         {
             if (lastTimeRecorded > roomStart - messageDuration)
             {
-                float space = 0.2f;
+                float space = 0.1f;
                 for (int i = 0; i < message.Length; i++)
                 {
-                    HeadsUpDisplayController.Instance.DrawText(message[i], 0, - space * i  + ( ( message.Length - 1 ) * space ) / 2, Color.white, 0.05f);
+                    HeadsUpDisplayController.Instance.DrawText(message[i], 0, - space * i  + ( ( message.Length - 1 ) * space ) / 2 + 0.3f, Color.white, 0.05f);
                 }
             }
         }

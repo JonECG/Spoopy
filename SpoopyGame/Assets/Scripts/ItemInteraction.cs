@@ -68,8 +68,8 @@ public class ItemInteraction : MonoBehaviour {
 
             if (Time.time - lastTimeNotHeld > 20 && ItemInventory.objects.Count == 0)
             {
-                HeadsUpDisplayController.Instance.DrawText("You can store multiple items in your inventory", 0, 0, Color.yellow, 0.05f);
-                HeadsUpDisplayController.Instance.DrawText("To access your inventory look down to your left", 0, -0.2f, Color.yellow, 0.05f);
+                HeadsUpDisplayController.Instance.DrawText("You can store multiple items in your inventory", 0, 0.5f, Color.yellow, 0.05f);
+                HeadsUpDisplayController.Instance.DrawText("To access your inventory look down to your left", 0, 0.3f, Color.yellow, 0.05f);
             }
         }
         else

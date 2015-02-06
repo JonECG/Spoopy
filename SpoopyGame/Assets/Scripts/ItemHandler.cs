@@ -124,8 +124,8 @@ public class ItemHandler : MonoBehaviour
                 //Prompt for picking up
                 else if (!items[selection].isPickedUp)
                 {
-                    HeadsUpDisplayController.Instance.DrawText(items[selection].info, 0, 0, Color.blue);
-                    HeadsUpDisplayController.Instance.DrawText("Press (A) to " + (items[selection].isTakeable ? "Take" : "Pick up"), 0, 0.2f, Color.blue);
+                    HeadsUpDisplayController.Instance.DrawText(items[selection].info, 0, -0.1f, Color.blue);
+                    HeadsUpDisplayController.Instance.DrawText("Press (A) to " + (items[selection].isTakeable ? "Take" : "Pick up"), 0, 0.1f, Color.blue);
                 }
             }
             else if (selection >= (items.Count))

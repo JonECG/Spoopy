@@ -62,8 +62,8 @@ public class HeadLamp : MonoBehaviour {
 
         if (Time.time - lastTimeWithCharge > delayForPromptingRecharge)
         {
-            HeadsUpDisplayController.Instance.DrawText("Press (X) Several Times to Recharge Your Headlamp", 0, 0, Color.yellow, 0.05f);
-            HeadsUpDisplayController.Instance.DrawText("Then Press (Y) to Turn Your Headlamp On", 0, -0.2f, Color.yellow, 0.05f);
+            HeadsUpDisplayController.Instance.DrawText("Press (X) Several Times to Recharge Your Headlamp", 0, 0.5f, Color.yellow, 0.05f);
+            HeadsUpDisplayController.Instance.DrawText("Then Press (Y) to Turn Your Headlamp On", 0, 0.3f, Color.yellow, 0.05f);
         }
 
         if (headLampToggleCorrected.IsPressed())
