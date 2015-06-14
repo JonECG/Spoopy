@@ -15,6 +15,7 @@ public class TitleScreenController : MonoBehaviour {
 	{
         renderer.material.mainTexture = one;
         waitStarted = 0;
+        //Screen.fullScreen=true;
         if (Application.isEditor)
         {
             oculCamera.SetActive(false);

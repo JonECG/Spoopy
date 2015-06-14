@@ -12,6 +12,7 @@ public class DeathHelper : MonoBehaviour {
 	void Start () 
 	{
         roomStart = Time.time;
+        //Screen.fullScreen = true;
         Debug.Log(message[0]);
 	}
 	
