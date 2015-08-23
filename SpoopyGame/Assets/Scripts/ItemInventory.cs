@@ -18,7 +18,7 @@ public class ItemInventory : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        viewing = GameObject.Find("LitCamera").camera;
+        viewing = GameObject.Find("LitCamera").GetComponent<Camera>();
         isOpen = false;
         objects = new List<GameObject>();
         this.transform.Rotate(new Vector3(0.0f, 1.0f, 0.0f), -90.0f);

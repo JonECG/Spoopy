@@ -27,8 +27,8 @@ public class HeadLamp : MonoBehaviour {
 	{
         lastTimeWithCharge = Time.time;
         currentBatteryLife = batteryLifeInSeconds;
-        glow = transform.FindChild("Glow").light;
-        maxIntensity = light.intensity;
+        glow = transform.FindChild("Glow").GetComponent<Light>();
+        maxIntensity = GetComponent<Light>().intensity;
         maxGlow = glow.intensity;
 	}
 	
@@ -97,16 +97,16 @@ public class HeadLamp : MonoBehaviour {
         if (isTurnedOn)
         {
             float weakenedPower = (currentBatteryLife > weakenTime) ? 1 : currentBatteryLife / weakenTime;
-            light.enabled = Random.value <= weakenedPower;
-            light.intensity = weakenedPower * maxIntensity;
+            GetComponent<Light>().enabled = Random.value <= weakenedPower;
+            GetComponent<Light>().intensity = weakenedPower * maxIntensity;
             glow.intensity = weakenedPower * maxGlow;
         }
         else
         {
-            light.enabled = false;
+            GetComponent<Light>().enabled = false;
         }
 
-        glow.enabled = light.enabled;
+        glow.enabled = GetComponent<Light>().enabled;
 
 	}
 

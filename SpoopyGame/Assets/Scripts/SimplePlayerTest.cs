@@ -12,7 +12,7 @@ public class SimplePlayerTest : MonoBehaviour {
 	void Update () {
         if (Input.GetKey(KeyCode.W) == true)
         {
-            rigidbody.AddForce(Vector3.forward * 20, ForceMode.Force);
+            GetComponent<Rigidbody>().AddForce(Vector3.forward * 20, ForceMode.Force);
         }
 	}
 }

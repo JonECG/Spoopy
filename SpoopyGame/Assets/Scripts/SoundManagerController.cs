@@ -49,15 +49,15 @@ public class SoundManagerController : MonoBehaviour {
             {
                 if (!isPlaying)
                 {
-                    audio.clip = music;
+                    GetComponent<AudioSource>().clip = music;
                     isPlaying = true;
-                    audio.loop = true;
-                    audio.volume = volumeScale;
-                    audio.Play();
-                    audio.time = 0;
+                    GetComponent<AudioSource>().loop = true;
+                    GetComponent<AudioSource>().volume = volumeScale;
+                    GetComponent<AudioSource>().Play();
+                    GetComponent<AudioSource>().time = 0;
                 }
                 else
-                    if (music != audio.clip)
+                    if (music != GetComponent<AudioSource>().clip)
                     {
                         isTransitioning = true;
                         fadingOut = true;
@@ -99,18 +99,18 @@ public class SoundManagerController : MonoBehaviour {
     {
         GameObject source = new GameObject(clip.name + "SOUNDED");
         source.AddComponent<AudioSource>();
-        source.audio.clip = clip;
+        source.GetComponent<AudioSource>().clip = clip;
         source.transform.position = soundPosition;
         source.AddComponent<DestroyOnSoundEnd>();
-        source.audio.Play();
+        source.GetComponent<AudioSource>().Play();
         source.tag = tag;
         //Debug.Log( source.audio.spread );
         //source.audio.spread = 360;
 
         if( SoundCreatedEvent != null )
-            SoundCreatedEvent(source.audio);
+            SoundCreatedEvent(source.GetComponent<AudioSource>());
 
-        return source.audio;
+        return source.GetComponent<AudioSource>();
     }
 
     public AudioSource PlaySoundAt(AudioClip clip, Transform soundParent, string tag = "Untagged")
@@ -134,11 +134,11 @@ public class SoundManagerController : MonoBehaviour {
 
             if (fadingOut)
             {
-                audio.volume = volumeScale * Mathf.Clamp((fadeTime - transitioningTime) / fadeTime, 0, 1);
+                GetComponent<AudioSource>().volume = volumeScale * Mathf.Clamp((fadeTime - transitioningTime) / fadeTime, 0, 1);
             }
             else
             {
-                audio.volume = volumeScale * (1 - Mathf.Clamp((fadeTime - transitioningTime) / fadeTime, 0, 1));
+                GetComponent<AudioSource>().volume = volumeScale * (1 - Mathf.Clamp((fadeTime - transitioningTime) / fadeTime, 0, 1));
             }
 
             if (transitioningTime > fadeTime)
@@ -147,16 +147,16 @@ public class SoundManagerController : MonoBehaviour {
                 {
                     if (nextMusic != null)
                     {
-                        audio.Stop();
-                        audio.clip = nextMusic;
-                        audio.time = 0;
-                        audio.Play();
+                        GetComponent<AudioSource>().Stop();
+                        GetComponent<AudioSource>().clip = nextMusic;
+                        GetComponent<AudioSource>().time = 0;
+                        GetComponent<AudioSource>().Play();
                         nextMusic = null;
                         fadingOut = false;
                     }
                     else
                     {
-                        audio.Stop();
+                        GetComponent<AudioSource>().Stop();
                         isPlaying = false;
                         isTransitioning = false;
                     }

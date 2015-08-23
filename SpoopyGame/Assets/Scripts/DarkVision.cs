@@ -15,8 +15,8 @@ public class DarkVision : MonoBehaviour {
 
 	void Awake () 
 	{
-        maxIntensity = light.intensity;
-        maxRange = light.range;
+        maxIntensity = GetComponent<Light>().intensity;
+        maxRange = GetComponent<Light>().range;
         adjustedLight = new Vector3(1, 1, 1);
 	}
 	
@@ -26,7 +26,7 @@ public class DarkVision : MonoBehaviour {
 
         float darkness = 1 - ( lightDetector.averageColorAsVec.x + lightDetector.averageColorAsVec.y + lightDetector.averageColorAsVec.z ) / 3;
         grandeur = (Mathf.Pow(darkness, grandPower) + grandeur * tweenResistance) / (tweenResistance + 1);
-        light.intensity = maxIntensity * grandeur;
-        light.range = maxRange * grandeur;
+        GetComponent<Light>().intensity = maxIntensity * grandeur;
+        GetComponent<Light>().range = maxRange * grandeur;
 	}
 }

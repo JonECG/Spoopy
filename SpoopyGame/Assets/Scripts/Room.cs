@@ -158,7 +158,7 @@ public class Room : MonoBehaviour {
 
     private void createRoomTrigger()
     {
-        this.gameObject.AddComponent("BoxCollider");
+        this.gameObject.AddComponent<BoxCollider>();
         BoxCollider roomColider = this.GetComponent<BoxCollider>();
         roomColider.center = this.transform.position;
         roomColider.transform.parent = this.transform;

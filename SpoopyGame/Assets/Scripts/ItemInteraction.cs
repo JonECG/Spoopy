@@ -59,7 +59,7 @@ public class ItemInteraction : MonoBehaviour {
             Physics.Raycast(playerHead.transform.position, playerHead.transform.forward, out info, 2, 1 << LayerMask.NameToLayer("Map"));
             transform.position = (playerHead.transform.position + (playerHead.transform.forward.normalized * (info.collider != null ? info.distance - 0.1f : 2)));
 
-            rigidbody.velocity = new Vector3();
+            GetComponent<Rigidbody>().velocity = new Vector3();
 
             if (throwCorrected.IsPressed())
             {

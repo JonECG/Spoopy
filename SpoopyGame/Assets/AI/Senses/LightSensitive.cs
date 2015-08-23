@@ -9,7 +9,7 @@ public class LightSensitive : SenseInterface {
 
         HeadLamp lamp = FindObjectOfType<HeadLamp>();
         float dist = Vector3.Distance(lamp.transform.position, transform.position);
-        bool isInLamp = lamp.light.enabled && dist < lamp.light.range && Mathf.Acos(Vector3.Dot((transform.position - lamp.transform.position).normalized, lamp.transform.forward)) < Mathf.Deg2Rad * lamp.light.spotAngle/2 &&
+        bool isInLamp = lamp.GetComponent<Light>().enabled && dist < lamp.GetComponent<Light>().range && Mathf.Acos(Vector3.Dot((transform.position - lamp.transform.position).normalized, lamp.transform.forward)) < Mathf.Deg2Rad * lamp.GetComponent<Light>().spotAngle/2 &&
             !Physics.Raycast( lamp.transform.position, (transform.position - lamp.transform.position).normalized, dist, 1 << LayerMask.NameToLayer("Map") );
 
         if (isInLamp)

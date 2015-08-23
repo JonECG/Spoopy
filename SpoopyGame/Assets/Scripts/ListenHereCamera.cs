@@ -9,6 +9,6 @@ public class ListenHereCamera : MonoBehaviour {
     void LateUpdate()
     {
         if (OnPreRenderEvent != null)
-            OnPreRenderEvent( camera );
+            OnPreRenderEvent( GetComponent<Camera>() );
     }
 }

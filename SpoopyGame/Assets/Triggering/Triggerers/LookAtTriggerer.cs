@@ -10,7 +10,7 @@ public class LookAtTriggerer : Triggerer {
     void Start()
     {
         playerLooking = GameObject.Find("LitCamera").transform;
-        renderer.enabled = false;
+        GetComponent<Renderer>().enabled = false;
     }
 
     void Update()

@@ -38,7 +38,7 @@ public class AIDetection : MonoBehaviour
 
         if (Vector3.Distance(playerObject.transform.position, transform.position)<viewDistance)
         {
-            Vector3 player = playerObject.rigidbody.position;
+            Vector3 player = playerObject.GetComponent<Rigidbody>().position;
             playerDirection = player - transform.position;
             float angle = Vector3.Angle(playerDirection, transform.forward);
             if (angle < (viewAngle * 0.5f))
@@ -81,10 +81,10 @@ public class AIDetection : MonoBehaviour
             }
             Debug.DrawLine(transform.position, new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
             transform.LookAt(new Vector3(exploreNode.x, transform.position.y, exploreNode.y));
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.angularVelocity = Vector3.zero;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             transform.Translate((transform.forward.normalized*patrolSpeed)*Time.deltaTime, Space.World);
-            renderer.material.color = Color.white;
+            GetComponent<Renderer>().material.color = Color.white;
             GetComponent<SoundStatePlayer>().SetState("Patrol");
         }
         else if (recentlyDetected)
@@ -96,7 +96,7 @@ public class AIDetection : MonoBehaviour
             exploreNode.y = playerObject.transform.position.z;
 
             transform.Translate((transform.forward.normalized*chaseSpeed)*Time.deltaTime, Space.World);
-            renderer.material.color = Color.red;
+            GetComponent<Renderer>().material.color = Color.red;
             GetComponent<SoundStatePlayer>().SetState("Chase");
         }
     }
@@ -104,6 +104,6 @@ public class AIDetection : MonoBehaviour
     void OnGUI()
     {
         if(Input.GetKey(KeyCode.H))
-            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200, 250), "Velocity X: " + rigidbody.angularVelocity.x + " Velocity Y: " + rigidbody.angularVelocity.y + " Velocity Z: " + rigidbody.angularVelocity.z);
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200, 250), "Velocity X: " + GetComponent<Rigidbody>().angularVelocity.x + " Velocity Y: " + GetComponent<Rigidbody>().angularVelocity.y + " Velocity Z: " + GetComponent<Rigidbody>().angularVelocity.z);
     }
 }

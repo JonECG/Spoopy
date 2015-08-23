@@ -19,9 +19,9 @@ public class FadeTriggerable : Triggerable {
     {
         if (fading)
         {
-            if ((renderer.material.color.a > 0 && !FadeInVsFadeOut) || (renderer.material.color.a < 1 && FadeInVsFadeOut))
+            if ((GetComponent<Renderer>().material.color.a > 0 && !FadeInVsFadeOut) || (GetComponent<Renderer>().material.color.a < 1 && FadeInVsFadeOut))
             {
-                renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, Mathf.Clamp(renderer.material.color.a + ( ( FadeInVsFadeOut ? 1 : -1 ) / TimeForTotalFade * Time.deltaTime ), 0, 1));
+                GetComponent<Renderer>().material.color = new Color(GetComponent<Renderer>().material.color.r, GetComponent<Renderer>().material.color.g, GetComponent<Renderer>().material.color.b, Mathf.Clamp(GetComponent<Renderer>().material.color.a + ( ( FadeInVsFadeOut ? 1 : -1 ) / TimeForTotalFade * Time.deltaTime ), 0, 1));
             }
             else
             {

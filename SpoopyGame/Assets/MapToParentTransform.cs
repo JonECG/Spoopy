@@ -19,8 +19,8 @@ public class MapToParentTransform : MonoBehaviour {
         //transform.parent.position += transform.position - lastPosition;
         //transform.parent.rotation = transform.rotation;
 
-        transform.parent.rigidbody.MovePosition(transform.position);// - lastPosition);
-        transform.parent.rigidbody.MoveRotation(transform.rotation);//Quaternion.Inverse(lastRotation) * transform.rotation);
+        transform.parent.GetComponent<Rigidbody>().MovePosition(transform.position);// - lastPosition);
+        transform.parent.GetComponent<Rigidbody>().MoveRotation(transform.rotation);//Quaternion.Inverse(lastRotation) * transform.rotation);
 
         transform.position = transform.parent.position;
         transform.rotation = transform.parent.rotation;

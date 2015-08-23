@@ -9,8 +9,8 @@ public class Triggerer : MonoBehaviour {
 
 	void Start () 
 	{
-        if (renderer != null)
-            renderer.enabled = false;
+        if (GetComponent<Renderer>() != null)
+            GetComponent<Renderer>().enabled = false;
 	}
 
     protected void SendTrigger()

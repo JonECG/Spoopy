@@ -13,7 +13,7 @@ public class TitleScreenController : MonoBehaviour {
 
 	void Start () 
 	{
-        renderer.material.mainTexture = one;
+        GetComponent<Renderer>().material.mainTexture = one;
         waitStarted = 0;
         //Screen.fullScreen=true;
         if (Application.isEditor)
@@ -36,7 +36,7 @@ public class TitleScreenController : MonoBehaviour {
             if (pressACorrected.IsPressed())
             {
                 waitStarted = Time.time;
-                renderer.material.mainTexture = two;
+                GetComponent<Renderer>().material.mainTexture = two;
             }
         }
         else

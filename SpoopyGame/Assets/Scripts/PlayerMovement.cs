@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour {
         sprintStamina = 1;
         head = GameObject.Find("Head").transform;
 
-        if (Application.isEditor)
+        if (!Application.isEditor)
         {
             GameObject.Destroy(GameObject.Find("OVRCameraRig"));
             anchor = GameObject.Find("Head").transform;

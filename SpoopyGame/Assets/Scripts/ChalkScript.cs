@@ -13,7 +13,7 @@ public class ChalkScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        theCamera = GameObject.Find("LitCamera").camera;
+        theCamera = GameObject.Find("LitCamera").GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame

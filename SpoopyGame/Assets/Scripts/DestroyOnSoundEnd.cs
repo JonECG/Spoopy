@@ -12,8 +12,8 @@ public class DestroyOnSoundEnd : MonoBehaviour {
 	
 	void Update () 
 	{
-        hasPlayed = hasPlayed || audio.isPlaying;
-        if (hasPlayed && !audio.isPlaying)
+        hasPlayed = hasPlayed || GetComponent<AudioSource>().isPlaying;
+        if (hasPlayed && !GetComponent<AudioSource>().isPlaying)
         {
             Destroy(gameObject);
         }
